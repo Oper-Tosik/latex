@@ -298,7 +298,7 @@
     преобразования строк, перенумеровывая неизвестные, таким
     образом чтобы привести матрицу к следующему виду:
     
-    $$A \stackrel{\text{Э.П.строк}}{\sim}
+    $$A \underset{\text{строк}}{\overset{\text{Э.П.}}{\sim}}
     \begin{pmatrix}
         \overmat{r}{1 & \dots & 0} & a_{1j} & \dots\\
         \vdots & \ddots & \vdots & \vdots & \vdots\\
@@ -363,7 +363,7 @@
         расписать по строкам:
         $$\begin{pmatrix}
             \vec c_1\\\vdots\\\vec c_m
-        \end{pmatrix}\stackrel{\text{Э.П.строк}}{\sim}
+        \end{pmatrix}\underset{\text{строк}}{\overset{\text{Э.П.}}{\sim}}
         (E_n|\mbox{\scriptsize{\undermat{{\mbox{\normalsize m}}}
         {\null}}}B)$$
         \underline{2 этап:} $$\varPhi = 
@@ -385,7 +385,7 @@
         Составить матрицу:$$
         rk\Biggl(c_1^\uparrow,...,c_m^\uparrow |
         \begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}\Biggr)
-        \stackrel{\text{Э.П.строк}}{\sim}
+        \underset{\text{строк} }{\overset{\text{Э.П.}}{\sim}}
         \begin{pmatrix}
             c_{11} & \null & \null & \vline & \hdotsfor{1}\\
             \null & \ddots & \null & \vline & \vdots\\
@@ -486,7 +486,7 @@
     1. Составить матрицу:
     $$(\undermat{\text{\scriptsize ЛНЗ}}{a_1^\uparrow... a_{n_1}^\uparrow}|
     \ \undermat{\text{\scriptsize ЛНЗ}}{b_1^\uparrow... b_{n_2}^\uparrow})
-    \stackrel{\text{Э.П.строк}}{\sim}
+    \underset{\text{строк}}{\overset{\text{Э.П.}}{\sim}}
     \begin{pmatrix}
         \overmat{E_{n_1}}{
         1 & \dots & 0} & \vline & 0 & \dots & 0 & \vdots & \vdots\\
@@ -1026,7 +1026,7 @@
     \sum\limits_{i=1}^m(\sum\limits_{j=1}^na_{ij}x_j)f_i\ \ \ \ (1)$$
     Если $\varphi(e_j) = \sum\limits_{i=1}^ma_{ij}f_i,\ 
     (a_{ij}) = A_{\varphi,e,f}.$\\
-    Обозначение: $y = \varphi(v),\ v = eX_e^\uparrow \Longrightarrow
+    \underline{Обозначение:} $y = \varphi(v),\ v = eX_e^\uparrow \Longrightarrow
     y = \varphi(v) = fY_f^\uparrow = \sum\limits_{i=1}^my_if_i.$\\
     $(1) \Longrightarrow Y_e^\uparrow = A_{\varphi,e ,f}X_e^\uparrow\ \ \ (2)$\\
     $Ker\varphi = \{v = eX_e^\uparrow|\varphi(v) = 0\}$.
@@ -1103,10 +1103,11 @@
     \Longleftrightarrow A_\varphi(a_1^\uparrow,...,a_n^\uparrow) =
     (b_1^\uparrow,...,b_n^\uparrow)$\\ Уравнение вида: $XA = B,\ 
     detA \neq 0 \Longrightarrow X = BA^{-1}$\\
-    $\\\begin{pmatrix}A\\\hline B\end{pmatrix} \stackrel{\text{Э.П.столбцов}}
-    {\sim}\begin{pmatrix}E\\\hline X\end{pmatrix}
+    $\\\begin{pmatrix}A\\\hline B\end{pmatrix}
+    \underset{\text{столбцов}}{\overset{\text{Э.П.}}
+    {\sim}}\begin{pmatrix}E\\\hline X\end{pmatrix}
     \Longrightarrow X = A_{\varphi,e,f}$\\
-    $\\(A^T|B^T) \stackrel{\text{Э.П.строк}}{\sim} (E|X^T)$
+    $\\(A^T|B^T) \underset{\text{строк}}{\overset{\text{Э.П.}}{\sim}} (E|X^T)$
     
     \underline{\textbf{Изменение матрицы линейного
     отображения (оператора) при}}\\
@@ -1122,27 +1123,28 @@
     $Y_{f'}:\ Y_f = D_{f \to f'}Y_{f'}\ \ \ (3')\tab[5cm]
     Y_{f'} = (D^{-1}A_\varphi C)X_{e'} \ \ \ (*)$
 
-    $\\(*)$ Сравним это с формулой:
-
+    $(*)$ Сравним это с формулой:
     $$Y_{f'} = A_{\varphi,e',f'},\ \forall x\in F^n, Y\in F^m
     \Longrightarrow A_{\varphi,e',f'} = D_{f\to f'}^{-1}
-    A_{\varphi,e,f}C_{e\to e'}$$
-    В качестве $X$ по очереди
-    взять столбцы $E_n$, в качестве $Y$ -- столбцы $E_m$.
+    A_{\varphi,e,f} C_{e \to e'}$$
+
+    В качестве $X$ по очереди взять столбцы $E_n$, в качестве
+    $Y$ -- столбцы $E_m.$
     
-    Если $ \varphi v \longmapsto V$ -- линейный оператор,
-    $e, e'$ -- базисы, $C = C_{e \to e'}$, то 
-    $a_{\varphi, e'} = C^{-1}A{\varphi,e}C$ (*)
-    Термин. Две матрицы называются подобными, если $\exists
-    C:\ A' = C_{-1}AC\ (|C| \neq 0)$
+    $\\$Если $\varphi: V \longmapsto V$ -- линейный оператор,
+    $e, e'$ -- базисы, $C = C_{e \to e'}$, то\\ 
+    $a_{\varphi, e'} = C^{-1}A{\varphi,e}\ C$\ $(*)$
+
+    $\\$\underline{Термин:} Две матрицы называются \textit{подобными},
+    если $$\exists C:\ A' = C_{-1}AC\ (detC \neq 0)$$
 
     \begin{subtheorem}
         Если $A$ и $A'$ подобные, то $|A'| = |A|$ и $rkA'=rkA.$  
     \end{subtheorem}
     
     (*) $\Longleftrightarrow CA' = AC$. Составим матрицу $(C|AC)
-    \overset{\text{Э.П. строк}}{\sim}  (E|A')$.
-
+    \underset{\text{строк}}{\overset{\text{Э.П.}}{\sim}}  (E|A')$.
+    \newpage
     \begin{center}
         \begin{Large}    
             \textbf{\S2. Действия над линейными отображениями
@@ -1150,38 +1152,38 @@
         \end{Large}
     \end{center}    
 
-    $\varphi, \psi: V \longmapsto V'$ --линейное.
-    $\forall v \in V\ (\varphi + \psi)(v) := \varphi(v) + \psi(v)$
+    $\varphi, \psi: V \longmapsto V'$ --линейное.\\
+    $\forall v \in V\ (\varphi + \psi)(v) := \varphi(v) + \psi(v)$\\
     $\forall \lambda \in F\ (\lambda \varphi)(v) := \lambda \varphi(v)$   
     \begin{subtheorem}
-        \begin{enumerate}
-            \item $L(V,V')$ является векторным пространством над $F$  
-            \item Если $dimV = n,\ dimV' = m$, то $L(V,V') \cong
-            M_{m\times n}(F)$  
-        \end{enumerate}
+        $\\1. \mathcal{L}(V,V')$ является векторным пространством над $F$\\
+        2. Если $dimV = n,\ dimV' = m$, то $\mathcal{L} (V,V') \cong
+        M_{m\times n}(F)$  
     \end{subtheorem}    
     \begin{proof}
-        1. Очевидно
+        1. "Очевидно".
 
         2. Если фиксировать базисы $e$ в $V$,\ $f$ в $V'$,
         то $\forall \varphi \longleftrightarrow  A_{\varphi,e,f},$
-        причем: $A_{\varphi + \psi} = A_\varphi + A_\psi$,
+        причем:\\ $A_{\varphi + \psi} = A_\varphi + A_\psi$,\ \
         $A_{\lambda \varphi} = \lambda A_\varphi$
         
-        Если $X$ -- столбец координат вектора $v$,\ $v' \varphi(v)$,
+        Если $X$ -- столбец координат вектора $v$,\ $v' = \varphi(v)$,
         $Y$ -- столбец координат $v'$.
         
         $Y = A_\varphi X$,
         
-        $Y$ -- столбец координат вектора $\psi(v)$, то
-        $Y = A_\psi X, (\varphi + \psi)(v) = \varphi(v) + \psi(v)
+        $\widetilde{Y} $ -- столбец координат вектора $\psi(v)$, то
+        $\widetilde{Y} = A_\psi X,\ (\varphi + \psi)(v) =\\ \varphi(v) + \psi(v)
         \Longrightarrow \varphi(v) + \psi(v)$ имеет столбец
-        координат $Y + Y = A_\varphi X + A_\psi X = 
-        (A_\varphi + A_\psi)X = A_{\varphi + \psi}X$    
+        координат $Y + \widetilde{Y} = A_\varphi X + A_\psi X =\\
+        (A_\varphi + A_\psi)X = A_{\varphi + \psi}X \Longrightarrow 
+        \varphi \longmapsto A_{\varphi,e,f}$ -- изоморфизм ($dim
+        \mathcal{L}(V,V') = n\cdot m$)
 
     \end{proof}
 
-    Умножение (композиция) линейных отображений (операторов).
+    \underline{\textbf{Умножение (композиция) линейных отображений (операторов):}}
 
     Пусть $V \overset{\psi}{\longmapsto} V' \overset{\varphi}{\longmapsto}  V''$ 
 
@@ -1193,68 +1195,68 @@
     В частности, для линейных операторов: $\varphi\cdot \psi$ --
     линейный оператор в этом же пространстве.
     
-    Обозначим L(V) -- множество всех линейных операторов на $V$.
+    \underline{Обозначим:} $\mathcal{L}(V)$ -- множество всех линейных операторов на $V$.
     
     \begin{theorem}
-        С операциями $+,\ \lambda\ \cdot,$ и $\cdot$\ $L(V)$ является
-        (линейной) алгеброй; если $dimV = n$, то $L(V) \cong M_n(F)$  
+        С операциями $+,\ \lambda\ \cdot,$ и $\cdot$\ $\mathcal{L}(V)$ является
+        [линейной] алгеброй; если $dimV = n$, то $L(V) \cong M_n(F)$  
     \end{theorem}
     
-    $A$ -- линейная алгебра, если на $A$ заданы операции
+    ($A$ -- линейная алгебра, если на $A$ заданы операции
     $+, \cdot, \lambda\ \cdot$, такие что
     \begin{enumerate}
         \item $A_+ $\text{ -- кольцо ассоциативное}
         \item $A_{+,\lambda\cdot,\ \cdot}$
         \text{ -- векторное пространство}
         \item $\lambda (ab) = (\lambda a)b, \forall \lambda
-        \in F,\ a,b \in A.$
+        \in F,\ a,b \in A.$)
     \end{enumerate}
     
     \begin{proof}
-        1, 2 уже проверены.
+        1, 2 уже проверены.\\
         3. $\forall v \in V,\ (\lambda(ab))(v) = \lambda
         ((ab)(v)) = \lambda a(b(v)) = (\lambda a)(b(v))
         \Longrightarrow \lambda(ab) = (\lambda a)b$, для 
-        $a,b \in L(V)$.  
+        $a,b \in \mathcal{L}(V)$.  
     \end{proof}
 
-    Геометрическое доказательство неравенства $rk(AB) \leq
+    \textbf{Геометрическое доказательство неравенства} $rk(AB) \leq
     \begin{cases}
         rkA\\rkB
-    \end{cases}$ (для любых матриц $A,B$, т.ч. $\exists AB$).
+    \end{cases}$\\ (для любых матриц $A,B$, т.ч. $\exists AB$).
+    \begin{proof}
+        Если $A_{m\times n},\ B_{n\times p}$, то $\mathbb{R}^p
+        \overset{B}{\longmapsto} \mathbb{R}^n \overset{A}{\longmapsto}
+        \mathbb{R}^m$\\
+        $rk(AB) = dim(AB(\mathbb{R}^p)) \leq dimB(\mathbb{R}^p)\\
+        A(\mathbb{R}^n) \supseteq (AB)(\mathbb{R}^p)
+        \Longrightarrow rk(AB) = dimIm(AB) \leq dimImA = rkA.$
 
-    Если $A_{m\times n},\ B_{n\times p}$, то $\mathbb{R}^p
-    \overset{B}{\longmapsto} \mathbb{R}^n \overset{A}{\longmapsto}
-    \mathbb{R}^m$
-    
-    $rk(AB) = dim(AB(\mathbb{R}^p)) \leq dimB(\mathbb{R}^p)\\
-    A(\mathbb{R}^n) \supseteq (AB)(\mathbb{R}^p)
-    \Longrightarrow rk(AB) = dimIm(AB) \leq dimImA = rkA.$ 
-
-    Случай равенства. Если $|A| \neq 0,$ то $A$ задает
-    изоморфизм между $\mathbb{R}^n$ и $\mathbb{R}^m
-    \Longrightarrow dimB(\mathbb{R}^p) = dim(AB(\mathbb{R}^p))$,
+        Случай равенства. Если $|A| \neq 0,$ то $A$ задает
+        изоморфизм между $\mathbb{R}^n$ и $\mathbb{R}^m
+        \Longrightarrow dimB(\mathbb{R}^p) = dim(AB(\mathbb{R}^p))$,
     т.е. $rkB = rkAB$
-    
-    Многочлен от линейного оператора:
+
+    \end{proof}
+    \textbf{Многочлены от линейного оператора:}
 
     Пусть $p(t) = a_0t^m + a_1t_{m-1}+...+a_{m-1}t + a_m,\ 
-    \forall a_i \in F,\ i = 0,...,m$, тогда $p(\varphi) = 
+    \forall a_i \in F,\ i = 0,...,m$.\\ Тогда $p(\varphi) = 
     a_0\varphi^m + a_1\varphi^{m-1}+...+a_{m-1}\varphi + a_m \varepsilon$
     
     $\varepsilon(v) = v, \forall v \in V$ -- тождественный оператор.
     
-    Многочлен $p(t)$ -- аннулирующий многочлен оператора $\varphi$,
+    Многочлен $p(t)$ -- \textit{аннулирующий многочлен оператора} $\varphi$,
     если $p(\varphi) = 0$ (нулевой оператор).
     \begin{theorem}
         Для любого оператора $\varphi: V_n \longmapsto V_n$
-        существует аннулирующий многочлен степени $\leq n-1$. 
+        существует аннулирующий многочлен степени $\leq n^2-1$. 
     \end{theorem}
     \begin{proof}
-        Т.к. $dimL(V) = n^2$, то операторы, $\varphi^0 = \varepsilon,
+        Т.к. $dim \mathcal{L}(V) = n^2$, то операторы, $\varphi^0 = \varepsilon,
         \varphi, \varphi^2,..., \varphi^{n^2}$ -- ЛЗ. $\Longrightarrow
-        \exists a_0, a_1,..., a_{n^2} \in F\ 
-        a_0\varepsilon + a_1\varphi +...+a_{n^2}\varphi^{n^2}
+        \exists a_0, a_1,..., a_{n^2} \in F,\ 
+        a_0\varepsilon + a_1\varphi +...+a_{n^2}\varphi^{n^2} = 0
         \Longrightarrow p(t) = a_0 + a_1t +...+ a_{n^2}t^n$ --
         аннулирующий для $\varphi$.
         
@@ -1270,7 +1272,7 @@
     Пусть $\varphi: V \longmapsto V$ -- линейный оператор.
     
     \begin{definition}
-        Подпространство $U \subseteq V$ называется \underline{
+        Подпространство $U \subseteq V$ называется \textit{
         инвариантым} относительно $\varphi$ (или для $\varphi$,
         или $\varphi$-инвариантным), если $\forall u \in U
         \Longrightarrow \varphi(u) \in U$, т.е. $\varphi(U)
@@ -1278,29 +1280,29 @@
     \end{definition}
 
     \begin{definition}
-        \underline{Ограничение (сужение) оператора} $\varphi$
+        \textit{Ограничение (сужение) оператора} $\varphi$
         на инвариантное подмножество $U$ -- это оператор. 
     \end{definition}
 
-    Обозначение: $\varphi|_v: U \longmapsto U$, а именно,
-    $\forall u \in U$  
-
-    Примеры:
+    \underline{Обозначение:} $\varphi|_v: U \longmapsto U$, а именно,
+    $\forall u \in U: \varphi|_u(U) = \varphi(U)$
+    \newpage
+    \textbf{Примеры:}
     \begin{enumerate}
         \item $\varphi = \frac{d}{dx}: \mathbb{R}[x]
-        \longmapsto \mathbb{R}[x]$, $p(x) \longmapsto p'(x)$
+        \longmapsto \mathbb{R}[x]$,\ \ $p(x) \longmapsto p'(x)$
         
         Для $\forall n = 0,1,...,\ \mathbb{R}_n[x] = \{p(x)|
-        deg p(x)\leq n\}$ являются инвариантными подпространствами
+        deg\ p(x)\leq n\}$ являются инвариантными подпространствами
 
         Вопрос: есть ли другие инвариантные подпространства?
         \item $\varphi$ -- проектирование (проектор) $V
-        longmapsto V = U_1 \oplus U_2$
+        \longmapsto V = U_1 \oplus U_2$
         
-        $\varphi(u_1 + u_2) = u_1$ на $U_1$ вдоль $U_2$.
+        $\varphi(u_1 + u_2) = u$ на $U_1$ вдоль $U_2$.
         
         Инвариантные: $U_1, U_2$, а также $U_1' \oplus U_2'$,
-        для $\forall U_1' \subseteq U_1,\ U_2' \subseteq U_2$.
+        для $\forall\ U_1' \subseteq U_1,\ U_2' \subseteq U_2$.
     \end{enumerate}
     
     \begin{theorem}
@@ -1317,46 +1319,52 @@
     \end{theorem}
 
     \begin{theorem}
-        Если $U_1,..., U_k$ -- $\varphi$-инвариантные.  
+        Если $U_1,..., U_k$ -- $\varphi$-инвариантные, то $\varphi$-инвариантные:
+        \begin{itemize}
+            \item $U_1+...+U_k$
+            \item $U_1 \cap...\cap U_k$ 
+        \end{itemize}        
     \end{theorem}
 
     \begin{lemma}
-        (Вид матрицы $A-\varphi$ при наличии инвариантов 
-        пространства)
+        (Вид матрицы $A_\varphi$ при наличии инвариантов 
+        подпространства)
         \begin{enumerate}
             \item Пусть $U_1$ -- $\varphi$-инвариантное
-            пространство, $\{0\} \neq U_1 \neq V$. Тогда
+            пространство, $\{0\} \neq U_1 \neq V$.\\ Тогда
             в $V\ \exists$ базис, в котором\\ $A_\varphi = 
             \begin{pmatrix}
-                \underset{n\timesm}{B} & \underset{m\times n-m}{D} \\
-                \big 0 & C 
-            \end{pmatrix}$\\ $dimU_1 = m$ 
+                \underset{n\times m}{B} & \underset{m\times n-m}{D}\\
+                \underset{(n-m)\times n}{0} & \underset{(n-m)\times (n-m)}{C} 
+            \end{pmatrix} \text{, причем } B = A_{\varphi|U_1},\ \  dimU_1 = m$ 
             \item Пусть $V = U_1 \oplus U_2$, причем $U_1, U_2$ --
             ненулевые инвариантные подпространства, тогда в
             $V\ \exists$ базис, в котором\\ $A_\varphi = 
             \begin{pmatrix}
-                \underset{n\timesm}{B} & 0\\
-                \big 0 & C 
+                B & 0\\
+                0 & C 
             \end{pmatrix}$, причем $C = A_{\varphi|U_2}$ 
         \end{enumerate}
-        \begin{proof}
-            \begin{enumerate}
-                \item Надо взять $e_1,..., e_m$ -- базис в $U_1$,
-                дополнить его произвольно до базиса в $V$.\\
-                Тогда для $j=1,...,m,\ \varphi(e_j) \in U_1,\ 
-                \varphi(e_j) = \sum\limits_{i=1}^{m} b_ie_i$ --
-                столбцы (хз)
-                \item Усли базис $e_1,..., e_m$ пространства
-                \item $U_1$ объединить с базисом $e_{m+1},...,
-                e_n$ пространства $U_2$, то в полученном базисе
-                $A_\varphi = 
-            \begin{pmatrix}
-                \underset{n\timesm}{B} & 0\\
-                \big 0 & C 
-            \end{pmatrix}$
-            \end{enumerate}
-        \end{proof}
     \end{lemma}
+    \begin{proof}
+        $\\$1. Надо взять $e_1,..., e_m$ -- базис в $U_1$,
+        дополнить его произвольно до базиса в $V$.\\
+        Тогда для $j=1,...,m,\ \varphi(e_j) \in U_1,\ 
+        \varphi(e_j) = \sum\limits_{i=1}^{m} b_ie_i$\\
+        2. Если базис $e_1,..., e_m$ пространства
+        $U_1$ объединить с базисом $e_{m+1},...,
+        e_n$\\ пространства $U_2$, то в полученном базисе
+        $A_\varphi = 
+    \begin{pmatrix}
+        B & 0\\
+        0 & C 
+    \end{pmatrix}$
+    
+    \end{proof}
+    \begin{subtheorem}
+        Верное и обратное
+    \end{subtheorem}
+    
 
 
 
