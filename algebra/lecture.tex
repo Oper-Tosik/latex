@@ -1,0 +1,1388 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[english, russian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[left=2cm,right=1.5cm,top=2cm,bottom=2cm]{geometry}
+% \usepackage{mathtext}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{etoolbox}
+\usepackage{amsthm}
+\usepackage{nicematrix}
+% \usepackage{graphicx}
+% \usepackage{tikz}
+% \usepackage{parskip}
+
+% \graphicspath{/Images/}
+
+%Реализация aug, overbrace и underbrace без nice matrix
+\newcommand\aug{\fboxsep=-\fboxrule\!\!\!\fbox{\strut}\!\!\!}
+\newcommand\undermat[2]{\makebox[0pt][l]{$\smash{\underbrace
+{\phantom{\begin{matrix}#2\end{matrix}}}_{\text{$#1$}}}$}#2}
+\newcommand\overmat[2]{\makebox[0pt][l]{$\smash{\overbrace
+{\phantom{\begin{matrix}#2\end{matrix}}}^{\text{$#1$}}}$}#2}
+\newcommand\tab[1][.5cm]{\hspace*{#1}}
+\newcommand\Underset[2]{\underset{\textstyle #1}{#2}}
+\newcommand\Overset[2]{\overset{\textstyle #1}{#2}}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{consequense}{Следствие}
+\newtheorem*{lemma}{Лемма}
+\newtheorem*{subtheorem}{Утверждение}
+\newtheorem*{remark}{Замечание}
+
+
+\begin{document}
+    \fontsize{14pt}{20pt}\selectfont
+    \begin{center}
+        \begin{LARGE}
+            \textbf{Линейная алгебра и геометрия}
+        \end{LARGE}
+
+        \begin{Large}
+            \textbf{Глава I. Векторное пространство}
+            % \newline
+            
+            \textbf{\S1. Векторное пространство, размерность, изоморфизм}
+        \end{Large}
+    \end{center}
+
+    \begin{definition}
+        Множество $V$ называется
+        \textit{векторным пространством}
+        над полем $F$, если заданы операции $+$ и $\cdot$\ :
+        $V\times V \to V$, $F \times V \to V$ 
+        и выполнены следующие аксиомы: 
+
+        1. $\forall v_1, v_2, v_3\in V$ выполнено
+        $(v_1 + v_2) + v_3 = v_1 + (v_2 + v_3)$
+
+        2. $\exists \vec 0 \in V:\ \forall v \in V$
+        выполнено $v + \vec 0 = v$
+
+        3. $\forall v \in V \ \ \exists  -v  \in V$:
+        $v + (-v) = \vec 0$
+
+        4. $\forall v_1, v_2 \in V$ выполнено 
+        $v_1 + v_2 = v_2 + v_1$
+
+        5. $\forall \alpha, \beta \in F, v \in V$ 
+        выполнено $(\alpha \beta)v = \alpha (\beta v)$
+
+        6. $\forall v \in V$ выполнено $1 \cdot v = v$
+
+        7. $\forall \alpha, \beta \in F, v \in V$ выполнено
+        $(\alpha + \beta)v = \alpha v + \beta v$
+
+        8. $\forall \alpha \in F, v_1, v_2 \in V$ выполнено
+        $\alpha (v_1 + v_2) = \alpha v_1 + \alpha v_2$        
+    \end{definition}
+
+    \begin{subtheorem}
+        Линейным операциям над векторами соотвествует такие же
+        операции над их координатами: 
+        
+        1. $x = eX, y = eY \Rightarrow x + y = e(X + Y)$
+
+        2. $\lambda x = e(\lambda X)$
+    \end{subtheorem}
+    \begin{proof}
+        Пусть $e = (e_1, e_2,...,e_n)$ базис в $V$.
+        Тогда $$x = \sum\limits_{i=1}^n x_i e_i =
+        (e_1, e_2,..., e_n)
+        \begin{pmatrix}
+            x_1\\
+            x_2\\
+            \vdots\\
+            x_n
+        \end{pmatrix}
+        = eX$$
+    \end{proof}
+    \begin{definition}
+        $\varphi: V \to W$ \textit{линейно}, если:
+
+        1. $\forall v_1, v_2 \in V$ выполнено
+        $\varphi (v_1 + v_2) = \varphi (v_1) + \varphi (v_2)$
+
+        2. $\forall v \in V, \lambda \in F$ выполнено
+        $\varphi (\lambda v) = \lambda \varphi (v)$
+    \end{definition}
+    \begin{definition}
+        $\varphi$ называется \textit{изоморфизмом}, если
+        $\varphi$ линейно и биективно.
+    \end{definition}
+    \begin{consequense}
+        Если $\varphi$ линейное отображение, то $\varphi
+        (\vec 0_V) = \varphi (\vec 0_W)$
+    \end{consequense}
+    \begin{proof}
+        $$\vec 0_V + \vec 0_V = \vec 0_V \Rightarrow 
+        \varphi (\vec 0_V + \vec 0_V) = \varphi (\vec 0_V) +
+        (-\varphi (\vec 0_V)) \Rightarrow 
+        \varphi(\vec 0_V) = \vec 0_W \Leftrightarrow
+        dimV = dimW$$
+    \end{proof}
+    \begin{consequense}
+        $dimV=n \Leftrightarrow V \cong F^n$, где $F^n$
+        пространство столбцов высоты n.
+        
+        ("$\cong$" Чубаров обозначает изоморфность)
+    \end{consequense}
+    \begin{proof}
+        $\Rightarrow$ Пусть $V \cong W$
+        изоморфизм $\Rightarrow dimV=dimW$.
+        По условию $\exists \varphi: V \to W$
+        изоморфизм. Фиксируем базис $(e_1, e_2,..., e_n)$ в $V$ и
+        покажем, что \\$\varphi (e_1), \varphi (e_2),...,
+        \varphi (e_n)$ базис в $V$.\\
+        1. $\varphi (e_1), \varphi (e_2),...,\varphi (e_n)$
+        - ЛНЗ и $\sum \limits_{i=1}^{n} \lambda_i \varphi (e_i)
+        = \vec 0_W \Rightarrow \sum \limits_{i=1}^{n} \varphi 
+        (\lambda_i e_i) = \vec 0_W,$
+
+        $\varphi$ - инъективно, но $\varphi (\vec 0_V) = 0_W
+        \Rightarrow \sum \limits_{i=1}^{n} \lambda_i \varphi
+        (e_i) = \vec 0_V \Rightarrow$ все $\lambda_i = 0$\\
+        2. $\varphi (e_1), \varphi (e_2),..., \varphi (e_n)$
+        - полная система: $\forall w \in W\  \exists v \in V:
+        \varphi (v) = w$, так как $\varphi$ - сюръективна.
+        $\Rightarrow \exists x_1, x_2,..., x_n \in F$. 
+        $v = \sum \limits_{i=1}^n x_ie_i \Rightarrow 
+        \varphi (v) = w = \sum\limits_{i=1}^n x_i\varphi (e_i)
+        \Rightarrow \varphi(e_1), \varphi(e_2),...,
+        \varphi(e_n)$ - базис в W.
+
+        $\Leftarrow$ Пусть $dimV = dimW = n.$ Построим
+        изоморфизм. Фиксируем базис $e = (e_1, e_2,...,e_n)$
+        в $V$ и $f = (f_1, f_2,...,f_n)$ в $W$. Положим:
+        $\varphi (e_i) = f_i$. Достроим $\varphi$ до
+        линейного отображения, так что $\forall v \in V$
+        выполнено $v = \sum\limits_{i=1}^n x_ie_i$.
+        Тогда $\varphi (v) = \varphi (\sum\limits_{i=1}^n x_ie_i)
+        = \sum\limits_{i=1}^n x_i \varphi (e_i) =
+        \sum\limits_{i=1}^n x_if_i$. Таким образом, $\varphi$
+        линейно.
+
+    \end{proof}
+    \underline{\textbf{Замена базиса}}
+
+    Пусть $dimV = n, e = (e_1,...,e_n)$ - старый базис,
+    $e' = (e_1',...,e_n')$ - новый базис.
+    
+    Пусть известно, что $\forall e_j'$ выполнено $$e_j' = 
+    \sum\limits_{i=1}^n c_{ij}e_i = e
+    \begin{pmatrix}
+        c_{1j}\\
+        \vdots\\
+        c_{nj}
+    \end{pmatrix}
+    \Leftrightarrow e'= eC_{e \to e'},$$
+    
+    где $ C=(c_{ij})$.
+    \begin{lemma}
+        1. $det\ C\neq 0$
+
+        \ \ \ \ \ \ \ \ \ 2. $C_{e'\to e}=C_{e\to e'}^{-1}$
+    \end{lemma}
+    \begin{theorem}
+        Пусть $e, e'$ два базиса в пространстве $V$,
+        $X_e$ и $X_{e'}$ столбцы координат одного и тоже вектора.
+        Тогда $X_e = CX_{e'}$
+    \end{theorem}
+    \begin{proof}
+        $\forall x\in V$ выполнено $$x= eX_e= e'X_{e'}= 
+        eC_{e\to e'}X_{e'}= e(C_{e\to e'}X_{e'})$$
+    \end{proof}
+    \newpage
+    \begin{center}
+        \begin{Large}
+            \textbf{\S2. Подпространство}
+        \end{Large}
+    \end{center}
+    \begin{definition}
+        Подмножество $U$ в пространстве $V$ называется\\
+        \textit{подпространством} в $V$, если:
+
+        1. $\forall U\neq 0$
+
+        2. $\forall u_1, u_2 \in U$ выполнено $u_1 + u_2 \in U$
+
+        3. $\forall u \in U, \lambda \in F$ выполнено
+        $\lambda u\in U$
+    \end{definition}
+    \textbf{Способы задания подпространства:}
+
+    1. $U =\langle a_1, a_2,..., a_n\rangle$
+
+    2. $dimV, W = \{v = eX|AX = 0\}$
+
+    \begin{definition}
+        \textit{Линейная оболочка векторов} $a_1, a_2,...,a_n
+        \in V$ -- это\\ $\{\lambda_1a_1 + \lambda_2a_ + ... + 
+        \lambda_na_1n|\lambda_i \in F\}$
+    \end{definition}
+    \begin{lemma}
+        1. $\langle a_1, a_2,..., a_m \rangle := U$ -- подпространство в $V$
+
+        2. $dim\ U = rk\{a_1, a_2,..., a_m\}$
+    \end{lemma}
+    \begin{proof}
+        Если $dim\ U = n$, то в фиксируем базис и составляем
+        матрицу из столбоцв координат $a_1, a_2,..., a_m:$
+        $$A = (a_1^\uparrow, a_2^\uparrow,...,a_m^\uparrow)\sim
+        \begin{pmatrix}
+            a_{1j_1} & \hdotsfor{7}\\
+            0 & a_{1j_2} & \hdotsfor{6}\\
+            \hdotsfor{8}\\
+            0 & 0 & \dots & \hdotsfor{3} & a_{rj_r} & \dots\\
+            \hdotsfor{8}\\
+            0 & 0 & \hdotsfor{6}
+        \end{pmatrix}$$
+        Элементарными преобразованиями строк приводим матрицу A
+        к ступенчатому виду и получаем, что столбцы $a_{j_1},
+        a_{j_2},..., a_{j_r}$ составляют бызис в $U$.\\
+    \end{proof}
+    \begin{lemma}
+        Любую ЛНЗ систему векторов в $V (dimV < \infty)$ можно
+        можно дополнить до басима пространства $V$.
+    \end{lemma}
+    \underline{\textbf{Алгоритм}}: Пусть $a_1, a_2,..., a_m$ - ЛНЗ,
+    $m < n = dimV$, известны координаты этих векторов в
+    некотором базисе. Тогда $rk(a_1^\uparrow, a_2^\uparrow,...,
+    a_m^\uparrow) = m.$ Составим матрицу столбцов из них и
+    припишем столбцы $E$ порядка n:
+    $$(A|E_n) \sim 
+    \begin{pmatrix}
+        \text{Выделим базисные столбцы}\\
+        \text{Э.П. строк в \(A|E_n\),}\\
+        \text{включая столбцы A}
+    \end{pmatrix}
+    \sim rk(A|E_n) = n$$\\
+    Вывод: к $a_1, a_2,..., a_m$ надо добавить единичные столбцы,
+    вошедшие в базис матрицы $A|E_n$.
+    \newpage
+    \begin{center}
+        \underline{\textbf{Операции с блочными матрицами}}
+    \end{center}
+    \begin{definition}
+        \textit{Блочная матрица} -- матрица, разбитая на
+        подматрицы, которые обозначаются отдельными буквами.
+    \end{definition}
+    \textbf{Пример}: $$1.\ A = 
+    \begin{pmatrix}
+        3 & -1 & \aug & 2 & 0\\
+        2 &\ 1 & \aug & -1 & 4
+    \end{pmatrix}
+    = (A_1 | A_2) \text{ - блочная строка.}$$
+
+    $$2.\ B = 
+    \begin{pmatrix}
+        1 & 0\\
+        0 & -1\\
+        \hline
+        1 & 3\\
+        4 & -2
+    \end{pmatrix} = 
+    \begin{pmatrix}
+        B_1\\
+        -\\
+        B_2
+    \end{pmatrix} \text{ - блочный столбец.}$$
+    1. Линейная оболочка.\\ 2. ОСЛУ.\\
+    $2 \Rightarrow 1:$ строим ФСР. $AX = 0$. Проводим элементарные
+    преобразования строк, перенумеровывая неизвестные, таким
+    образом чтобы привести матрицу к следующему виду:
+    
+    $$A \stackrel{\text{Э.П.строк}}{\sim}
+    \begin{pmatrix}
+        \overmat{r}{1 & \dots & 0} & a_{1j} & \dots\\
+        \vdots & \ddots & \vdots & \vdots & \vdots\\
+        0 & \dots & 1 & a_{rj} & \dots\\
+        % 0 & \dots & 0 & 0 & \dots\\
+        \hdotsfor{5}\\
+        0 & \dots & 0 & 0 & \dots
+    \end{pmatrix}
+    , r + 1 \leq j \leq n$$
+    Возвращаемся к уравнениям: $x_i = -\sum\limits_{j = r + 1}^
+    n a_{ij}x_j$, где $1\leqslant i \leqslant r$, а
+    ($x_{r+1},...,x_n$) -- свободные неизвестные.
+    В векторном виде: $$X =
+    \begin{pmatrix}
+        x_1\\\vdots\\x_r\\x_{r+1}\\\vdots\\x_n
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        -\sum\limits_{j=r+1}^na_{1j}x_j\\\vdots\\
+        -\sum a_{rj}x_j\\x_{r+1}\\
+        \vdots\\x_n
+    \end{pmatrix}
+    = x_{r+1}
+    \undermat{Y_1}{\begin{pmatrix}
+        -a_{1,r+1}\\\vdots\\-a_{r,r+1}\\1\\\vdots\\
+    \end{pmatrix}}
+    +...+ x_n
+    \undermat{Y_n}{\begin{pmatrix}
+        -a_{1,r+1}\\\vdots\\-a_{r,r+1}\\0\\\vdots\\
+    \end{pmatrix}}$$ где $Y_1,..., Y_n$ -- фундаметальная
+    система решений, т.е. базис пространства решений $AX = 0$.
+    \newpage
+    Составим матрицу из столбцов ФСР.
+    $$\varPhi = 
+    \begin{pmatrix}
+        -a_{1,r_1} & \dots & -a_{a,n}\\
+        \vdots & \null & \vdots\\
+        1 & \null & 0\\
+        % 0 & \ddots & \vdots\\
+        \vdots & \ddots & \vdots\\
+        0 & \null & 1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        -B\\\hline E_{n-r}
+    \end{pmatrix}
+    - \text{\ фундаме нтальная матрица.}$$
+    В общем случае фундаметальная матрица -- это матрица,
+    имеющая $n = rkA$ ЛНЗ столбцов, которые являются
+    решениями системы $AX = 0$, где $A \sim (E_r|B)$
+    \begin{theorem}
+        Способы 1 и 2 равносильны, если $dinV<\infty$
+    \end{theorem}
+    \begin{proof}
+        $1 \Rightarrow 2$. Даны ЛНЗ векторы $c_1, c_2,...,c_m$
+        в $V$.\\ Нужно найти такую матрицу $A_{p\times n}$,
+        чтобы $W = \{x \in F^n|AX = 0\}$, где $X$ - столбец
+        координат произвольного вектора из $U = \langle c_1,c_2,..., c_m \rangle$
+        Если составить матрицу из столбцов $c_1, c_2,..., c_m$,
+        то оно должна стать фундаметальной матрицей для ОСЛУ: $AX = 0$.
+        \\\underline{1 этап:} Векторы $c_1, c_2,...,c_m$
+        расписать по строкам:
+        $$\begin{pmatrix}
+            \vec c_1\\\vdots\\\vec c_m
+        \end{pmatrix}\stackrel{\text{Э.П.строк}}{\sim}
+        (E_n|\mbox{\scriptsize{\undermat{{\mbox{\normalsize m}}}
+        {\null}}}B)$$
+        \underline{2 этап:} $$\varPhi = 
+        \begin{pmatrix}
+            B^T\\
+            \hline E_m
+        \end{pmatrix} \rightsquigarrow A = (E_{n-m}|-B^T)
+        \text{ -- искомая матрица системы.}$$
+        Значит, $p = n - m.$
+    \end{proof}
+    \begin{remark}
+        Столбец $\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}$
+        принадлежит $c_1,...,c_m \Leftrightarrow
+        rk\Biggl(c_1^\uparrow,...,c_m^\uparrow |
+        \begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}\Biggr) =
+        rk(c_1^\uparrow,...,c_m^\uparrow)$
+    \end{remark}
+    \begin{proof}
+        Составить матрицу:$$
+        rk\Biggl(c_1^\uparrow,...,c_m^\uparrow |
+        \begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}\Biggr)
+        \stackrel{\text{Э.П.строк}}{\sim}
+        \begin{pmatrix}
+            c_{11} & \null & \null & \vline & \hdotsfor{1}\\
+            \null & \ddots & \null & \vline & \vdots\\
+            \null & \null & c_{mm} & \vline & \hdotsfor{1}\\
+            \hline
+            0 & \dots & 0 & \vline & \sum a_{m+1,j} x_j\\
+            \vdots & \ddots & \vdots & \vline & \vdots\\
+            0 & \dots & 0 & \vline & \sum a_{n,j} x_j\\
+        \end{pmatrix},$$ где суммы $\sum a_{i,j}x_j := 0,
+        \text{где} i = m + 1,...,n.$
+    \end{proof}
+    \newpage
+    \begin{center}\begin{Large}
+            \textbf{\S3. Пересечение и сумма подпространств.}
+    \end{Large}\end{center}
+    \begin{subtheorem}
+        Пусть $U_i$ -- семейство подпространств векторного
+        пространства $V$. Тогда $\bigcap\limits_{i \in I} U_i$
+        -- подпространство $V$.
+    \end{subtheorem}
+    \begin{proof}
+        $\\1.\ \vec 0_V \in U_i,\ \forall i \in I \Rightarrow
+        \vec 0_V \in \bigcap\limits_{i \in I} U_i$\\
+        $2. \forall x, y \in U_i,\ \forall i \in I \Rightarrow
+        x + y \in U_i, \forall i \in I \Rightarrow
+        (x + y) \in \bigcap\limits_{i \in I} U_i$\\
+        $3. \forall x \in U_i,\ \forall i \in I,\ \forall \lambda
+        \in F \Rightarrow \lambda x \in U_i, \forall i \in I
+        \Rightarrow \lambda x \in \bigcap\limits_{i \in I}U_i$\\
+        $U_1 \bigcup U_2$ может быть подпространством:
+        $u_1 + u_2 \notin U_1 \bigcup U_2$\\
+    \end{proof}
+    \begin{definition}
+        \textit{Суммой подпространств} $U_1,...,U_m \subset V$ называется
+        множество $U_1 +...+ U_m = \{u_1 +...+ u_m|u_i \in U_i\}.$
+    \end{definition}
+    \begin{subtheorem}
+        $U_1...+ U_m$ -- подпространствов $V, dim(U_1 +...+ U_m)
+        \leqslant \sum\limits_{i=n}^n dim\ U_i$
+    \end{subtheorem}
+    \begin{proof}
+        Если $e_1,..., e_m$ -- базисы в этих подпространствах,
+        то\\ $U_1 +...+ U_m = \langle e_1,..., e_m \rangle:\ U_1 = \sum
+        \limits_{i=1}^{n_1} \lambda_{1i}e_{1i},...,
+        U_m = \sum\limits_{j=1}^{n_m} \lambda_{mj}e_{mj}
+        \Rightarrow\\ U_1 +...+ U_m$ -- линейная комбинация этих
+        векторов.\\
+    \end{proof}
+    \underline{\textbf{Формула Грассмана.}} Если $U_1, U_2$ --
+    конечные подпространства $V$, то $dim(U_1 + U_2) = dim\ U_1
+    + dim\ U_2 - dim(U_1 \cap U_2)$
+    \begin{proof}
+        $dim\ U_1 = n_1,\ dim\ U_2 = n_2,\ dim(U_1 \cap U_2) = r.$
+        \\Выберем $e_1,..., e_r$ -- базис в $U_1 \cap U_2$.
+        Дополним их до базиса в $U_1$ векторами $a_{r+1},...,a_{n_1},$
+        в $U_2$ векторами $b_{r+1},...,b_{n_2}$    
+    \end{proof}
+    \begin{subtheorem}
+        $\{c_i, a_j, b_k\}$ -- базис $U_1 + U_2$ (их количество
+        $n_1 + n_2 - r$).
+    \end{subtheorem}
+    \begin{proof}
+        Ясно, что это полная система.
+        Докажем ЛНЗ:\\ Допустим $\sum\limits_{i=r+1}^{n_1}
+        \alpha_i a_i + \sum\limits_{j=r+1}^{n_2}\beta_j b_j +
+        \sum\limits_{k=1}^r\gamma_k c_k = 0\ \Longrightarrow$
+        \begin{flushright}
+            $\undermat{\in U_1}{\sum\alpha_i a_i + \sum\gamma_k
+            c_k} = \undermat{ \in U_1 \cap U_2}{-\sum\beta_j b_j}
+            \Longrightarrow$            
+        \end{flushright}
+        $\\\\\gamma_k':= -\sum\beta_jb_j = \sum\gamma_r'c_r\
+        \Longrightarrow \sum\beta_jb_j + \sum\gamma_k'c_k = 0 
+        \stackrel{\text{ЛНЗ}}{\ \Longrightarrow\ } \beta_j = 0,
+        \forall j = r + 1,..., n_2;\\ \gamma_k' = 0 \Longrightarrow
+        \sum\alpha_ia_i + \sum\gamma_kc_k = 0 
+        \stackrel{\text{ЛНЗ}}{\ \Longrightarrow\ }
+        \alpha_i = 0,\ \forall i = r+1,..., n;
+        \gamma_k = 0,\ \forall k = 1,..., r.$    
+    \end{proof}
+    \newpage
+    \underline{\textbf{Алгоритм вычисления базисов}} в
+    $U_1 + U_2,\ U_1 \cap U_2\ (dimV \leqslant \infty).$
+    \begin{remark}
+        $U_1 + U_2 = \langle a_1,..., a_{n_1}, b_1,..., b_{n_2} \rangle$
+    \end{remark}
+    \begin{proof}
+        Можно составить матрицу из столбцов координат и\\ Э.П.
+        строк выявить базисные столбцы в этой расширенной матрице.
+        \\Вектор $v \in U_1 \cap U_2 \Longleftrightarrow
+        \exists\ x_i, y_i \in F:\ v = \sum\limits_{i=1}^{n_1}
+        x_ia_i =\ \sum\limits_{j = 1}^{n_2}y_jb_j$, т.е.\\
+        $(x_1,..., x_{n_1}, -y_1,..., -y_{n_2})$ -- решение
+        ОСЛУ с той же самой матрицей.\\ Базис $U_1 \cap U_2$
+        будет давать ФСР (ее часть соответственно $\{a_i\}$
+        или $\{b_i\}$).\\
+    \end{proof}
+    1. Составить матрицу:
+    $$(\undermat{\text{\scriptsize ЛНЗ}}{a_1^\uparrow... a_{n_1}^\uparrow}|
+    \ \undermat{\text{\scriptsize ЛНЗ}}{b_1^\uparrow... b_{n_2}^\uparrow})
+    \stackrel{\text{Э.П.строк}}{\sim}
+    \begin{pmatrix}
+        \overmat{E_{n_1}}{
+        1 & \dots & 0} & \vline & 0 & \dots & 0 & \vdots & \vdots\\
+        \vdots & \ddots & \vdots & \vline & \vdots & \null & \vdots & \vdots & \vdots\\
+        0 & \dots & 1 & \vline & 0 & \dots & 0 & \vdots & \vdots\\
+        \hline
+        0 & \dots & 0 & \vline & 1 & \dots & 0 & \vdots & \vdots\\
+        \vdots & \null & \vdots & \vline & \vdots & \ddots & \vdots & \vdots & \vdots\\
+        0 & \dots & 0 & \vline & 0 & \dots & 1 & \vdots & \vdots\\
+    \end{pmatrix}$$
+    Элементарными преобразованиями строк приводим к улучшенному
+    ступенчатому виду. Ветокторы-столбцы $a_1,..., a_{n_1},
+    b_1,...,b_{n_2}$ -- базис $U_1 + U_2$.
+
+    2. Вычислить $dim(U_1 \cap U_2) = n_1 + n_2 - m$ (это
+    количество столбцов $b_j$ не вошедших в базис суммы).
+    $m = n_1 + k = dim(U_1 + U_2).$
+
+    3. Выразить векторы $b_{k+1},...,b_{n_2}$ через базисы:
+    $b_l = \sum\limits^m\alpha_{il}a_i + \sum\limits^k\beta_{sl}b_s$
+    -- ЛНЗ $\Longleftrightarrow b_l - \sum\beta_{sl}b_s =
+    \sum\alpha_{il}a_i \in U_1 \cap U_2$ (Их количество $dim(U_1 \cap U_2)$).
+    \begin{center}
+        \begin{Large}
+            \textbf{\\\S4. Прямая сумма}
+        \end{Large}
+    \end{center}
+    Пусть $V$ -- векторное пространство над полем $F$,\
+    $U_1,..., U_k$ -- подпр-ва в $V$.
+    \begin{definition}
+        Сумма $U_1 +...+ U_k \ (k \geqslant 2)$ называется
+        \textit{прямой суммой пространств} $U_1,..., U_k$, если
+        $\forall u$ из суммы представляется в виде $u = u_1 +...+u_k$
+        единственным образом. 
+    \end{definition}
+    \underline{Обозначение:} $U_1\oplus...\oplus U_k$\\
+    \textbf{Примеры:} \\1. $U_1 = \{A \in M_n(\mathbb{R})|A^T = A\}$
+    -- симметричные матрицы\\
+    2. $U_1 = \{B \in M_n(\mathbb{R})|B^T = B\}$
+    -- кососимметричные матрицы
+    \newpage
+    \begin{subtheorem}
+        $M_n(\mathbb{R}) = U_1 \oplus U_2$, где\ \ $U_1$ --
+        пространство симметричных\\ матриц, а $U_2$ -- 
+        пространство кососимметричная матриц.
+    \end{subtheorem}
+    \begin{theorem}
+        Следующие условия равносильны:
+
+        $1.\ U_1 + U_2 = U_1 \oplus U_2$
+
+        $2.\ U_1 \cap U_2 = \{0\}$
+
+        $3.\ dim(U_1 + U_2) = dim\ U_1 + dim\ U_2$
+
+        4. Базис в $U_1 + U_2$ -- объединение базисов слагаемых.
+    \end{theorem}
+    \begin{proof}
+        $\\1 \Rightarrow 2:\ \forall u \in U_1 + U_2$ выполнено
+        $u = u_1 + u_2$ -- единственным образом.
+        Допустим противное: пусть $\exists\ u_0 \in U_1 + U_2,\ 
+        u_0 \neq 0 \Longrightarrow u_0 = \mbox{\scriptsize
+        \undermat{\in U_1}{\null}}u_0 + \mbox{\scriptsize
+        \undermat{\in U_2}{\null}} 0 = \mbox{\scriptsize
+        \undermat{\in U_1}{\null}} 0 + \mbox{\scriptsize
+        \undermat{\in U_2}{\null}} u_0$.
+        Противоречие единственности $\Longrightarrow U_1 \cap U_2
+         = \{0\}.$\\
+        $2 \Rightarrow 3:$ По формуле Грассмана.\\
+        $3 \Rightarrow 4:$ Ясно, что $U_1 + U_2 =
+        \langle a_1,...,a_{n_1}, b_1,..., b_{n_2} \rangle$ -- эти векторы ЛНЗ,
+        если $$\exists \sum_{i=1}^{n_1}\alpha_ia_i +
+        \sum_{j=1}^{n_2}\beta_jb_j = 0 \Longrightarrow
+        \undermat{= 0}{\sum\alpha_ia_i} = -\undermat{=0}
+        {\sum\beta_jb_j} = \{0\}\in U_1 \cap U_2$$\\
+        $4 \Rightarrow 1:\forall u = u_1 + u_2 =
+        \sum\limits_{i=1}^{n_1} x_ia_i + \sum\limits_{j=1}^{n_2} y_jb_j$
+        раскладывается по базису единственным образом $\Rightarrow
+        u_1, u_2$ единственны.
+    \end{proof}
+    \begin{theorem}
+        Для $U_1,..., U_k\ (k \geqslant 2)$ следующие условия
+        равносильны:
+
+        $1.\ U_1+...+U_k = U_1 \oplus...\oplus U_k$
+
+        $2.\ \forall i = 1,...,k \text{ выполнено } U_i\cap(
+        \sum\limits_{j \neq i}U_j) = \{0\}$
+
+        $3.\ dim(U_1+...+U_k) = dim\ U_1+...+dim\ U_k$
+
+        4. Базис в $U_1+...+U_k$ -- объединение базисов слагаемых.
+    \end{theorem}
+    \begin{subtheorem}
+        Для любого пространства $U \subset V\ \exists \text{
+        подпространство } W \subset V: V = U \oplus W$,
+        где $W$ -- прямое дополнение к $U$.
+    \end{subtheorem}
+    \begin{proof}
+        Пусть $e_1,..., e_k$ -- базис в $U$, тогда $\exists$
+        векторы $e_{k+1},...,e_n\\ (n = dimV): \{e_1,...,e_n\}$ --
+        базис в $V$, тогда $W := \langle e_{k+1},...,e_n \rangle$
+    \end{proof}
+    \newpage
+    \begin{center}\underline{\textbf{Факторпространство}}\end{center}
+    Пусть $V$ -- векторное пространство, $U \subseteq V$ --
+    подпространство.\\ Скажем, что векторы $v_1$ и $v_2 \in V$
+    сравнимы по модулю, если $v_1 - v_2 \in U$, то есть
+    $v_1 \equiv v_2\ (mod\ U)$.
+    \begin{subtheorem}
+        Отношение: $v_1 \sim v_2 \Longleftrightarrow u_1 - u_2
+        \in U$ является отношением эквивалентности на $V$.
+    \end{subtheorem}
+    \underline{Класс эквивалентности вектора $v$:}\\
+    $\vec v = \{v + u\ |\ \forall u \in U\} = v + U\\
+    V = \bigsqcup\limits_{v \in V}(v + V)$\\
+    Сравним с видом решения системы $AX = b: X = X_r + Y$ -- 
+    частное решение + общее решение однородной ассоциированной
+    $AY = 0$.  Классы эквивалентности множества решений $AX = b$.
+    \\\underline{Обозначим:} $V/U$ -- множество классов
+    эквивалентности (смежных классов по $U$).\\
+    \underline{Термин:} $V/U$ -- факторпространство $V$ по $U$\\
+    \underline{Определим сложение классов:} $(v_1 + U) + (v_2 + U
+    := v_1 + v_2 + U)$\\
+    \underline{Определим умножение классов на скаляр $\lambda
+    \in F:$} $\lambda(v+U) := \lambda v + U$
+    \begin{subtheorem}
+        Множество с введенными операциями является векторным
+        \\пространством.
+    \end{subtheorem}
+    \begin{subtheorem}
+        1. Если $dimV < \infty,$ то $dim(V/U) = dimV - dim\ U$
+
+        \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
+        2. $(U\oplus V) / U \cong W$
+    \end{subtheorem}
+    \begin{proof}
+        $\\2.$ I способ: Построим отображение: $\forall v \in V\
+        \exists!\ u, w, \text{ такие что }\\ f: v = u + w \mapsto v + U,\ f$ -- линейная.
+        $f$ -- сюръективна: $w + u = f(w).\\ f$ -- инъективна,
+        так как если $w_1 + u = w_2 + u \Rightarrow w_1 - w_2 \in U.$
+        \\II способ: $W$ имеет единственный общий вектор с любым
+        смежным классом по $U$.
+        $\forall x \in V = U + W\ \exists!\ u \in U,\ v \in V
+        \text{:}\ 
+        v = u + w \Longrightarrow$ Рассмотрим $v + u = w + (u + U) =
+        w + U$. Построим отображение $\varphi: V/U \mapsto W$
+        по правилу $\varphi(w + U) =  w$, причем $\varphi$ --
+        линейное.\\ Тогда $\varphi((w_1 + U) + (w_2 + U)) =
+        \varphi(w_1 + w_2 + U) = w_1 + w_2 = \varphi(w_1 + U) + 
+        \varphi(w_2 + U)$.\ $\forall \lambda \in F, \varphi(
+        \lambda w + U) = \lambda w = \lambda \varphi(w + U).\ $ 
+        $\varphi$ -- биективное, $\forall w \in W$,\\ то $\varphi(
+        w + U) = w$,
+        если $\varphi(w + U) = 0 \in W \Longrightarrow
+        w + U = U \Longrightarrow v = 0 \Longrightarrow\\ 0$ -- единственный.
+        \newpage
+        1. Рассмотрим базис $V$, составленный из базисов слагаемых:\\
+        $\undermat{\text{Базис в U}}{e_1,...,e_{n_1}},
+        \undermat{\text{Базис в W}}{e_{n_1 + 1},...,e_n}\ (n = dimV)$
+        $$\forall v \in V: v = \sum\limits_{i = 1}^{n_1}x_ie_i + 
+        \sum\limits_{j = n_1 + 1}^nx_je_j \Rightarrow \overline{v} =
+        \sum\limits_{j = n_1 + 1}^nx_j\overline{e_j}$$
+        Т.е. смежные классы векторов $e_{n_1 + 1},..., e_n$ --
+        полная система в $V/U.$\\ Они ЛНЗ если $\sum\limits_{
+        j = n_1 + 1}^nx_j\overline{e_j} = \overline{0} = U
+        \Longrightarrow \sum\limits_{j = n_1 + 1}^nx_je_j
+         \in U \cap W = \{0\} \Longrightarrow$
+        Все $\lambda_j = 0 \Longrightarrow \{\overline{e}_{n_1 + 1},
+        ...,\overline{e_n}\}$
+        -- базис $V/U.$
+    \end{proof}
+    \begin{remark}
+        Если $v = 
+        \begin{pmatrix}
+            x_1\\\vdots\\x_{n_1}\\x_{n_1 + 1}\\\vdots\\x_n
+        \end{pmatrix}$
+        , то $\overline{v} = 
+        \begin{pmatrix}
+            x_{n_1 + 1}\\\vdots\\x_n
+        \end{pmatrix}$
+    \end{remark}
+    \underline{\textbf{Внешняя прямая сумма пространств:}}
+    Пусть $V_1,..., V_m$ -- векторные пространства над полями $F$.
+    \\\underline{Обозначение:} $V = V_1 +...+ V_m =
+    \{(v_1,..., v_m)|v_i \in V_i, 1 \leq i \leq m\}$, $V$-- 
+    внешняя прямая сумма пространств.
+    \begin{remark}
+        Пространство $V = V_1 +...+ V_m$ можно превратить в
+        прямую сумму подпространств: рассмотрим $U_i = \{
+        (0_{V_1},..., v_i,..., 0_{V_m})|v_i \in V_i\} \subset V.
+        \\(v_1,...,v_m) = (v_1, 0,...,0) + (0, v_2, 0,...,0) +...
+        \Longrightarrow V = U_1 \oplus...\oplus U_m.$
+    \end{remark}
+    В факторпространстве $V/U: \underline{0} = U$ и $
+    -\overline{v} = \overline{(-v)}$
+
+    \begin{definition}
+        $dim(V/U)$ -- коразмерность пространства $U$ в
+        пространстве $V$. Если $dim V < \infty, \text{ то }
+        codim_{V}(U) = dimV - dim\ U.$
+    \end{definition}
+    \newpage
+    \begin{center}\begin{Large}
+        \textbf{\S5. Линейные функции и сопряженное (двойственное)
+        пространство.}
+    \end{Large}\end{center}
+    Пусть $V$ -- векторное пространство над полем $F$.
+    \begin{definition}
+        Функция $f: V \mapsto F$ называется \textit{линейной}
+        если:
+        
+        $1.\ \forall v_1,v_2 \in V \Longrightarrow f(v_1 + v_2)
+        = f(v_1) + f(v_2)$
+
+        $2.\ \forall v \in V, \lambda \in F \longrightarrow
+        f(\lambda v) = \lambda f(v)$
+    \end{definition}
+    \begin{definition}
+        \textit{Ядро функции:} $Ker f = \{v \in V|f(v) = 0\}$
+    \end{definition}
+    $\\$Образ функции $Imf = f(V) = \{\alpha \in F|\ \exists v \in V:
+    f(v) = \alpha\}$
+    \begin{subtheorem}
+        $Kerf$ -- подпространство в $V^*$. Если $f \not\equiv 0$,
+        то $Kerf$ имеет коразмерность $1$ в $V$.
+    \end{subtheorem}
+    \begin{proof}
+        $$\forall v_1, v_2 \in Ker f, \lambda, \mu \in F
+        \Longrightarrow f(\lambda v_1 + \mu v_2) =
+        \lambda f(v_1) + \mu f(v_2)  = 0$$
+    \end{proof}
+    \underline{Обозначение:} $V^* = \{f: V \mapsto F\}$ --
+    линейная функция.
+    
+    Определим на $V^*$ операции сложения: $\forall f_1, f_2 \in V^*$
+    выполнено $(f_1 + f_2)(v) := f_1(v) + f_2(v)$. Умножение на
+    элемент поля: $\forall f \in V^*, \lambda \in F$ выполнено
+    $(\lambda f)(v) := \lambda f(v)$
+
+    \underline{Термин:} $V^*$ -- пространство сопряженное к $V$.
+    \begin{theorem}
+        Если $dimV = n$, то $dimV^* = n$ (следовательно $V^* = V$).
+    \end{theorem}
+    \begin{proof}
+        Введем в $V$ базис $e_1,..., e_m, \forall v \in V:
+        v = \sum\limits_{i=1}^nx_ie_i.$\\ Тогда $\forall f
+        \in V^*,\ f(v) = \sum\limits_{i=1}^nx_if(e_i) =
+        \sum\limits_{i=1}^nf(e_i)f_i(v) = (\sum\limits_{i=1}^n
+        f(e_i)f_i)(v),\forall v\in V.$
+        $(f(e_1),..., f(e_n))$ -- строка коэффициентов функций $f$.
+        $f = \sum\limits_{i=1}^nf(e_i)f_i(v) = \sum\limits_{i=1}^n
+        a_if_i(v).$ Таким образом $V^* = \langle f_1,..., f_n \rangle$.
+        Они ЛНЗ, если $\exists \lambda_1,..., \lambda \in F:
+        \undermat{\widetilde{f}}{\sum\limits_{i=1}^n\lambda_if_i = 0}.$
+        $\widetilde{f}(e_j) = \sum\limits_{i=1}^n\lambda_if_i(e_j)
+         = \lambda_i = 0,\ 1 \leq j\leq n$.\ 
+        $f_i(e_j) = \begin{cases}
+            1, j = i\\0, j \neq i
+        \end{cases} \Longrightarrow\\\\\\ \lambda_1=...=\lambda_n=0.$\\
+    \end{proof}
+    \newpage
+    \textbf{Примеры:}
+
+    $1. V = \mathbb{R}[x], x_0 \in \mathbb{R}$ -- фиксированная
+    точка. $f: p(x) \mapsto p(x_0).$\\
+    Рассмотрим $V_n = \{p(x)|deg\ p \neq n\}, \forall n \in \mathbb{N}.$
+    \\Определим $Ker f = \{p(x)\ |\ p(x_0) = 0\}$. Базис:
+    $(x - x_0), (x-x_0)^2,...,(x-x_0)^n$.
+
+    $2. dimV = n, \text{ пусть } e_1,..., e_n$ -- базис в $V.\
+    \forall v \in V, v = \sum\limits_{i=1}^nx_ie_i$.
+    Рассмотрим $f_i(v) = x_i$ -- $i$-ая координатная функция.
+    \begin{definition}
+        Обозначим $f_i := e^i,\ 1 \leq i \leq n.\ \{e^1,...,e^n\}$
+        -- базис в $V^*$, двойственный (биортогональный) к базису
+        $e_1,..., e_n$.
+    \end{definition}
+    По построению $e^i(e_j) =
+    \begin{cases}1, j = i\\0, j \neq i\end{cases}$
+    (символ Кронекера)
+
+    Разложение $\forall v \in V$ по базису $e_1,..., e_n$ имеет
+    вид $v = \sum\limits_{i=1}^ne^i(v)\ e_i$
+    \begin{subtheorem}
+        Строки коэффициентов линейных функций: $f(v) =
+        \sum\limits_{i=1}^na_ix_i$ изменяется при переходе к
+        новому базису по формулам: $\vec a = (a_1,..., a_n),\\
+        \vec{a'} = \vec a C_{e\to e'}$
+    \end{subtheorem}
+    \begin{proof}
+        $f(v) = \vec{a'}x'^{\uparrow}$. Знаем, что $X = CX'
+        \Longleftrightarrow \vec a(CX') = \vec{a'}X'
+        \Longleftrightarrow (\vec a\ C)X' = \vec{a'}X'$, верно
+        $\forall x' \in F^n.$
+    \end{proof}
+    \textbf{Примеры взаимных базисов:}\\Пусть $V = \mathbb{R}_n
+    [x] = \{p(x) = a_0 + a_1x +...+ a_nx^n|\ n \in \mathbb{N},\ 
+    a_i \in \mathbb{R}\}$
+
+    1. С базисом: $1, \frac{x - x_0}{1!},..., \frac{(x-x_0)^n}{k!},
+    \ x_0 \in \mathbb{R}$ s-- фиксированное число.
+    $$p(x) = \sum\limits_{k=0}^n \frac{p^{(k)}(x_0)}{k!}(x-x_0)^k$$
+    Можно рассмотреть линейные функции $\delta^{(k)}: \delta^{(k)}
+    (p) := p^{(k)}(x_0),\ k = 0,...,n.\\
+    \{\delta^{(k)}, k = 0,...,n\}$ -- базис в $V^*$ двойственный
+    к тейлоровскому базису.
+
+    2. $V = \mathbb{R}_n[x]$. Пусть $x_0,...,x_n$ -- попарно
+    различные числа. Рассмотрим\\ линейные функции
+    $\varphi_k(p) = p(x_k),\ k = 0,.., n.$
+    $$\forall p(x) = \sum\limits_{k=0}^np(x_k)l_k(x),\ \ l_k(x_i)
+    = \delta_{ik},\ \ l_k(x) = \frac{\prod_{i\neq k}(x - y_i)}
+    {\prod_{i\neq k}(x_k - x_i)}$$
+
+    \underline{Обозначение:} $V^{**} = (V^*)^*$ -- второе сопряженное
+    \newpage
+    \begin{theorem}
+        Если $dimV < \infty$, то $V^{**} \cong V$, причем
+        изоморфизм не зависит от базиса.
+    \end{theorem}
+    \begin{proof}
+        Построим отображение $\varphi:\ V \mapsto V^{**},\
+        \forall v \in V:\\ \varphi(v) := \varphi_v,\ \varphi_v
+        \in V^{**}.\ \ \varphi_v(f) := f(v),\ \forall f \in V^{**}.$
+        Ясно что $\varphi$ -- линейное отображение: $\forall f
+        \in V^*\ \ \varphi_{v_1 + v_2}(f) = f(v_1 + v_2) =
+        \varphi_{v_1}(f) + \varphi_{v_2}(f)$, и $\forall \lambda
+        \in F\\ \varphi_{\lambda v}(v) = f(\lambda v) =
+        \lambda f(v) = \lambda \varphi_v(f)$\\
+        $\varphi$ -- инъективное отображение $\Longleftrightarrow
+        Ker\varphi = 0,\\ Ker\varphi = \{v \in V|\ f(v) = 0,\
+        \forall f \in V^*\} \{0\}$. Таким образом, $\varphi:\ 
+        V \longmapsto W$ --\\ инъективное линейное отображение. Но
+        $dimV = dim(V^*)^* \Longrightarrow \varphi$ --
+        сюръективное отображение.\\\textit{Подробнее:} если
+        $\varphi:\ V\longmapsto W$ -- инъективное линейное отображение
+        и $dimV = dimW$, то оно сюръективно: $\exists e_1,...,e_n$
+        -- базис в $V$, тогда $\varphi(e_1),..., \varphi(e_n)$--
+        ЛНЗ $\Longrightarrow \varphi(e_1),..., \varphi(e_n)$ --
+        базис в $W$. Рассмотрим $\lambda_1\varphi(e_1)+...+
+        \lambda_n\varphi(e_n) = 0_W \Longleftrightarrow
+        \varphi(\lambda_1 e_1+...+ \lambda_n e_n) = 0_W$.
+        Но $\varphi(0_V) = 0_W.$\\ Инъективность $\Longrightarrow
+        \undermat{\text{ЛНЗ}}{\lambda_1 e_1+...+ \lambda_n e_n}
+        = 0_V \Longrightarrow \lambda_1=...=\lambda_n = 0$.\\
+    \end{proof}
+    \begin{theorem}
+        Векторы $a_1,...,a_k \in V\text{-- ЛНЗ}\ (dimV < \infty)
+        \exists f_1,..,f_k \in V^*:\\ det(f_i(a_j)) \neq 0$.
+    \end{theorem}
+    \begin{proof}
+        $\\\Longrightarrow$ Дополним векторы до базиса $V$:
+        $a_1,..., a_k,..., a_n$\\ По нему строим $f_1,...,f_n$
+        -- двойственный базис. Тогда $f_j(a_i) = \delta_{ij}.$
+        по определению $f_j(a_i) = E \Longrightarrow det(f_j(a_i))
+        \neq 0$\\$\Longleftarrow$ Пусть $P := (f_j(a_i)),\ 
+        P \in Mat_{k\times k}$. Предположим, что $P$ --
+        невырожденная, тогда $(a_1',..., a_k') = (a_1,..., a_k)
+        P^{-1}$\\$(f_j(a_i')) =
+        \begin{pmatrix}f_1\\\vdots\\f_k\end{pmatrix}
+        (a_1'\cdot ...\cdot a_k') = \begin{pmatrix}f_1\\\vdots\\f_k\end{pmatrix}
+        (a_1\cdot ...\cdot a_k)P^{-1} = PP^{-1} = E
+        \Longrightarrow\\\\ a_1',...,a_k'$ -- ЛНЗ
+        $\Longrightarrow a_1,..., a_k$ -- ЛНЗ.
+
+    \end{proof}
+    \newpage
+    \begin{center}
+        \begin{Large}
+            \textbf{Глава II. Линейные отображения и операторы}
+            
+            \textbf{\S1. Линейные отображения, их матрицы.
+            Ядро и образ.}
+        \end{Large}
+    \end{center}
+    Пусть $V, V'$ -- векторные пространства над полем $F$.
+    \begin{definition}
+        $\varphi:\ V \longmapsto V'$ -- \textit{линейное отображение},
+        если:\\1. $\forall v_1, v_2 \in V:\ \varphi(v_1 + v_2) =
+        \varphi(v_1) + \varphi(v_2)$\\2. $\forall v \in V,
+        \lambda \in F: \varphi(\lambda v) = \lambda \varphi(v)$
+    \end{definition}
+    \begin{consequense}
+        $\varphi(0_V) = 0_{V'}$
+    \end{consequense}$
+    \varphi: V \longmapsto V$ -- \textit{линейный оператор} на $V$.
+    \begin{definition}
+        \textit{Ядро линейного отображения} $\varphi: V
+        \longmapsto V'\ (V \longmapsto V).$
+    \end{definition}
+    $Ker \varphi = \{v \in V|\ \varphi(v) = 0_{V'}\}$
+    (в частности, $0_V \in Ker\varphi$).
+
+    Образ линейного отображения $\varphi$ (или множество
+    значений $\varphi$) -- это\\ $Im\varphi (=\varphi(v)) = 
+    \{v' \in V'|\ \exists v \in V: \varphi(v) = v'\}.$
+
+    \begin{subtheorem}
+        1. $Ker\varphi$ - подпространство в $V$.
+
+        \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
+        2. $Im\varphi$ - подпространство в $V'$.
+    \end{subtheorem}
+    \begin{proof}
+        $\\1.\ 0_V \in Ker\varphi$, если $\varphi(v_1) =
+        \varphi(v_2) = 0_{V'}$, то $\varphi(v_1 + v_2) = 
+        \varphi(v_1) + \varphi(v_2) = 0_{V'}$, если $\lambda
+        \in F$, то $\varphi(\lambda v_1) = \lambda \varphi(v_1)
+        = 0_{V'}.$\\
+        $2.\ 0_{V'} \in Im\varphi$, если $v_1' = \varphi(v_1),\
+        v_2' = \varphi(v_2) \Longrightarrow \forall \lambda
+        \in F,\ \lambda v_1' = \varphi(\lambda v_1) \in Im\varphi$
+
+    \end{proof}
+    \begin{theorem}
+        Если $dimV < \infty$, то $dimIm\varphi = dimV - dimKer
+        \varphi$
+    \end{theorem}
+    \begin{proof}
+        Если фикс. базис $e_1,..., e_n$ в $V$, то
+        $Im\varphi = \langle \varphi(e_1),..., \varphi(e_n) \rangle$
+        $\forall v \in V:\ v = \sum\limits_{i=1}^nx_ie_i
+        \Longrightarrow \varphi(v) = \sum\limits_{i=1}^n
+        x_i\varphi(e_i).$ В частности, $dimIm\varphi = m \leq n.$
+        Выберем базис в $Im\varphi:\ f_1,...,f_m.\ \forall
+        j = 1,...,m\ \exists a_j \in V:\ \varphi(a_j) = f_j$.
+        \\Поймем, что векторы $a_1,...,a_m$ -- ЛНЗ.
+        $\exists \alpha_1,...,\alpha_m \in F$\\
+        Допустим, что $\alpha_1a_1,...,\alpha_ma_m = 0
+        \Longrightarrow \varphi(\sum\limits_{j=1}^m\alpha_j
+        a_j) = \sum\limits_{j=1}^m\alpha_j\varphi(a_j) =
+        \sum\limits_{j=1}^m\alpha_jf_j = 0_{V'}$
+        Т.к. $f_j$ -- ЛНЗ $\Longrightarrow\alpha_j = 0, \ 
+        \forall_j = 1,...,m$\\Возьмем произвольный $v' \in Im
+        \varphi:\ v' = \sum\limits_{j=1}^m\beta_jf_j = 0_{V'}$\\
+        По определению образа $\exists v \in V:\ \varphi(v) = v'$\\
+        Тогда рассмотрим $\varphi(v - \sum\limits_{j=1}^m\beta_j
+        a_j) = v' - \sum\limits_{j=1}^m\beta_jf_j = 0_{V'}
+        \Longrightarrow v - \sum\limits_{j=1}^m\beta_ja_j \in
+        Ker\varphi$\\Выберем базис в $Ker\varphi:\
+        \{b_1,..., b_r\}\Longrightarrow$ $$v - \sum\limits_{j=1}^m
+        \beta_ja_j = \sum\limits_{k=1}^r\gamma_kb_k \Longrightarrow
+        v = \sum\limits_{j=1}^m\beta_ja_j + \sum\limits_{k=1}^r
+        x_kb_k$$\\Если взять $v$ произвольным, $v' = \varphi
+        (v)$ -- разлагается по базису $f_1,...,f_m$ в $Im\varphi$,
+        то предыдущие выкладки остаются в силе $\Longrightarrow
+        \forall v \in V$ -- линейная комбинация векторов
+        $\{a_j;b_k\}$. Эти векторы ЛНЗ в $V \Longrightarrow$
+        базис в $V \Longrightarrow dimV = m+r.$\\Допустим,
+        что $$\exists \beta_j\gamma_j:\ \sum\limits_{j=1}^m
+        \beta_ja_j + \sum\limits_{k=1}^r\gamma_kb_k = 0_V
+        \Longrightarrow \varphi(\sum\limits_j + \sum\limits_k)
+        = \sum\limits_{j=1}^m\beta_jf_j + 0 = 0_{V'}
+        \Longrightarrow$$ $$b_j = 0,\ j=1,...,m\Longrightarrow
+        \undermat{\text{ЛНЗ}}{\\\sum\limits_{k=1}^r\gamma_kb_k}
+        = 0\Longrightarrow \gamma_k = 0,\ k=1,...,r.$$
+    \end{proof}
+    
+    Пусть $e = {e_1,...,e_n}$ -- базис в $V,\ \forall \in V:\ 
+    v = \sum\limits_{j=1}^nx_je_j\Longrightarrow \varphi(v) =
+    \sum\limits_{j=1}^nx_j\varphi(e_j)$.\\
+    Если в $V'$ задан базис $f = \{f_1,...,f_m\}$ и известно
+    разложение векторов $\varphi(e_j)$ по этому базису,\ 
+    $\varphi(e_j) = \sum\limits_{i=1}^ma_{ij}f_i$, то можно
+    вычислить $\varphi(v)$.\\$A_{\varphi,e,f} = (a_{ij})$ --
+    матрица линейного отображения $\varphi$ в паре базисов
+    $e$ и $f$. Таким образом, столбцы матрицы $A_\varphi$ --
+    столбцы координат $\varphi(e_1),...,\varphi(e_m)$ в базисе
+    $f$. Для $\varphi:\ V\longmapsto V$ по умолчанию $f=e$
+    (второй базис равен первому), остается $A_{\varphi,e}$ --
+    матрица линейного оператора $\varphi$ в базисе $e\\$.
+
+    $V \mapsto V^{**} = (V^*)^*$ -- канонический изоморфизм.\\
+    $\langle f|v \rangle$ -- значение функционала $f$ на векторе $v$\\
+    $\langle f|$ -- bra-vector\\ $|v \rangle$ -- ket-vector.
+
+    \begin{theorem}
+        $\\$1. Если $dimV < \infty,\ \varphi: V \mapsto V'$ -- 
+        линейное отображение, то $dimIm\varphi = dimV - dimKer
+        \varphi$\\
+        2. $Im\varphi \cong V/Ker\varphi$
+    \end{theorem}
+    \begin{proof}
+        $\\1.$ Пусть $dimIm\varphi = m \leq dimV'$, выберем в образе
+        $Im\varphi$\ \ базис $f_1,...,f_m.\\\forall j,\ 1\leq j\leq m,\ \exists\ 
+        e_j \in V: \varphi(e_j) = f_j.$ $$\forall v \in V: v' = 
+        \varphi(v) = \sum\limits_{j=1}^m\lambda_jf_j = 
+        \varphi(\sum\limits_{j=1}^m\lambda_je_j) \Longrightarrow
+        \varphi(v - v_1), \text{ т.е. } v - v_1 \in Ker\varphi.$$
+        Выберем в $Ker\varphi$ базис: $c_1,..., c_r\ (z = dimKer\varphi)
+        \Longrightarrow v - v_1 = \sum\limits_{k=1}^r\mu_kc_k
+        \Longrightarrow\\ v = \sum\limits_{j=1}^m\lambda_je_j + 
+        \sum\limits_{k=1}^r\mu_kc_k \Longrightarrow V = \langle 
+        e_1,...,e_m, c_1,...,c_r \rangle$\\
+        $e_1,...,e_m, c_1,...,c_r$ -- ЛНЗ, если: $\exists\ \varepsilon_j,
+        \gamma_k \in F: \varphi(\sum\limits_{j=1}^m\varepsilon_je_j + 
+        \sum\limits_{k=1}^k\gamma_ke_k) = 0_V \Longrightarrow
+        \sum\limits_{j=1}^m\undermat{\text{ЛНЗ}}{\varepsilon_jf_j} = 0_{V'} \Longrightarrow
+        \varepsilon_j = 0,\ 1\leq j\leq m \Longrightarrow 
+        \sum\limits_{k=1}^r\undermat{\text{ЛНЗ}}{\gamma_ke_k} = 0 \Longrightarrow 
+        \gamma_k = 0,\ 1\leq k\leq r.$
+        $\\\\$2. \%Rem: Если $U \subseteq V$, то $V/U = \overline{v} \equiv
+        \{v + u|\ u \in U\} = v + U$ -- факторпространство $V$
+        по $U$, где $Ker\varphi := U$\\Рассмотрим отображение $\pi: V/U \mapsto
+        Im\varphi \subseteq V',\ \pi(\overline{v}) = \varphi(v).$\\
+        Корректность определения: если $v_1 \in V:
+        \overline{v_1} = \overline{v}$, то $v_1 = v + u_1,
+        \\\text{ где } 
+        u_1 \in U = Ker\varphi \Longrightarrow \varphi(v_1) =
+        \varphi(v) + \undermat{\equiv 0}{\varphi(u_1)} \Longrightarrow
+        \pi(\overline{v_1}) = \pi(\overline{v})$
+
+        $\pi$ -- линейное отображение:
+        $$\pi(\overline{v_1} + \overline{v_2}) = 
+        \pi(\overline{v_1 + v_2}) = \varphi(v_1 + v_2) = 
+        \varphi(v_1) + \varphi(v_2) = \pi(\overline{v_1}) + 
+        \pi(\overline{v_2}),\ \forall v \in V, \lambda \in F.$$
+        $\pi$ -- биективное:\\
+        Сюръективность: $\forall v' \in Im\varphi\ \exists\ v
+        \in V: \varphi(v) = v' \Longrightarrow \pi(\overline{v}) =
+        \varphi(v) = v'$.\\
+        Инъективность: допустим, что $\ \pi(\overline{v_1}) =
+        \pi(\overline{v_2}) \Longrightarrow \varphi(v_1) =
+        \varphi(v_2) \Longrightarrow\\ v_2 - v_1 \in
+        Ker\varphi \Longrightarrow \exists\ u \in U = Ker
+        \varphi: v_2 = v_1 + u \Longrightarrow \overline{v_2} =
+        \overline{v_1}$
+
+    \end{proof}
+    \underline{\textbf{Матрицы линейного отображения}} $\varphi: V \mapsto V'$\\
+    $\forall v = \sum\limits_{j=1}^nx_je_j.\ (e = 
+    (e_1,...,e_n))$ -- базис в $V$,\ 
+    $f = (f_1,...,f_m)$ -- базис в $V',\\(dimV = n,\ dimV' = m)$
+    $\Longrightarrow$ $$\varphi(v) = \sum\limits_{j=1}^nx_j
+    \varphi(e_j) = \sum\limits_{j=1}^nx_j\sum\limits_{i=1}^ma_{ij}f_i = 
+    \sum\limits_{i=1}^m(\sum\limits_{j=1}^na_{ij}x_j)f_i\ \ \ \ (1)$$
+    Если $\varphi(e_j) = \sum\limits_{i=1}^ma_{ij}f_i,\ 
+    (a_{ij}) = A_{\varphi,e,f}.$\\
+    Обозначение: $y = \varphi(v),\ v = eX_e^\uparrow \Longrightarrow
+    y = \varphi(v) = fY_f^\uparrow = \sum\limits_{i=1}^my_if_i.$\\
+    $(1) \Longrightarrow Y_e^\uparrow = A_{\varphi,e ,f}X_e^\uparrow\ \ \ (2)$\\
+    $Ker\varphi = \{v = eX_e^\uparrow|\varphi(v) = 0\}$.
+    Согласно формуле (2), $v \in Ker\varphi \Longleftrightarrow\\
+    A_{\varphi,e,f}X_e^\uparrow = 0$ -- ОСЛУ с матрицей $A_\varphi
+    \Longrightarrow dimKer\varphi = n - rkA_\varphi$\\
+    Но $Im\varphi = \langle \varphi(e_1),...,\varphi(e_n) \rangle$ -- линейная
+    оболочка столбцов матрицы $A_\varphi \Longrightarrow
+    dimIm\varphi = rkA_\varphi$. Получили матричное доказательство
+    формулы для $dimIm\varphi$.
+
+    \begin{lemma}
+        Линейное отображение $\varphi: V \mapsto V'$ инъективно
+        $\Longleftrightarrow Ker\varphi = \{0\}\\
+        (\text{и }\Longrightarrow \varphi(V) \cong V)$
+    \end{lemma}
+    \begin{proof}
+        $\\\Longrightarrow:\ \varphi$ - инъективно. Знаем, что
+        $\varphi(0_V) = 0_{V'}$, а т.к. $\varphi$ инъективно,
+        то $0_V$, единственный вектор из $V,\ \mapsto
+        0_{V'} \Longrightarrow Ker\varphi = \{0_V\}$.
+        $\\\Longleftarrow:$ Пусть $\varphi(v_1) = \varphi(v_2)
+        \Longrightarrow \varphi(v_1 - v_2) = 0_{V'}\Longrightarrow
+        v_1 - v_2 \in Ker\varphi = \{0\} \Longrightarrow
+        v_1 = v_2$
+
+    \end{proof}
+
+    \textbf{Задача:} Пусть $\varphi:\ V \mapsto V',\ A_{\varphi,e,f}$ --
+    матрица $\varphi$. При каких усл. на $A_\varphi:\\
+    1.\varphi$ инъективно?\\
+    $2.\varphi$ сюръективно?\\
+    $3.\varphi$ биективно?
+
+    \textbf{Примеры:}\\1. $V = \mathbb{R}_n[x] = \{a_0 + a_1x +...+ a_nx^n\ |
+    \ a_i \in \mathbb{R}\}$ -- пространство многочленов степени $\leq n$.
+    Рассмотрим базис: $1, \frac{x}{1!},...,\frac{x^n}{n!}$
+    $$\frac{x^2}{2!} \mapsto \frac{x}{1!};\ \varphi(e_j) = e_{j-1},
+    \ 1\leq j \leq n.$$ $$\varphi = \frac{d}{dx},\ \frac{d}{dx}:
+    V \mapsto V\ \ (\text{либо} V' = \mathbb{R}_{n-1}[x])$$
+    $Ker\varphi = \{const\},\ Im\varphi = \mathbb{R}_{n-1}[x]$
+    $$A_{\varphi,e} = 
+    \begin{pmatrix}
+        0 & 1 & 0 & \dots & 0\\
+        0 & 0 & 1 & \dots & 0\\
+        \vdots & \vdots & \vdots & \ddots & \vdots\\
+        0 & 0 & 0 & \dots & 1\\
+        0 & 0 & 0 & \dots & 0
+    \end{pmatrix}$$
+    Жорданова клетка порядка $n+1$ с диагональным элементом $\lambda = 0$.\\
+    2. Пусть $V = U_1 \oplus U_2$ -- прямая сумма подпространств.\\
+    Определим $\varphi: V \mapsto V,\ \forall v = u_1 + u_2,\ 
+    \varphi(v) = u_1$ -- проектирование $V$ на подпространство
+    $U_1\ ||\ U_2$.\\
+    $\varphi$ -- линейный оператор.
+    $Ker\varphi = U_2,\ Im\varphi = U_1$\\
+    Если $dim\ U_1 = k,\ dim\ U_2 = n - k$.\\
+    Рассмотрим $\undermat{\text{базис } U_1}{e_1,...,e_k},
+    \undermat{\text{базис } U_2}{e_{k+1},...,e_n} \Longrightarrow
+    A_{\varphi,e} = 
+    \begin{pmatrix}
+        E_k & \vline & 0\\
+        \hline 0 & \vline & 0
+    \end{pmatrix}$
+    \newpage
+    \underline{\textbf{Вычисление матрицы}} $A_{\varphi,e,f}:$\\
+    $A_\varphi e_j^\uparrow$ -- j-й столбец матрицы $A_\varphi$
+    в базисе $f$, где $1 \leq j \leq n.$\\
+    \textbf{Рассмотрим задачу:} даны ЛНЗ векторы $a_1,..., a_n$ в $V$ и
+    некоторые векторы $b_1,...,b_n$ в $V'$. Найти матрицу
+    линейного отображения $\varphi: V \mapsto V'$ такого, чтобы
+    $\varphi(a_i) = b_i,\ 1\leq i \leq n$.\\ По формуле,
+    $b_j^\uparrow = A_\varphi a_j^\uparrow,\ 1 \leq j \leq n
+    \Longleftrightarrow A_\varphi(a_1^\uparrow,...,a_n^\uparrow) =
+    (b_1^\uparrow,...,b_n^\uparrow)$\\ Уравнение вида: $XA = B,\ 
+    detA \neq 0 \Longrightarrow X = BA^{-1}$\\
+    $\\\begin{pmatrix}A\\\hline B\end{pmatrix} \stackrel{\text{Э.П.столбцов}}
+    {\sim}\begin{pmatrix}E\\\hline X\end{pmatrix}
+    \Longrightarrow X = A_{\varphi,e,f}$\\
+    $\\(A^T|B^T) \stackrel{\text{Э.П.строк}}{\sim} (E|X^T)$
+    
+    \underline{\textbf{Изменение матрицы линейного
+    отображения (оператора) при}}\\
+    \underline{{\textbf{замене базисов:}}}
+
+    Пусть $e, e':\ e' = eC_{e \to e'}$ в $V$ и
+    $f, f':\ f' = fD_{f \to f'}$ в $V'$.
+
+    Но $X_{e'}:\ X_e = C_{e \to e'}X_{e'} \ \ \ (3)\tab[5cm]
+    D_{f \to f'}Y_{f'} = A_{\varphi,e,f}C_{e \to e'}X_{e'}$
+
+    \ \ \ \ \ 
+    $Y_{f'}:\ Y_f = D_{f \to f'}Y_{f'}\ \ \ (3')\tab[5cm]
+    Y_{f'} = (D^{-1}A_\varphi C)X_{e'} \ \ \ (*)$
+
+    $\\(*)$ Сравним это с формулой:
+
+    $$Y_{f'} = A_{\varphi,e',f'},\ \forall x\in F^n, Y\in F^m
+    \Longrightarrow A_{\varphi,e',f'} = D_{f\to f'}^{-1}
+    A_{\varphi,e,f}C_{e\to e'}$$
+    В качестве $X$ по очереди
+    взять столбцы $E_n$, в качестве $Y$ -- столбцы $E_m$.
+    
+    Если $ \varphi v \longmapsto V$ -- линейный оператор,
+    $e, e'$ -- базисы, $C = C_{e \to e'}$, то 
+    $a_{\varphi, e'} = C^{-1}A{\varphi,e}C$ (*)
+    Термин. Две матрицы называются подобными, если $\exists
+    C:\ A' = C_{-1}AC\ (|C| \neq 0)$
+
+    \begin{subtheorem}
+        Если $A$ и $A'$ подобные, то $|A'| = |A|$ и $rkA'=rkA.$  
+    \end{subtheorem}
+    
+    (*) $\Longleftrightarrow CA' = AC$. Составим матрицу $(C|AC)
+    \overset{\text{Э.П. строк}}{\sim}  (E|A')$.
+
+    \begin{center}
+        \begin{Large}    
+            \textbf{\S2. Действия над линейными отображениями
+             и операторами.}
+        \end{Large}
+    \end{center}    
+
+    $\varphi, \psi: V \longmapsto V'$ --линейное.
+    $\forall v \in V\ (\varphi + \psi)(v) := \varphi(v) + \psi(v)$
+    $\forall \lambda \in F\ (\lambda \varphi)(v) := \lambda \varphi(v)$   
+    \begin{subtheorem}
+        \begin{enumerate}
+            \item $L(V,V')$ является векторным пространством над $F$  
+            \item Если $dimV = n,\ dimV' = m$, то $L(V,V') \cong
+            M_{m\times n}(F)$  
+        \end{enumerate}
+    \end{subtheorem}    
+    \begin{proof}
+        1. Очевидно
+
+        2. Если фиксировать базисы $e$ в $V$,\ $f$ в $V'$,
+        то $\forall \varphi \longleftrightarrow  A_{\varphi,e,f},$
+        причем: $A_{\varphi + \psi} = A_\varphi + A_\psi$,
+        $A_{\lambda \varphi} = \lambda A_\varphi$
+        
+        Если $X$ -- столбец координат вектора $v$,\ $v' \varphi(v)$,
+        $Y$ -- столбец координат $v'$.
+        
+        $Y = A_\varphi X$,
+        
+        $Y$ -- столбец координат вектора $\psi(v)$, то
+        $Y = A_\psi X, (\varphi + \psi)(v) = \varphi(v) + \psi(v)
+        \Longrightarrow \varphi(v) + \psi(v)$ имеет столбец
+        координат $Y + Y = A_\varphi X + A_\psi X = 
+        (A_\varphi + A_\psi)X = A_{\varphi + \psi}X$    
+
+    \end{proof}
+
+    Умножение (композиция) линейных отображений (операторов).
+
+    Пусть $V \overset{\psi}{\longmapsto} V' \overset{\varphi}{\longmapsto}  V''$ 
+
+    \begin{subtheorem}
+        Если $\varphi,\ \psi$ -- линейные, то $\varphi\cdot \psi$ --
+        линейное  
+    \end{subtheorem}
+
+    В частности, для линейных операторов: $\varphi\cdot \psi$ --
+    линейный оператор в этом же пространстве.
+    
+    Обозначим L(V) -- множество всех линейных операторов на $V$.
+    
+    \begin{theorem}
+        С операциями $+,\ \lambda\ \cdot,$ и $\cdot$\ $L(V)$ является
+        (линейной) алгеброй; если $dimV = n$, то $L(V) \cong M_n(F)$  
+    \end{theorem}
+    
+    $A$ -- линейная алгебра, если на $A$ заданы операции
+    $+, \cdot, \lambda\ \cdot$, такие что
+    \begin{enumerate}
+        \item $A_+ $\text{ -- кольцо ассоциативное}
+        \item $A_{+,\lambda\cdot,\ \cdot}$
+        \text{ -- векторное пространство}
+        \item $\lambda (ab) = (\lambda a)b, \forall \lambda
+        \in F,\ a,b \in A.$
+    \end{enumerate}
+    
+    \begin{proof}
+        1, 2 уже проверены.
+        3. $\forall v \in V,\ (\lambda(ab))(v) = \lambda
+        ((ab)(v)) = \lambda a(b(v)) = (\lambda a)(b(v))
+        \Longrightarrow \lambda(ab) = (\lambda a)b$, для 
+        $a,b \in L(V)$.  
+    \end{proof}
+
+    Геометрическое доказательство неравенства $rk(AB) \leq
+    \begin{cases}
+        rkA\\rkB
+    \end{cases}$ (для любых матриц $A,B$, т.ч. $\exists AB$).
+
+    Если $A_{m\times n},\ B_{n\times p}$, то $\mathbb{R}^p
+    \overset{B}{\longmapsto} \mathbb{R}^n \overset{A}{\longmapsto}
+    \mathbb{R}^m$
+    
+    $rk(AB) = dim(AB(\mathbb{R}^p)) \leq dimB(\mathbb{R}^p)\\
+    A(\mathbb{R}^n) \supseteq (AB)(\mathbb{R}^p)
+    \Longrightarrow rk(AB) = dimIm(AB) \leq dimImA = rkA.$ 
+
+    Случай равенства. Если $|A| \neq 0,$ то $A$ задает
+    изоморфизм между $\mathbb{R}^n$ и $\mathbb{R}^m
+    \Longrightarrow dimB(\mathbb{R}^p) = dim(AB(\mathbb{R}^p))$,
+    т.е. $rkB = rkAB$
+    
+    Многочлен от линейного оператора:
+
+    Пусть $p(t) = a_0t^m + a_1t_{m-1}+...+a_{m-1}t + a_m,\ 
+    \forall a_i \in F,\ i = 0,...,m$, тогда $p(\varphi) = 
+    a_0\varphi^m + a_1\varphi^{m-1}+...+a_{m-1}\varphi + a_m \varepsilon$
+    
+    $\varepsilon(v) = v, \forall v \in V$ -- тождественный оператор.
+    
+    Многочлен $p(t)$ -- аннулирующий многочлен оператора $\varphi$,
+    если $p(\varphi) = 0$ (нулевой оператор).
+    \begin{theorem}
+        Для любого оператора $\varphi: V_n \longmapsto V_n$
+        существует аннулирующий многочлен степени $\leq n-1$. 
+    \end{theorem}
+    \begin{proof}
+        Т.к. $dimL(V) = n^2$, то операторы, $\varphi^0 = \varepsilon,
+        \varphi, \varphi^2,..., \varphi^{n^2}$ -- ЛЗ. $\Longrightarrow
+        \exists a_0, a_1,..., a_{n^2} \in F\ 
+        a_0\varepsilon + a_1\varphi +...+a_{n^2}\varphi^{n^2}
+        \Longrightarrow p(t) = a_0 + a_1t +...+ a_{n^2}t^n$ --
+        аннулирующий для $\varphi$.
+        
+    \end{proof}
+
+    \begin{center}
+        \begin{Large}    
+            \textbf{\S3. Инвариантные пространства. Собственные
+            векторы.}
+        \end{Large}
+    \end{center}
+
+    Пусть $\varphi: V \longmapsto V$ -- линейный оператор.
+    
+    \begin{definition}
+        Подпространство $U \subseteq V$ называется \underline{
+        инвариантым} относительно $\varphi$ (или для $\varphi$,
+        или $\varphi$-инвариантным), если $\forall u \in U
+        \Longrightarrow \varphi(u) \in U$, т.е. $\varphi(U)
+        \subseteq U$. 
+    \end{definition}
+
+    \begin{definition}
+        \underline{Ограничение (сужение) оператора} $\varphi$
+        на инвариантное подмножество $U$ -- это оператор. 
+    \end{definition}
+
+    Обозначение: $\varphi|_v: U \longmapsto U$, а именно,
+    $\forall u \in U$  
+
+    Примеры:
+    \begin{enumerate}
+        \item $\varphi = \frac{d}{dx}: \mathbb{R}[x]
+        \longmapsto \mathbb{R}[x]$, $p(x) \longmapsto p'(x)$
+        
+        Для $\forall n = 0,1,...,\ \mathbb{R}_n[x] = \{p(x)|
+        deg p(x)\leq n\}$ являются инвариантными подпространствами
+
+        Вопрос: есть ли другие инвариантные подпространства?
+        \item $\varphi$ -- проектирование (проектор) $V
+        longmapsto V = U_1 \oplus U_2$
+        
+        $\varphi(u_1 + u_2) = u_1$ на $U_1$ вдоль $U_2$.
+        
+        Инвариантные: $U_1, U_2$, а также $U_1' \oplus U_2'$,
+        для $\forall U_1' \subseteq U_1,\ U_2' \subseteq U_2$.
+    \end{enumerate}
+    
+    \begin{theorem}
+        Если $\varphi: V \longmapsto  V$, то $\varphi$-инвариантными
+        являются:
+        \begin{itemize}
+            \item $Ker \varphi$
+            \item $Im \varphi$
+            \item Любое пространство $U$, $Im \varphi \subseteq 
+            U \subseteq V$
+            \item $\forall k = 1,2,...,\ Ker \varphi^k$
+            \item $Im \varphi^k$ 
+        \end{itemize}
+    \end{theorem}
+
+    \begin{theorem}
+        Если $U_1,..., U_k$ -- $\varphi$-инвариантные.  
+    \end{theorem}
+
+    \begin{lemma}
+        (Вид матрицы $A-\varphi$ при наличии инвариантов 
+        пространства)
+        \begin{enumerate}
+            \item Пусть $U_1$ -- $\varphi$-инвариантное
+            пространство, $\{0\} \neq U_1 \neq V$. Тогда
+            в $V\ \exists$ базис, в котором\\ $A_\varphi = 
+            \begin{pmatrix}
+                \underset{n\timesm}{B} & \underset{m\times n-m}{D} \\
+                \big 0 & C 
+            \end{pmatrix}$\\ $dimU_1 = m$ 
+            \item Пусть $V = U_1 \oplus U_2$, причем $U_1, U_2$ --
+            ненулевые инвариантные подпространства, тогда в
+            $V\ \exists$ базис, в котором\\ $A_\varphi = 
+            \begin{pmatrix}
+                \underset{n\timesm}{B} & 0\\
+                \big 0 & C 
+            \end{pmatrix}$, причем $C = A_{\varphi|U_2}$ 
+        \end{enumerate}
+        \begin{proof}
+            \begin{enumerate}
+                \item Надо взять $e_1,..., e_m$ -- базис в $U_1$,
+                дополнить его произвольно до базиса в $V$.\\
+                Тогда для $j=1,...,m,\ \varphi(e_j) \in U_1,\ 
+                \varphi(e_j) = \sum\limits_{i=1}^{m} b_ie_i$ --
+                столбцы (хз)
+                \item Усли базис $e_1,..., e_m$ пространства
+                \item $U_1$ объединить с базисом $e_{m+1},...,
+                e_n$ пространства $U_2$, то в полученном базисе
+                $A_\varphi = 
+            \begin{pmatrix}
+                \underset{n\timesm}{B} & 0\\
+                \big 0 & C 
+            \end{pmatrix}$
+            \end{enumerate}
+        \end{proof}
+    \end{lemma}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
