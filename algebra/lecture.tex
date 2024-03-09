@@ -1389,21 +1389,20 @@
         U \Longrightarrow \varphi(u) \in U,\ \forall u \in U$
     \end{proof}
     \begin{definition}
-        Вектор $x \in V$ называется собственным вектором
+        Вектор $x \in V$ называется \textit{собственным вектором}
         оператора $\varphi$, если $x \neq v$ и $\exists
         \lambda \in F:\ \varphi(x) = \lambda x\ (1)$. 
-        Это $\lambda$ называется соббственным значением
+        Это $\lambda$ называется собственным значением
         оператора $\varphi$ ($x$ -- собственный вектор
-        с соббственным значением $\lambda$).
+        с собственным значением $\lambda$).
     \end{definition}
     Для данного собственного значения $\lambda \in F$ 
-    обозначается $V_\lambda = \{x \in V|\ \varphi(x) = 
-    \lambda x\}\ (2)\ $ (Множество соббственных векторов
+    обозначается $$V_\lambda = \{x \in V|\ \varphi(x) = 
+    \lambda x\}\ (2)\ $$ (Множество собственных векторов
     с добавленным $0$).
-
     $V_\lambda$ -- подпространство в $V$.  
     \begin{definition}
-        $V_\lambda$ называется соббственным подпространством
+        $V_\lambda$ называется \textit{собственным подпространством}
         оператора $\varphi$, отвечающим собственному
         значению $\lambda$.   
     \end{definition}
@@ -1423,14 +1422,14 @@
         $2.$ Возьмем $x \in V_\lambda \Longrightarrow 
         \varphi(x) = \lambda x \in V_\lambda$   
     \end{proof}
-    Замечание: если $\varphi(x) = \lambda x\ (x \neq 0),\ 
+    \textbf{Замечание:} если $\varphi(x) = \lambda x\ (x \neq 0),\ 
     \varphi^2(x) = \lambda^2x,...,\varphi^m(x) = \lambda^mx
     \Longrightarrow$ для любого многочлена $p(t) = a_0 + 
     a_1t + ... + a_nt^n\ (a_i \in F),\ p(\varphi)(x) = 
     p(\lambda)x$. В частности, если $p(t)$ -- аннулирующий
     многочлен для $\varphi$, т.е. $p(\varphi) = 0$, то
     $p(\lambda) = 0$.
-
+    \newpage
     \textbf{Примеры:}
     \begin{enumerate}
         \item $\varphi = \frac{d}{dx}\cdot V = C^\infty(\mathbb{R}),
@@ -1443,10 +1442,10 @@
     \end{enumerate}  
 
     Пусть $f(x)$ -- та функция, рассмотрим $g(x) = f(x)e^{
-    -\lambda x},\ g'(x) = f'(x)e^{-\lambda x} - \lambda f(x)
+    -\lambda x},$ $$g'(x) = f'(x)e^{-\lambda x} - \lambda f(x)
     e^{-\lambda x}  = \lambda f(x)e^{-\lambda x} -
-    \lambda f(x)e^{-\lambda x} = 0$ на $\mathbb{R} \Longrightarrow 
-    g(x) \equiv C \Longrightarrow f(x) = Ce^{\lambda x}\ 
+    \lambda f(x)e^{-\lambda x} = 0 \text{на} \mathbb{R} \Longrightarrow 
+    g(x) \equiv C$$ $\Longrightarrow f(x) = Ce^{\lambda x}\ 
     (\forall C \neq 0) \Longrightarrow dimV_\lambda = 1$.
     
     \begin{theorem}
@@ -1459,15 +1458,15 @@
         
         База: $m=1$ -- по определению сам себе ЛНЗ.
         
-        Шаг: пусть $m > 1$ и векторы в количестве $m-1$ ЛНЗ:
-        $\alpha_1x_1 +...= \alpha_{m-1}x_{m-1} + \alpha_m
-        x_m = 0\ (I).$ Подествуем на равенство $I$ оператором
+        Шаг: пусть $m > 1$ и векторы в количестве $(m-1)$ ЛНЗ:\\
+        $\alpha_1x_1 +...+ \alpha_{m-1}x_{m-1} + \alpha_m
+        x_m = 0\ \ (\text{I}).$\\ Подествуем на равенство I оператором
         $\varphi:\ \alpha_1\varphi(x_1) +...+ \alpha_m \varphi(x_m) = 0
         \Longleftrightarrow \alpha_1 \lambda_1x_1 +...+
-        \alpha_1 \lambda_1x_1 + \alpha_{m-1}\lambda_{m-1}x_{m-1} +
-        \alpha_m \lambda_m x_m = 0\ (II).$
+        \alpha_{m-1}\lambda_{m-1}x_{m-1} +
+        \alpha_m \lambda_m x_m = 0$\ (II).
         
-        Вычтем из $II$ равенство $I$, умноженное на $\lambda_m:$
+        Вычтем из II равенство I, умноженное на $\lambda_m:$
         
         $\alpha_1(\lambda_1 - \lambda_m)x_1 +...+ \alpha_{m-1}
         (\lambda_{m-1} - \lambda_m)x_{m-1} = 0$. По предположению
@@ -1481,14 +1480,25 @@
         Допустим, что $dimV = n$ и $\varphi$ имеет $n$
         различных собственных значений $\lambda_1,...,\lambda_n$,
         тогда отвечающие им собственные векторы оператора
-        $\varphi$ образуют базис в $V$.  
+        $\varphi$ образуют базис в $V$ [собственный базис].  
     \end{consequense}
-    Обратим внимание,  чир в этом базисе $e_1,..,e_n$ матрица
-    $A_\varphi$ -- диагональная: $A_\varphi =
+    Обратим внимание,  что в этом базисе $e_1,..,e_n$ матрица
+    $A_\varphi$ -- диагональная: $$A_\varphi =
     \begin{pmatrix}
         \lambda_1 & \hdots & 0\\\vdots & \ddots & \vdots\\ 0
         & \hdots & \lambda_n
-    \end{pmatrix}$ 
+    \end{pmatrix}$$ Причем $\varphi(e_j) = \lambda_je_j
+    \Longrightarrow$ в координатах это значит, что
+    $$A_\varphi
+    \begin{pmatrix} 0\\\vdots\\1\\\vdots\\0 \end{pmatrix} =  
+    \begin{pmatrix} 0\\\vdots\\\lambda_j\\\vdots\\0 \end{pmatrix}
+    \Longrightarrow A_\varphi = 
+    \begin{pmatrix}
+        \lambda_1 & 0 & \null & \null\\
+        \null & \lambda_2 & \ddots & \null\\
+        \null & \null & \ddots & 0\\
+        \null & \null & \null & \lambda_n
+    \end{pmatrix}$$   
 
     \begin{consequense}
         Пусть $\lambda_1,...,\lambda_m$ -- попарно различные
@@ -1522,9 +1532,9 @@
         \hdotsfor{4}\\
         a_{n1} & a_{n2} & \hdots & a_{nn} - \lambda\\
     \end{vmatrix}
-    =\\ (a_{11} - \lambda)\cdot...\cdot (a_{nn} - \lambda) + 
-    (\text{слагаемые сетепени } \leq 2 \text{ по }
-    \lambda) +... =\\ (-\lambda)^n + \sum\limits_{i=1}^{n} a_{ii}
+    =\\\\ =(a_{11} - \lambda)\cdot...\cdot (a_{nn} - \lambda) + 
+    (\text{слагаемые сетепени } \leq n-1 \text{ по }
+    \lambda)=\\\\ =(-\lambda)^n + \sum\limits_{i=1}^{n} a_{ii}
     (-\lambda)^{n-1} +...+ |A|$
 
     $\\$ \underline{Термин:} $det(A_\varphi - \lambda E)$ -- характеритический
@@ -1532,7 +1542,7 @@
     
     \begin{lemma}
         Характеритический многочлен матрицы $a_\varphi$ не
-        зависит от выбора базиса. 
+        зависит от выбора\\ базиса. 
     \end{lemma}
     \begin{proof}
         Пусть $e' = eC$ -- новый базис, тогда матрица\\
@@ -1547,6 +1557,7 @@
         $\chi_\varphi(\lambda) = |A_\varphi -  E|$ -- характеритический
         многочлен (в любом базисе) оператора $\varphi$.          
     \end{definition}
+    \newpage
     \begin{center}
         \begin{Large}    
             \textbf{\S5. Диагонализируемость линейных операторов.}
@@ -1559,7 +1570,7 @@
         если $\exists$ базис $e$ в $V$, в котором $A_\varphi$
         диагональна.
     \end{definition}
-    Термин: для характеритического корня $\lambda \in F$:
+    \underline{Термины:} для характеритического корня $\lambda \in F$:
 
     геометрическая кратность $\lambda, \textit{\text{гкт}}(\lambda) = 
     dimV_\lambda$,
@@ -1589,10 +1600,10 @@
                 \vdots & \null & \null & \vdots & \vline & \null & C & \null\\
                 \undermat{m}{0 & \dots & \dots & 0} & \vline &
                 \null & \null & \null\\
-            \end{pmatrix} \Longrightarrow |A_\varphi - \lambda E| =$
+            \end{pmatrix} \Longrightarrow$
         \end{flushleft}
         \begin{flushright}
-            $=\begin{vmatrix}
+            $ |A_\varphi - \lambda E| =\begin{vmatrix}
                 \lambda - t & \null & 0 & \vline & \null & \null & \null\\
                 \null & \ddots & \null & \vline & \null & B & \null\\
                 0 & \null & \lambda - t & \vline & \null & \null & \null\\
@@ -1602,7 +1613,7 @@
         \end{flushright}
     $\lambda$ может быть корнем $|C - tE| \Longrightarrow 
     \text{\textit{алкр}}(\lambda) \geq  m$
-        
+    
     \end{proof}
     \begin{theorem}
         (критерий диагонализируемости)
@@ -1613,8 +1624,8 @@
             диагональна.
             \item В $V\ \exists$ собственный базис для $\varphi$.
             \item Все характеритические корни $\lambda_j \in F
-            \ (\lambda_1,...,\lambda_s -- \text{все различные})$
-            $\forall j = 1,...,s:\ dimV_{\lambda_j} = 
+            \ (\lambda_1,...,\lambda_s - \text{все различные})$
+            \\$\forall j = 1,...,s:\ dimV_{\lambda_j} = 
             \text{алг}(\lambda_j)$
             \item $V_{\lambda_1} \oplus...\oplus V_{\lambda_s}
             = V$  
