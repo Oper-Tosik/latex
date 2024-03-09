@@ -1325,7 +1325,17 @@
             \item $U_1 \cap...\cap U_k$ 
         \end{itemize}        
     \end{theorem}
-
+    \begin{proof}
+        \begin{itemize}
+            \item $\forall v = u_1 +...+ u_k \Longrightarrow 
+            \varphi(v) = \varphi(u_1) + \varphi(u_k) \in U_1 +
+            ...+U_k$
+            \item $\forall w \in U_i,\ i = 1,...,k \Longrightarrow 
+            \varphi(w) \in U_i,\ i = 1,...,k \Longrightarrow 
+            \varphi(w) \in \overset{k}{\underset{i=1}{\bigcap}} U_i$
+        \end{itemize}
+        
+    \end{proof}
     \begin{lemma}
         (Вид матрицы $A_\varphi$ при наличии инвариантов 
         подпространства)
@@ -1364,32 +1374,257 @@
     \begin{subtheorem}
         Верное и обратное
     \end{subtheorem}
+    \begin{center}
+        \begin{Large}
+            \textbf{\S4. Собственные векторы и собственные
+            значения линейных операторов.}
+        \end{Large}
+    \end{center}
+    \begin{theorem}
+        Пусть $\varphi: V \longmapsto V$ -- линейный оператор,
+        $U \supseteq Im \varphi \Longrightarrow \varphi(U) \subseteq U$ 
+    \end{theorem}
+    \begin{proof}
+        $\forall u \in U,\ \varphi(u) \in Im \varphi \subseteq 
+        U \Longrightarrow \varphi(u) \in U,\ \forall u \in U$
+    \end{proof}
+    \begin{definition}
+        Вектор $x \in V$ называется собственным вектором
+        оператора $\varphi$, если $x \neq v$ и $\exists
+        \lambda \in F:\ \varphi(x) = \lambda x\ (1)$. 
+        Это $\lambda$ называется соббственным значением
+        оператора $\varphi$ ($x$ -- собственный вектор
+        с соббственным значением $\lambda$).
+    \end{definition}
+    Для данного собственного значения $\lambda \in F$ 
+    обозначается $V_\lambda = \{x \in V|\ \varphi(x) = 
+    \lambda x\}\ (2)\ $ (Множество соббственных векторов
+    с добавленным $0$).
+
+    $V_\lambda$ -- подпространство в $V$.  
+    \begin{definition}
+        $V_\lambda$ называется соббственным подпространством
+        оператора $\varphi$, отвечающим собственному
+        значению $\lambda$.   
+    \end{definition}
+    \begin{subtheorem}
+        \begin{enumerate}
+            \item $V_\lambda = Ker(\varphi - \lambda \varepsilon)$,
+            ($\varepsilon$ -- тождественный оператор).
+            \item $V_\lambda$ -- $\varphi$-инвариантное
+            подпространство. 
+        \end{enumerate}
+    \end{subtheorem}
+    \begin{proof}
+        $1.\ v \in Ker(\varphi - \lambda \varepsilon)
+        \Longleftrightarrow \varphi(v) = \lambda v
+        \Longleftrightarrow v \in V_\lambda$.
+
+        $2.$ Возьмем $x \in V_\lambda \Longrightarrow 
+        \varphi(x) = \lambda x \in V_\lambda$   
+    \end{proof}
+    Замечание: если $\varphi(x) = \lambda x\ (x \neq 0),\ 
+    \varphi^2(x) = \lambda^2x,...,\varphi^m(x) = \lambda^mx
+    \Longrightarrow$ для любого многочлена $p(t) = a_0 + 
+    a_1t + ... + a_nt^n\ (a_i \in F),\ p(\varphi)(x) = 
+    p(\lambda)x$. В частности, если $p(t)$ -- аннулирующий
+    многочлен для $\varphi$, т.е. $p(\varphi) = 0$, то
+    $p(\lambda) = 0$.
+
+    \textbf{Примеры:}
+    \begin{enumerate}
+        \item $\varphi = \frac{d}{dx}\cdot V = C^\infty(\mathbb{R}),
+        \ \forall f(x) \longmapsto f'(x)$. Возьмем $f(x) =
+        e^{\lambda x} \Longrightarrow (e^{\lambda x})' = 
+        \lambda e^{\lambda x}$, т.е. $e^{\lambda x}$ --
+        собственная функция для $\varphi$. Для $\forall 
+        \lambda \in \mathbb{R}\ \exists !$ функция $f(x):\ 
+        f'(x) = \lambda f(x)$   
+    \end{enumerate}  
+
+    Пусть $f(x)$ -- та функция, рассмотрим $g(x) = f(x)e^{
+    -\lambda x},\ g'(x) = f'(x)e^{-\lambda x} - \lambda f(x)
+    e^{-\lambda x}  = \lambda f(x)e^{-\lambda x} -
+    \lambda f(x)e^{-\lambda x} = 0$ на $\mathbb{R} \Longrightarrow 
+    g(x) \equiv C \Longrightarrow f(x) = Ce^{\lambda x}\ 
+    (\forall C \neq 0) \Longrightarrow dimV_\lambda = 1$.
     
+    \begin{theorem}
+        Пусть $x_1,...,x_m \in V$ -- собственные для $\varphi$
+        с попарно различными собственными значениями $\lambda_1,
+        ..., \lambda_m$. Тогда $x_1,...,x_m$ ЛНЗ. 
+    \end{theorem}
+    \begin{proof}
+        Индукция по $m$:
+        
+        База: $m=1$ -- по определению сам себе ЛНЗ.
+        
+        Шаг: пусть $m > 1$ и векторы в количестве $m-1$ ЛНЗ:
+        $\alpha_1x_1 +...= \alpha_{m-1}x_{m-1} + \alpha_m
+        x_m = 0\ (I).$ Подествуем на равенство $I$ оператором
+        $\varphi:\ \alpha_1\varphi(x_1) +...+ \alpha_m \varphi(x_m) = 0
+        \Longleftrightarrow \alpha_1 \lambda_1x_1 +...+
+        \alpha_1 \lambda_1x_1 + \alpha_{m-1}\lambda_{m-1}x_{m-1} +
+        \alpha_m \lambda_m x_m = 0\ (II).$
+        
+        Вычтем из $II$ равенство $I$, умноженное на $\lambda_m:$
+        
+        $\alpha_1(\lambda_1 - \lambda_m)x_1 +...+ \alpha_{m-1}
+        (\lambda_{m-1} - \lambda_m)x_{m-1} = 0$. По предположению
+        индукции $\alpha_i(\lambda_i - \lambda_m) = 0,\ 
+        \forall i =1,...,m-1 \Longrightarrow \alpha_i = 0
+        \Longrightarrow \alpha_m = 0$
+        
+    \end{proof}
 
+    \begin{consequense}
+        Допустим, что $dimV = n$ и $\varphi$ имеет $n$
+        различных собственных значений $\lambda_1,...,\lambda_n$,
+        тогда отвечающие им собственные векторы оператора
+        $\varphi$ образуют базис в $V$.  
+    \end{consequense}
+    Обратим внимание,  чир в этом базисе $e_1,..,e_n$ матрица
+    $A_\varphi$ -- диагональная: $A_\varphi =
+    \begin{pmatrix}
+        \lambda_1 & \hdots & 0\\\vdots & \ddots & \vdots\\ 0
+        & \hdots & \lambda_n
+    \end{pmatrix}$ 
 
+    \begin{consequense}
+        Пусть $\lambda_1,...,\lambda_m$ -- попарно различные
+        собственные значения оператора $\varphi$, тогда
+        сумма $V_{\lambda_1}+...+V_{\lambda_m} =
+        V_{\lambda_1}\oplus...\oplus V_{\lambda_m}$  
+    \end{consequense}
 
+    \textbf{Вычисление собственных значений и собственных
+    векторов с\\ помощью $A_\varphi$:}
 
+    Пусть $dimV = n,\ e = (e_1,...,e_n)$ -- некоторый базис в
+    $V,\ A_{\varphi,e}$ -- матрица оператора $\varphi$.
+    
+    По определению: $\varphi(x) = \lambda x,\ x \neq 0$.
+    
+    В координатах: $A_{\varphi}X = \lambda X \Longleftrightarrow 
+    (A_\varphi - \lambda E)X = 0,\ (3) \ X \neq 0.$
+    
+    Для того чтобы система (3) имела хотя бы одно ненулевое
+    решение, необходимо, чтобы $det(A_\varphi - \lambda E) = 0
+    \ (4)$
+    
+    $\lambda$ -- корень характеритического уравнения (4).
+    (Собственными значениями будут только корни $\lambda \in F$).
+    
+    Раскроем $det(A_\varphi - \lambda E) = 
+    \begin{vmatrix}
+        a_{11} - \lambda & a_{12} & \hdots & a_{1n}\\
+        a_{21} & a_{22} - \lambda & \hdots & a_{2n}\\
+        \hdotsfor{4}\\
+        a_{n1} & a_{n2} & \hdots & a_{nn} - \lambda\\
+    \end{vmatrix}
+    =\\ (a_{11} - \lambda)\cdot...\cdot (a_{nn} - \lambda) + 
+    (\text{слагаемые сетепени } \leq 2 \text{ по }
+    \lambda) +... =\\ (-\lambda)^n + \sum\limits_{i=1}^{n} a_{ii}
+    (-\lambda)^{n-1} +...+ |A|$
 
+    $\\$ \underline{Термин:} $det(A_\varphi - \lambda E)$ -- характеритический
+    многочлен матрицы $A_\varphi$.
+    
+    \begin{lemma}
+        Характеритический многочлен матрицы $a_\varphi$ не
+        зависит от выбора базиса. 
+    \end{lemma}
+    \begin{proof}
+        Пусть $e' = eC$ -- новый базис, тогда матрица\\
+        $A_{\varphi,e'} = C^{-1}A_{\varphi,e}C \Longrightarrow 
+        |A_{\varphi,e} - \lambda E| = |C^{-1}A_\varphi C
+        - \lambda(C^{-1}C)| = |C^{-1}(A_\varphi - \lambda E)C|
+        =\\ |C^{-1}||A_\varphi - \lambda E||C| = |a_\varphi -
+        \lambda E|$  
 
+    \end{proof}
+    \begin{definition}
+        $\chi_\varphi(\lambda) = |A_\varphi -  E|$ -- характеритический
+        многочлен (в любом базисе) оператора $\varphi$.          
+    \end{definition}
+    \begin{center}
+        \begin{Large}    
+            \textbf{\S5. Диагонализируемость линейных операторов.}
+        \end{Large}
+    \end{center}    
+    Пусть $\varphi: V \longmapsto V$ -- линейный оператор,
+    $dimV = n$.
+    \begin{definition}
+        Скажем, что матрица оператора $\varphi$ диагонализируема,
+        если $\exists$ базис $e$ в $V$, в котором $A_\varphi$
+        диагональна.
+    \end{definition}
+    Термин: для характеритического корня $\lambda \in F$:
 
+    геометрическая кратность $\lambda, \textit{\text{гкт}}(\lambda) = 
+    dimV_\lambda$,
 
+    алгебраическая кратность $\lambda$ -- это его кратность
+    как корня характеритического многочлена (\textit{алкр}($\lambda$)).
+    \begin{lemma}
+        $dimV_\lambda \leq \textit{\text{алкр}}(\lambda)$
+    \end{lemma}
+    \begin{proof}
+        Пусть $dimV_\lambda = m,\ \text{\textit{алгр}}(\lambda) = k$,
+        нужно доказать, что $m \leq k$
+        
+        Выберем базис в $V_\lambda:\ e_1,...,e_m$ и дополним
+        его до базиса в $V$, векторами $e_{m+1},...,e_n$
+        
+        В этом базисе:
+        \begin{flushleft}
+        $A_{\varphi,e} =
+            \begin{pmatrix}
+                \lambda & 0 & \hdots & 0 & \vline & \overmat{n-m}{\null & \null & \null}\\
+                0 & \lambda & \hdots & 0 & \vline & \null & B & \null\\
+                \vdots & \vdots & \null & \vdots & \vline & \null & \null\\
+                0 & 0 & \hdots & \lambda & \vline & \null & \null\\
+                \hline
+                0 & \dots & \dots & 0 & \vline & \null & \null & \null\\
+                \vdots & \null & \null & \vdots & \vline & \null & C & \null\\
+                \undermat{m}{0 & \dots & \dots & 0} & \vline &
+                \null & \null & \null\\
+            \end{pmatrix} \Longrightarrow |A_\varphi - \lambda E| =$
+        \end{flushleft}
+        \begin{flushright}
+            $=\begin{vmatrix}
+                \lambda - t & \null & 0 & \vline & \null & \null & \null\\
+                \null & \ddots & \null & \vline & \null & B & \null\\
+                0 & \null & \lambda - t & \vline & \null & \null & \null\\
+                \hline
+                \null & 0 & \null & \vline & & \null C - \lambda E & \null
+            \end{vmatrix} = (\lambda - t)^m \cdot |C - tE| = 0$
+        \end{flushright}
+    $\lambda$ может быть корнем $|C - tE| \Longrightarrow 
+    \text{\textit{алкр}}(\lambda) \geq  m$
+        
+    \end{proof}
+    \begin{theorem}
+        (критерий диагонализируемости)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Следующие условия равносильны:
+        \begin{enumerate}
+            \item $\exists$ базис в $V$, в котором $A_\varphi$
+            диагональна.
+            \item В $V\ \exists$ собственный базис для $\varphi$.
+            \item Все характеритические корни $\lambda_j \in F
+            \ (\lambda_1,...,\lambda_s -- \text{все различные})$
+            $\forall j = 1,...,s:\ dimV_{\lambda_j} = 
+            \text{алг}(\lambda_j)$
+            \item $V_{\lambda_1} \oplus...\oplus V_{\lambda_s}
+            = V$  
+        \end{enumerate}
+    \end{theorem}
+    \begin{proof}
+        
+    \end{proof}
+    Замечание: $dimV_{\lambda_j} = n - rk(A_\varphi - 
+    \lambda_j E)$.
 
 
 
