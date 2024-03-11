@@ -1288,7 +1288,7 @@
     \end{definition}
 
     \underline{Обозначение:} $\varphi|_v: U \longmapsto U$, а именно,
-    $\forall u \in U: \varphi|_u(U) := \varphi(U)$
+    $\forall u \in U: \varphi|_U(u) := \varphi(u)$
     \newpage
     \textbf{Примеры:}
     \begin{enumerate}
@@ -1393,7 +1393,7 @@
     \end{proof}
     \begin{definition}
         Вектор $x \in V$ называется \textit{собственным вектором}
-        оператора $\varphi$, если $x \neq v$ и $\exists
+        оператора $\varphi$, если $x \neq 0$ и $\exists
         \lambda \in F:\ \varphi(x) = \lambda x\ (1)$. 
         Это $\lambda$ называется собственным значением
         оператора $\varphi$ ($x$ -- собственный вектор
@@ -1540,11 +1540,11 @@
     \lambda)=\\\\ =(-\lambda)^n + \sum\limits_{i=1}^{n} a_{ii}
     (-\lambda)^{n-1} +...+ |A|$
 
-    $\\$ \underline{Термин:} $det(A_\varphi - \lambda E)$ -- характеритический
+    $\\$ \underline{Термин:} $det(A_\varphi - \lambda E)$ -- характеристический
     многочлен матрицы $A_\varphi$.
     
     \begin{lemma}
-        Характеритический многочлен матрицы $a_\varphi$ не
+        Характеристический многочлен матрицы $a_\varphi$ не
         зависит от выбора\\ базиса. 
     \end{lemma}
     \begin{proof}
@@ -1557,7 +1557,7 @@
 
     \end{proof}
     \begin{definition}
-        $\chi_\varphi(\lambda) = |A_\varphi -  E|$ -- характеритический
+        $\chi_\varphi(\lambda) = |A_\varphi -  E|$ -- характеристический
         многочлен (в любом базисе) оператора $\varphi$.          
     \end{definition}
     \newpage
@@ -1572,13 +1572,19 @@
         Скажем, что матрица оператора $\varphi$ диагонализируема,
         если $\exists$ базис $e$ в $V$, в котором $A_\varphi$
         диагональна.
+        $$A_{\varphi,e} = 
+        \begin{pmatrix}
+            \lambda_1 & \null & 0\\ \null & \ddots & \null\\
+            0 & \null & \lambda_n
+        \end{pmatrix} = diag(\lambda_1,..., \lambda_n)
+        $$
     \end{definition}
     \underline{Термины:} для характеритического корня $\lambda \in F$:
 
-    геометрическая кратность $\lambda, \textit{\text{гкт}}(\lambda) = 
+    1. геометрическая кратность $\lambda, \textit{\text{гкт}}(\lambda) = 
     dimV_\lambda$,
 
-    алгебраическая кратность $\lambda$ -- это его кратность
+    2. алгебраическая кратность $\lambda$ -- это его кратность
     как корня характеритического многочлена (\textit{алкр}($\lambda$)).
     \begin{lemma}
         $dimV_\lambda \leq \textit{\text{алкр}}(\lambda)$
@@ -1606,7 +1612,7 @@
             \end{pmatrix} \Longrightarrow$
         \end{flushleft}
         \begin{flushright}
-            $ |A_\varphi - \lambda E| =\begin{vmatrix}
+            $ |A_\varphi - tE| =\begin{vmatrix}
                 \lambda - t & \null & 0 & \vline & \null & \null & \null\\
                 \null & \ddots & \null & \vline & \null & B & \null\\
                 0 & \null & \lambda - t & \vline & \null & \null & \null\\
@@ -1618,27 +1624,238 @@
     \text{\textit{алкр}}(\lambda) \geq  m$
     
     \end{proof}
+    \begin{remark}
+        $dimV_{\lambda_j} = n - rk(A_\varphi - \lambda_j E)$.
+    \end{remark}   
     \begin{theorem}
         (критерий диагонализируемости)
 
-        Следующие условия равносильны:
+        Для оператора $\varphi: V \longmapsto V$ следующие
+        условия равносильны:
+        
         \begin{enumerate}
-            \item $\exists$ базис в $V$, в котором $A_\varphi$
-            диагональна.
-            \item В $V\ \exists$ собственный базис для $\varphi$.
-            \item Все характеритические корни $\lambda_j \in F
-            \ (\lambda_1,...,\lambda_s - \text{все различные})$
-            \\$\forall j = 1,...,s:\ dimV_{\lambda_j} = 
-            \text{алг}(\lambda_j)$
+            \item $A_\varphi$ диагональна в некотором базисе.
+            \item В $V\ \exists$ базис из собственных векторов
+            оператора $\varphi$ (собственный базис).
+            \item $\chi_\varphi(\lambda) = det(A_\varphi -
+            \lambda E) = (\lambda_1 - \lambda)^{k_1}\cdot...
+            \cdot(\lambda_s - \lambda)^{k_s}$
+            Все характеритические корни $\lambda_i \in F$,
+            и для $\forall i,\ dimV_{\lambda_i} = k_i\ (= \text{\textit{алг}}(\lambda_i))$  
             \item $V_{\lambda_1} \oplus...\oplus V_{\lambda_s}
-            = V$  
+            = V$ 
         \end{enumerate}
     \end{theorem}
     \begin{proof}
+        $1. \Longleftrightarrow 2.$
         
+        Если $A_{\varphi,e} = 
+        \begin{pmatrix}
+            \lambda_1 & \null & 0\\ \null & \ddots & \null\\
+            0 & \null & \lambda_n
+        \end{pmatrix}
+        $, то координаты вектора\\ $\varphi(e_i) = 
+        \begin{pmatrix}
+            \lambda_1 & \null & 0\\ \null & \ddots & \null\\
+            0 & \null & \lambda_n
+        \end{pmatrix}
+        \begin{pmatrix}0\\\vdots\\1\\\vdots\\0\end{pmatrix} = 
+        \begin{pmatrix}0\\\vdots\\ \lambda_i\\\vdots\\0
+        \end{pmatrix} = \lambda_i \begin{pmatrix}
+        0\\\vdots\\1\\\vdots\\0\end{pmatrix}$, т.е.
+        $\varphi(e_i) = \lambda_ie_i$
+        
+        $2. \Longrightarrow 1.$ 
+
+        Если $e$ -- собственный базис для $\varphi,\ 
+        \varphi(e_i) = \lambda_ie_i$, то i-й столбец матрицы
+        $A_{\varphi,e}$ равен $\begin{pmatrix}0\\\vdots\\
+        \lambda_i\\\vdots\\0\end{pmatrix}$, матрица составленная
+        из этих столбцов, и есть $diag(\lambda_1,...,\lambda_n)$ 
+    
+        $1. \text{ и } 2. \Longleftrightarrow 3.$
+
+        Пусть в базисе $e$ матрица $A_\varphi$ диагональна.\\
+        Занумеруем векторы следующим образом:
+
+        $\underbrace{e_1,...,e_{p_1}}_{\lambda_1}, 
+        \underbrace{e_{p_1 + 1}, e_{p_1 + p_2}}_{\lambda_2},...$ и т.д. 
+    
+        Ясно, что $e_1,...,e_{p_1} \in V_{\lambda_1},\ 
+        e_{p_1 = 1}, e_{p_1 + p_2} \in V_{\lambda_2}
+        \Longrightarrow dimV_{\lambda_i} \geq p_i$.\\
+        По построению, $\sum\limits_{i=1}^{s} p_i = n =
+        \sum\limits_{i=1}^{s} k_i \Longrightarrow 
+        \sum\limits_{i=1}^{s} (p_i - k_i) = 0 \Longrightarrow 
+        \text{ все } p_i = k_i$  
+    
+        Обратно: пусть $\forall i,\ p_i = dimV_{\lambda_i} = k_i\ \ (*)$.\\
+        Возьмем базисы в собственных подпространствах, 
+        объединим их $\Longrightarrow $ получим всего
+        $\sum\limits_{i=1}^{s} p_i = \sum\limits_{i=1}^{s} k_i = 
+        n = dimV.$
+        
+        Остается понять, что все эти векторы ЛНЗ. Это 
+        следует из теоремы: если векторы $x_1,...,x_s$
+        отвечают попарно различным собственным значениям, 
+        то они ЛНЗ. 
+    
+        В линейных комбинации собственных векторов $
+        \underbrace{\alpha_{11}e_1+...+\alpha_{1p_1}e_{p_1}}_{x_1}
+        \underbrace{+...}_{x_2} = 0\\
+        x_1 + x_2 +...+ x_s = 0$, что в силу ЛНЗ $\Longrightarrow 
+        x_1 = ...= x_s = 0$, но $x_i$ -- линейная комбинация
+        базисных векторов из $V_{\lambda_i} \Longrightarrow
+        \text{ все } \alpha_{ij} = 0$
+        
+        На самом деле установили, что $4. \Longleftrightarrow 3.$
+        
+        Рассуждение (*) показывает, что базис в $V_{\lambda_1} +
+        ...+V_{\lambda_s}$ -- базис в $V$.  
+
+        Кроме того, этот базис -- собственный, так что $4.
+        \Longrightarrow 2.$ 
+
     \end{proof}
-    Замечание: $dimV_{\lambda_j} = n - rk(A_\varphi - 
-    \lambda_j E)$.
+
+    \textbf{Примеры применения диагонализируемости:}\\
+    1. Для решения системы $AX = b,\ A$ -- квадратная 
+    матрица.\\Пусть известно, что матрица $C$, такая что
+    $A' = C^{-1}AC = 
+    \begin{pmatrix}
+        \lambda_1 & \null & 0\\ \null & \ddots & \null\\
+        0 & \null & \lambda_n
+    \end{pmatrix}$
+    
+    Сделаем замену переменных: $X = CY$.\\ Тогда 
+    $(AC)Y = b \Longleftrightarrow (C^{-1}AC)Y = C^{-1}b = b'$\\
+    Система равносильна системе:\\
+    $\begin{cases}
+        \lambda_1y_1 = b'_1,\\
+        ...........,\\
+        \lambda_ny_n = b'_n
+    \end{cases}, \text{ если }
+    |A| = \lambda_1\cdot...\cdot \lambda_n \neq 0$, то
+    $Y = \begin{pmatrix} \frac{b'_1}{\lambda_1}\\
+    \vdots\\\frac{b'_n}{\lambda_n}
+    \end{pmatrix},\ X = CY.$
+    
+    $\\\\$2. Матрицу $A$ порядка $n$ возвести в степень $m \in 
+    \mathbb{N}$, если известно, что $C^{-1}AC = diag(
+    \lambda_1,...,\lambda_n) = A' \Longrightarrow 
+    A = CA'C^{-1} \Longrightarrow$ $$A^m = 
+    \underbrace{(CA'C^{-1})\cdot...\cdot(CA'C^{-1})}_{m} =
+    CA'^mC^{-1} = C
+    \begin{pmatrix}
+        \lambda_1^m & \null & 0\\ \null & \ddots & \null\\
+        0 & \null & \lambda_n^m
+    \end{pmatrix}C^{-1}$$
+    \newpage
+    \begin{center}
+        \begin{Large}
+            \textbf{\S6. Аннурующие многочлены линейного
+            оператора. Теорема Гамильтона-Кели. Минимальный
+            многочлен.}
+        \end{Large}
+    \end{center}
+    Многочлен $p(t) = a_0 + a_1t + ...+a_mt^m \in F[t]$ --
+    аннулирующий многочлен для $\varphi$, если 
+    $p(\varphi) = a_0\varepsilon + a_1\varphi +...+
+    a_m \varphi^m = 0$.
+
+    Было доказано, что $\exists $ аннулирующий многочлен
+    степени $\leq n^2\ (n = dimV)$.
+    \begin{remark}
+        Пусть $x$ -- собственный вектор для $\varphi:\ 
+        \varphi(x) = \lambda x,\ p(t)$ -- аннулирующий
+        многочлен для $\varphi$, тогда $p(\lambda) = 0$ 
+    \end{remark}  
+    В самом деле, $\forall k = 1,2,...\ \ \varphi^k(x) = 
+    \lambda^kx \Longrightarrow p(\varphi)(x) = 
+    a_0x + a_1\lambda x + ... + a_m \lambda^m x = 
+    p(\lambda)x$, т.к. $x \neq 0 \Longrightarrow p(\lambda) = 0$
+    
+    $\mu(t)$ -- минимальный многочлен для $\varphi$, если
+    $\mu(\varphi) = 0$ и $deg \mu(t)$ минимальная среди
+    степеней всех аннулирующих многочленов.   
+
+    \begin{subtheorem}
+        \begin{enumerate}
+            \item Любой аннулирующий $p(t)$ делится на 
+            минимальный $\mu(t)$ 
+            \item $\mu(t)$ единственен, если потребовать, чтобы
+            старший коэффициент $\mu(t)$ был равен 1. 
+        \end{enumerate}
+    \end{subtheorem}
+    \begin{proof}
+        $\\1. p(t) = \mu(t)q(t + r(t)) \Longrightarrow 
+        \overbrace{p(\varphi)}^{0} = \overbrace{\mu(\varphi)}^{0}
+        q(\varphi) + r(\varphi)
+        \Longrightarrow r(\varphi) = 0$, но $deg\ r < deg\ \mu
+        \Longrightarrow r = 0$\\
+        2. Если $\mu'(t)$ -- еще один минимальный многочлен,
+        то $\mu(t)|\mu'(t)$ и $\mu'(t)|\mu(t)$\\ (по пункту 1)
+        $\Longrightarrow \mu' = \alpha \mu,\ \alpha \neq 0,
+        \alpha \in F$. По условию старший коэффициент равен 1
+        $\Longrightarrow  \alpha = 1$     
+
+    \end{proof}
+    \textbf{Многочленная матрица}
+    $$\begin{pmatrix}
+        a_{11}(\lambda) & \dots & a_{1n}(\lambda)\\
+        \hdotsfor{3}\\
+        a_{n1}(\lambda) & \dots & a_{nn}(\lambda)
+    \end{pmatrix}$$ Ее можно представить в виде матричного
+    многочлена.\\ $(a_{ij}(\lambda))$ -- многочлены от $\lambda$.
+    \newpage
+    \textbf{Теорема Гамильтона-Кели.} 
+         Для любого линейного оператора
+        $\chi_\varphi(\varphi) = 0$.\\ Равносильно: если 
+        $\chi_\varphi(\lambda) = det(A_\varphi - \lambda E)$,
+        то $\chi_\varphi(A_\varphi) = 0.$  
+    
+    \begin{proof}
+        Пусть $A = A_\varphi$ . Рассмотрим характеристический
+        многочлен $\chi_A(\lambda) = \sum\limits_{i=0}^{n} 
+        p_i \lambda^i,\ p_i \in F \Longrightarrow 
+        \chi_A(A) = \sum\limits_{i=0}^{n} p_iA^i,\ (A^0 
+        \equiv E)$ 
+
+        Составим присоединенную матрицу для $(A - \lambda E):\\
+        D(\lambda) = (d_{ji}(\lambda))\cdot d_{ji} = A_{ij}
+        (A - \lambda E)\\(A - \lambda E)D(\lambda) = 
+        \begin{pmatrix}
+        |A - \lambda E| & \null & 0\\
+        \null & \ddots & \null\\
+        0 & \null & |A - \lambda E|
+        \end{pmatrix} = \chi_\varphi(A)E$ элементы матрицы.
+        $D(\lambda)$ -- многочлены степени $\leq (n-1)$\\
+        \underline{Обозначим:} $D(\lambda) = \sum\limits_{i=0}^{n-1}
+        D_i \lambda^i,\ D_i$ -- числовые матрицы.\\
+        Имеем $\chi_A(\lambda)E = (A - \lambda E)
+        \sum\limits_{i=0}^{n-1} D_i \lambda^i = 
+        \sum\limits_{i=0}^{n-1} AD_i \lambda^i -
+        \sum\limits_{i=0}^{n-1} D_i \lambda^(i + 1) =  \\
+        = AD_0 + \sum\limits_{i=1}^{n-1} (AD_i - D_{i-1})
+        \lambda^i - D_{n-1} \lambda^n$\\
+        $\begin{cases}
+            \lambda^0:\ p_0E = AD_0 & \vline\times E\\
+            \lambda^1:\ p_0E = AD_1 - D_0 & \vline\times A\\
+            \vdots & \vline\\
+            \lambda^i:\ p_0E = AD_0 & \vline\times A^i\\
+            \vdots & \vline\\
+            \lambda^{n-1}: P_{n-1}E = AD_{n-1} - D_{n-k} & \vline \times A^{n-1}\\
+            \lambda^{n}: P_{n}E = AD_{n} - D_{n-1} & \vline \times A^n\\
+        \end{cases}\ \ +\ \longrightarrow\ \chi_A(A) = 0$
+    
+    \end{proof}
+
+
+
+
+
+
+
 
 
 
