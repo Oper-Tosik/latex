@@ -1626,7 +1626,8 @@
     \end{proof}
     \begin{remark}
         $dimV_{\lambda_j} = n - rk(A_\varphi - \lambda_j E)$.
-    \end{remark}   
+    \end{remark}  
+    \newpage 
     \begin{theorem}
         (критерий диагонализируемости)
 
@@ -1641,7 +1642,9 @@
             \lambda E) = (\lambda_1 - \lambda)^{k_1}\cdot...
             \cdot(\lambda_s - \lambda)^{k_s}$
             Все характеритические корни $\lambda_i \in F$,
-            и для $\forall i,\ dimV_{\lambda_i} = k_i\ (= \text{\textit{алг}}(\lambda_i))$  
+            и для $\forall i,\ \underbrace{dimV_{\lambda_i}}_{
+            \text{\textit{гкр}}\lambda_i} = \underbrace{k_i}_{
+            \text{\textit{алг}}(\lambda_i))}$  
             \item $V_{\lambda_1} \oplus...\oplus V_{\lambda_s}
             = V$ 
         \end{enumerate}
@@ -1679,10 +1682,10 @@
         Занумеруем векторы следующим образом:
 
         $\underbrace{e_1,...,e_{p_1}}_{\lambda_1}, 
-        \underbrace{e_{p_1 + 1}, e_{p_1 + p_2}}_{\lambda_2},...$ и т.д. 
+        \underbrace{e_{p_1 + 1},..., e_{p_1 + p_2}}_{\lambda_2},...$ и т.д. 
     
         Ясно, что $e_1,...,e_{p_1} \in V_{\lambda_1},\ 
-        e_{p_1 = 1}, e_{p_1 + p_2} \in V_{\lambda_2}
+        e_{p_1 + 1},..., e_{p_1 + p_2} \in V_{\lambda_2}
         \Longrightarrow dimV_{\lambda_i} \geq p_i$.\\
         По построению, $\sum\limits_{i=1}^{s} p_i = n =
         \sum\limits_{i=1}^{s} k_i \Longrightarrow 
@@ -1692,8 +1695,8 @@
         Обратно: пусть $\forall i,\ p_i = dimV_{\lambda_i} = k_i\ \ (*)$.\\
         Возьмем базисы в собственных подпространствах, 
         объединим их $\Longrightarrow $ получим всего
-        $\sum\limits_{i=1}^{s} p_i = \sum\limits_{i=1}^{s} k_i = 
-        n = dimV.$
+        $\sum\limits_{i=1}^{s} p_i =
+        \sum\limits_{i=1}^{s} k_i = n = dimV.$
         
         Остается понять, что все эти векторы ЛНЗ. Это 
         следует из теоремы: если векторы $x_1,...,x_s$
@@ -1849,6 +1852,204 @@
         \end{cases}\ \ +\ \longrightarrow\ \chi_A(A) = 0$
     
     \end{proof}
+    \begin{subtheorem}
+        Если $\lambda$ -- собственное значение опретора $\varphi$,
+        $p(t)$ -- аннулирующий многочлен для $\varphi$, то 
+        $p(\lambda) = 0$. В частности, все корни характеристического
+        многочлена являются корнями минималтного 
+        аннулирующего многочлена.
+    \end{subtheorem}
+    Пусть $v$ -- собственный для $\varphi:\ \varphi(v) = 
+    \lambda v \Longrightarrow \varphi^k(v) = \lambda^kv
+    \Longrightarrow p(\varphi)(v) = p(\lambda)v = 0,\ v \neq 0
+    \Longrightarrow p(\lambda) = 0.$
+    \newpage
+    \begin{center}
+        \begin{Large}
+            \textbf{\S 7. Жорданова нормальная форма матрицы
+            линейного оператора.} 
+        \end{Large}
+    \end{center}
+    \underline{\textbf{Жорданова клетка}} порядка $k$ с собственным
+    значением $\lambda_0 \in F$
+    $$J_K(\lambda_0) = 
+    \begin{pmatrix}
+        \lambda_0 & 1 & \dots & 0\\
+        \null & \ddots & \ddots & \null\\
+        0 & \dots & \lambda_0 & 1
+    \end{pmatrix}
+    $$
+    Пусть в базисе $e_1,...,e_k,\ k$-мерного пространства:
+    $$A_\varphi  =J_k(\lambda_0) \Longrightarrow |A_\varphi
+    - t E| = (\lambda_0 - t)^k,$$ $\varphi$ имеет 
+    единственный вид с точностью до пропорциональности
+    собственный вектор $e_1:$$$(A_\varphi - \lambda_0 E)X = 0
+    \Longleftrightarrow 
+    \begin{cases}
+        x_2 = 0\\x_3 = 0\\\dots\\x_k = 0
+    \end{cases},\ x_1 \text{ -- любой } \Longrightarrow 
+    v = \alpha e_1,\ \alpha \neq 0$$  
+    Кроме того:
+    $$\begin{cases}
+        \varphi(e_1) = \lambda_0e_1,\\
+        \varphi(e_2) = e_1 + \lambda_0e_2,\\...
+        \\\varphi(e_i) = e_{i-1} + \lambda_0e_i,
+    \end{cases} \Longleftrightarrow  
+    \begin{cases}
+        Be_1 = 0,\\ Be_2 = e_1,\\...,\\
+    Be_i = e_{i-1},\ (i = 1,...,k-1),
+    \end{cases}$$где $B = J_k(\lambda_0) - \lambda_0E = J_k(0)$ 
+    \\$Be_k = e_{k-1}\ (*)$\\$\{e_k, Be_k, B^2e_k,...,B^{k-1}e_k\}$
+    -- \underline{жорданова цепочка длины $k$}. 
+    \begin{lemma}
+        Пусть для некоторого вектора $v \neq 0$
+        построена цепочка длины $k: \tab[2cm]
+        v,Bv,...,B^{k-1}v \neq 0,\ B^kv = 0$. Тогда векторы
+        $\{v,Bv,...,B^{k-1}v\}$ ЛНЗ.
+    \end{lemma}
+    \begin{proof}
+        Рассмотрим $\alpha_1v + \alpha_2Bv +...+ \alpha_kB^{k-1}v
+        = 0$ и докажем, что все $\alpha_i = 0.$\\
+        $B^{k-1}\cdot | \Longrightarrow \alpha_1\underbrace{B^{k-1}v}_{\neq 0} + 
+        \alpha_2B^kv +...= 0 \Longrightarrow 
+        \alpha_1 = 0$\\
+        На оставшееся равенство подействуем, $B^{k-2}:\ 
+        \alpha_2B^{k-1}v + \underbrace{...}_{0}  = 0
+        \Longrightarrow \alpha_2 = 0$ и т.д.
+    \end{proof}
+    $\\$\underline{Терминология:} в (*) вектор $e_2$ - присоединенный
+    к $e_1$ (1-й присоединенный), $e_3$ - присоединенный к $e_2$ и т.д.   
+    \begin{definition}
+        $\langle v, Bv,...,B^{k-1}v\rangle = Z_k(v)$ --
+        циклическое подпространство размерности $k$, 
+        порожденное вектором $v$. (В этой цепочке вектор
+        $B^{k-1}v \neq 0$ -- собственный для $B$)
+    \end{definition}
+    $\\$ \textbf{Упражнение.} Для жордановой клетки характеристическая
+    и минимальная матрицы совпадают. Для каких еще матриц они
+    совпадают?\\
+    \textbf{\underline{Жорданова матрица}}
+    $$J = \begin{pmatrix}
+    \underline{J_{k_1}(\lambda_1)\vline} & \null & 0\\
+    \null & \ddots & \null\\
+    0 & \null & \overline{\vline J_{k_p}(\lambda_p)}
+    \end{pmatrix} \text{-- клеточно-диагональная матрица}$$  
+    $k_1+...+k_p = n$\\
+    $\chi(J) = \prod\limits_{i=1}^p\chi(J_{k_i}) = 
+    (\lambda_1 - t)^{k_1}\cdot...\cdot(\lambda_p - t)^{k_p}$ (        
+    некоторые $\lambda_i$ могут совпадать).\\
+    $J = A_\varphi$ в базисе, составленном из жордановых
+    цепочек для каждой жордановой клетки. 
+
+    \textbf{Теорема Жордана.} Пусть все характеристические 
+    корни линейного оператора $\varphi:\ V \longmapsto V$
+    над полем $F\ (dimV = n)$ принадлежат $F$. Тогда:
+    \begin{enumerate}
+        \item $V = \overset{p}{\underset{i=1}{\oplus Z_i}}$
+        -- прямая сумма циклических подпространств. 
+        \item В $V$ существует базис (Жорданов базис), в котором
+        $$A_\varphi = J = \begin{pmatrix}
+            J_{k_1}(\lambda_1) & \null & 0\\
+            \null & \ddots & \null\\
+            0 & \null & J_{k_p}(\lambda_p)
+        \end{pmatrix}$$ Т.е. для любой $A_{n\times n}\ 
+        \exists$ невырожденная матрица $C:\ C^{-1}AC = J,\ 
+        AC = CJ$
+    \end{enumerate}
+    \begin{center}
+        \underline{\textbf{Корневые подпространства} } 
+    \end{center}
+    Пусть $\varphi: V \longmapsto V,\ \lambda$ --
+    собственное значение для $\varphi$.
+    \begin{definition}
+        Вектор $v \in V$ -- \textit{$\lambda$-корневой} для $\varphi$,
+        если $\exists m \in \mathbb{N}:\\ (\varphi - \lambda
+        \varepsilon)^m(v) = 0$. Наименьшее такое значение 
+        $h$ называется \textit{высотой вектора $v$}, т.е.
+        $(\varphi - \lambda \varepsilon)^{h-1}v \neq 0,\ 
+        (\varphi - \lambda \varepsilon)^hv = 0$. 
+        Тогда $v$ порождает жорданову цепочку длины $h$:
+        $\{v, (\varphi - \lambda \varepsilon)v,...,
+        (\varphi - \lambda \varepsilon)^{h-1}v\}.$   
+    \end{definition}
+    \begin{subtheorem}
+        $\{ v \in V:\ v - \text{корневой для данного } \lambda\}$ --
+        подпространство в $V$. 
+    \end{subtheorem}
+    \begin{proof}
+        $0$ является корневым. $B = \varphi - \lambda \varepsilon$\\
+        Если $v_1:\ B^{m_1}v_1 = 0;\ v_2:\ B^{m_2}v_2 = 0$, то
+        $B^{\max(m_1,m_2)}(v_1 + v_2) = 0$. 
+        \\$\forall \lambda \in F,\ B^mv = 0 \Longrightarrow 
+        B^m(\lambda v) = \lambda V^mv = 0$ -- доказано.\\
+        Это подпространство корневое подпространство, 
+        отвечающее собственному значению $\lambda$, 
+        \underline{обозначим: $V^{(\lambda)} = \mathcal{K}_\lambda$}.
+    \end{proof}
+    \begin{theorem}
+        Пусть $\chi_\varphi = (\lambda_1 - t)^k_1\cdot...
+        \cdot(\lambda_s - t)^k_s$ -- каноническое разложение.
+        Тогда:
+        \begin{enumerate}
+            \item  $V = \mathcal{K}_{\lambda_1} \oplus...\oplus
+            \mathcal{K}_{\lambda_s}$
+            \item $\mathcal{K}_{\lambda_i} = Ker(\varphi - \lambda_i
+            \varepsilon)^{k_i}$
+            \item $\mathcal{K}_{\lambda_i}$ - инвариантные подпространства,
+            $dimK_{\lambda_i} = k_i$ 
+        \end{enumerate}
+    \end{theorem}
+    \begin{proof}
+        Многочлены $(\lambda_1 - t)^{k_1},...,(\lambda_s - t)^{k_s}$
+        попарно взаимно просты.\\
+        Дробь $\frac{1}{\chi_\varphi(t)}$ можно представить в 
+        виде: $$\frac{1}{\chi_\varphi(t)}  = 
+        \frac{f_1(t)}{(t-\lambda_1)^{k_1}} +...+
+        \frac{f_s(t)}{(t-\lambda_s)^{k_s}}\ |\cdot \chi_\varphi(t)$$
+        $$\underbrace{(t - \lambda_2)^{k_2}\cdot...\cdot (t - \lambda_s)^{k_s}
+        f_1(t)}_{q_1(t)}  +...+
+        \underbrace{ (t - \lambda_2)^{k_2}\cdot...\cdot (t - \lambda_{s-1})^{k_{s-1}}
+        f_s(t)}_{q_s(t)} = 1$$
+        $$q_1(t)(t-\lambda_1)^{k_1}\ \vdots\ \chi_\varphi(t),
+        \text{ но } \chi_\varphi(\varphi) = 0 \Longrightarrow 
+        q_1(\varphi)(\varphi - \lambda_1 \varepsilon)^{k_1} = 0$$
+        Короче: $q_1(t) + ... + q_s(t)  = 1 \Longrightarrow 
+        q_1(\varphi) + ... + q_s(\varphi)  = \varepsilon \Longrightarrow
+        \forall v \in V$ имеем разложение:
+        $\varepsilon v = v = q_1(\varphi)v +...+q_s(\varphi)v$ --
+        единственное разложение.
+        $$\text{При этом } q_i(\varphi)v \in Ker(\varphi - \lambda_i
+        \varepsilon)^{k_i} \Longrightarrow V = 
+        \underbrace{Ker(\varphi - \lambda_1\varepsilon)^{k_1}}_{\subseteq K_{\lambda_1}}
+        \oplus...\oplus
+        \underbrace{  Ker(\varphi - \lambda_s\varepsilon)^{k_s}}_{\subseteq K_{\lambda_s}}$$
+        $$((\varphi - \lambda_i \varepsilon)^{k_i}q_i(\varphi))v = 0 
+        \Longrightarrow V = K_{\lambda_1} +...+K_{\lambda_s}$$
+        Многочлены от одного оператора между собой
+        коммутируют\\ На самом деле $K_{\lambda_i} \subseteq
+        Ker(\varphi - \lambda_i \varepsilon)^{k_i}$\\
+        Допустим, что $\exists w \in K_{\lambda_i},\ 
+        w \not\in Ker(\varphi - \lambda_i \varepsilon)^{k_i}
+        \Longrightarrow w = w_1 + ... + w_i +... + w_s$ --
+        корневой высоты $m > k_i$.\\
+        $(\varphi - \lambda_i \varepsilon)^mw = 0,\ 
+        (\varphi - \lambda_i \varepsilon)^{m-1}w \neq 0$\\
+        $(\varphi - \lambda_i \varepsilon)^{m}w =  
+        \underbrace{\sum\limits_{j\neq i} (\varphi - \lambda_i
+         \varepsilon)^{m}w_j}_{\neq 0} 
+        +  \underbrace{ (\varphi - \lambda_i \varepsilon)^mw_i}_{0} \neq 0$ --
+        противоречие. $\Longrightarrow\\ m \leq k_i \Longrightarrow 
+        K_{\lambda_i} = Ker(\varphi - \lambda_i \varepsilon)^{k_i}$
+        и $dimK_{\lambda_i} = k_i$\\
+        $K_{\lambda_i}$ - инвариантные, т.к. $K_{\lambda_i} = 
+        Ker(\varphi - \lambda_i \varepsilon)^{k_i},$ то они
+        инвариантны относительно оператора $\varphi - \lambda_i
+        \varepsilon$, значит, и относительно $\varphi$.  
+    \end{proof}
+    
+
+
+
 
 
 
