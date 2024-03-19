@@ -10,7 +10,7 @@
 \usepackage{amssymb}
 \usepackage{etoolbox}
 \usepackage{amsthm}
-\usepackage{nicematrix}
+% \usepackage{nicematrix}
 % \usepackage{graphicx}
 % \usepackage{tikz}
 % \usepackage{parskip}
@@ -1393,7 +1393,7 @@
     \end{proof}
     \begin{definition}
         Вектор $x \in V$ называется \textit{собственным вектором}
-        оператора $\varphi$, если $x \neq 0$ и $\exists
+        оператора $\varphi$, если $x \neq v$ и $\exists
         \lambda \in F:\ \varphi(x) = \lambda x\ (1)$. 
         Это $\lambda$ называется собственным значением
         оператора $\varphi$ ($x$ -- собственный вектор
@@ -1545,6 +1545,7 @@
     
     \begin{lemma}
         Характеристический многочлен матрицы $a_\varphi$ не
+        Характеритический многочлен матрицы $a_\varphi$ не
         зависит от выбора\\ базиса. 
     \end{lemma}
     \begin{proof}
@@ -1620,8 +1621,8 @@
                 \null & 0 & \null & \vline & & \null C - \lambda E & \null
             \end{vmatrix} = (\lambda - t)^m \cdot |C - tE| = 0$
         \end{flushright}
-    $\lambda$ может быть корнем $|C - tE| \Longrightarrow 
-    \text{\textit{алкр}}(\lambda) \geq  m$
+        $\lambda$ может быть корнем $|C - tE| \Longrightarrow 
+        \text{\textit{алкр}}(\lambda) \geq  m$
     
     \end{proof}
     \begin{remark}
@@ -1644,7 +1645,14 @@
             Все характеритические корни $\lambda_i \in F$,
             и для $\forall i,\ \underbrace{dimV_{\lambda_i}}_{
             \text{\textit{гкр}}\lambda_i} = \underbrace{k_i}_{
-            \text{\textit{алг}}(\lambda_i))}$  
+            \text{\textit{алг}}(\lambda_i)}$  
+            \item $\exists$ базис в $V$, в котором $A_\varphi$
+            диагональна.
+            \item В $V\ \exists$ собственный базис для $\varphi$.
+            \item Все характеритические корни $\lambda_j \in F
+            \ (\lambda_1,...,\lambda_s - \text{все различные})$
+            \\$\forall j = 1,...,s:\ dimV_{\lambda_j} = 
+            \text{алг}(\lambda_j)$
             \item $V_{\lambda_1} \oplus...\oplus V_{\lambda_s}
             = V$ 
         \end{enumerate}
@@ -1992,11 +2000,13 @@
         Тогда:
         \begin{enumerate}
             \item  $V = \mathcal{K}_{\lambda_1} \oplus...\oplus
-            \mathcal{K}_{\lambda_s}$
+            \mathcal{K}_{\lambda_s}, \text{ где } \mathcal{K}_{\lambda_i} 
+            = \{v \in V\ |\ \exists k: (\varphi - \lambda_i
+            \varepsilon)^kv = 0\}$
             \item $\mathcal{K}_{\lambda_i} = Ker(\varphi - \lambda_i
             \varepsilon)^{k_i}$
             \item $\mathcal{K}_{\lambda_i}$ - инвариантные подпространства,
-            $dimK_{\lambda_i} = k_i$ 
+            $dim \mathcal{K}_{\lambda_i} = k_i$ 
         \end{enumerate}
     \end{theorem}
     \begin{proof}
@@ -2005,48 +2015,245 @@
         Дробь $\frac{1}{\chi_\varphi(t)}$ можно представить в 
         виде: $$\frac{1}{\chi_\varphi(t)}  = 
         \frac{f_1(t)}{(t-\lambda_1)^{k_1}} +...+
-        \frac{f_s(t)}{(t-\lambda_s)^{k_s}}\ |\cdot \chi_\varphi(t)$$
+        \frac{f_s(t)}{(t-\lambda_s)^{k_s}}\ |\cdot \chi_\varphi(t)
+        \text{ или же } \prod_{i=1}^{s}(t - \lambda_i)^{k_i}$$
         $$\underbrace{(t - \lambda_2)^{k_2}\cdot...\cdot (t - \lambda_s)^{k_s}
         f_1(t)}_{q_1(t)}  +...+
         \underbrace{ (t - \lambda_2)^{k_2}\cdot...\cdot (t - \lambda_{s-1})^{k_{s-1}}
         f_s(t)}_{q_s(t)} = 1$$
-        $$q_1(t)(t-\lambda_1)^{k_1}\ \vdots\ \chi_\varphi(t),
-        \text{ но } \chi_\varphi(\varphi) = 0 \Longrightarrow 
-        q_1(\varphi)(\varphi - \lambda_1 \varepsilon)^{k_1} = 0$$
-        Короче: $q_1(t) + ... + q_s(t)  = 1 \Longrightarrow 
-        q_1(\varphi) + ... + q_s(\varphi)  = \varepsilon \Longrightarrow
-        \forall v \in V$ имеем разложение:
-        $\varepsilon v = v = q_1(\varphi)v +...+q_s(\varphi)v$ --
-        единственное разложение.
-        $$\text{При этом } q_i(\varphi)v \in Ker(\varphi - \lambda_i
-        \varepsilon)^{k_i} \Longrightarrow V = 
-        \underbrace{Ker(\varphi - \lambda_1\varepsilon)^{k_1}}_{\subseteq K_{\lambda_1}}
-        \oplus...\oplus
-        \underbrace{  Ker(\varphi - \lambda_s\varepsilon)^{k_s}}_{\subseteq K_{\lambda_s}}$$
-        $$((\varphi - \lambda_i \varepsilon)^{k_i}q_i(\varphi))v = 0 
-        \Longrightarrow V = K_{\lambda_1} +...+K_{\lambda_s}$$
-        Многочлены от одного оператора между собой
-        коммутируют\\ На самом деле $K_{\lambda_i} \subseteq
-        Ker(\varphi - \lambda_i \varepsilon)^{k_i}$\\
-        Допустим, что $\exists w \in K_{\lambda_i},\ 
-        w \not\in Ker(\varphi - \lambda_i \varepsilon)^{k_i}
-        \Longrightarrow w = w_1 + ... + w_i +... + w_s$ --
-        корневой высоты $m > k_i$.\\
-        $(\varphi - \lambda_i \varepsilon)^mw = 0,\ 
-        (\varphi - \lambda_i \varepsilon)^{m-1}w \neq 0$\\
-        $(\varphi - \lambda_i \varepsilon)^{m}w =  
-        \underbrace{\sum\limits_{j\neq i} (\varphi - \lambda_i
-         \varepsilon)^{m}w_j}_{\neq 0} 
-        +  \underbrace{ (\varphi - \lambda_i \varepsilon)^mw_i}_{0} \neq 0$ --
-        противоречие. $\Longrightarrow\\ m \leq k_i \Longrightarrow 
-        K_{\lambda_i} = Ker(\varphi - \lambda_i \varepsilon)^{k_i}$
-        и $dimK_{\lambda_i} = k_i$\\
-        $K_{\lambda_i}$ - инвариантные, т.к. $K_{\lambda_i} = 
-        Ker(\varphi - \lambda_i \varepsilon)^{k_i},$ то они
-        инвариантны относительно оператора $\varphi - \lambda_i
-        \varepsilon$, значит, и относительно $\varphi$.  
+        $$q_1(t) +...+ q_s(t)= 1, \text{ где } q_i(t) = 
+        \prod_{j\neq i}(t - \lambda_i)^{k_i}\cdot f_i(t)
+        \Longrightarrow $$
+        $$q_1(\varphi) +...+ q_s(\varphi) = \varepsilon\ |
+        \cdot v\in V$$
+        $$\forall v = \underbrace{a_1(\varphi)v}_{v_1} +
+        ...+\underbrace{q_{s}(\varphi)v}_{v_s} = v_1 +... +v_s
+        \Longrightarrow $$
+        $$V = \text{Im }q_1(\varphi) + ...+ \text{Im }q_s
+        (\varphi),\ v_i \in \text{Im }q_i(\varphi)$$
+        Обратим внимание, что $\text{Im }q_i(\varphi) = Q_i$\\
+        Для вектора $v_i \in \text{Im }q_i(\varphi) = Q_i$ 
+        выполнено $(\varphi - \lambda \varepsilon)^{k_i}v_i = 0$
+        в силу Теоремы Гамильтона-Кэли.\\
+        Имеем: $V = Q_1 +...+ Q_s \subseteq \mathcal{K}_{\lambda_1}
+        +...+ \mathcal{K}_{\lambda_s},\ \ Q_i \subseteq 
+        \mathcal{K}_{\lambda_i} \Longrightarrow$
+        $V = \mathcal{K}_{\lambda_1}+...+\mathcal{K}_{\lambda_i}$
+        Осталось проверить, что эта сумма прямая.\\
+        Нужно показать, что если $v \in \mathcal{K}_{\lambda_i}
+        \cap \sum\limits_{i\neq j}\mathcal{K}_{\lambda_j}, 
+        \text{ то } v=0.$\\
+        По выбору, $(\varphi - \lambda_i \varepsilon)^{k_i}v = 0
+        \Longrightarrow (\varphi - \lambda_i \varepsilon)^nv = 0,$ 
+        где $n = \dim V.$\\
+        Если $v_j \in \mathcal{K}_{\lambda_j}, \text{ то }
+        (\varphi - \lambda_j \varepsilon)^nv_j = 0 
+        \Longrightarrow (\prod\limits_{j\neq i}(\varphi - \lambda_j
+        \varepsilon)^n)v = 0$\\
+        Т.к. многочлены $(t - \lambda_i)^n$ и $\prod\limits_{j\neq i}
+        (t - \lambda_j)^n$ взаимно просты $\Longrightarrow\\ 
+        \exists u(t),\ w(t)$ - многочлены, такие что $$u(t)(
+        t-\lambda_i)^n + w(t)\prod\limits_{j\neq i}
+        (t - \lambda_j)^n = 1 \Longrightarrow$$
+        $$u(\varphi)(\varphi-\lambda_i)^n + w(\varphi)
+        \prod\limits_{j\neq i}(\varphi - \lambda_j)^n =
+        \varepsilon \Longrightarrow $$
+        $$u(\varphi)\underbrace{ (\varphi-\lambda_i)^n}_{0}v +
+        w(\varphi)\underbrace{\prod\limits_{j\neq i}(\varphi -
+        \lambda_j)^n}_{0}v = v
+        \Longrightarrow$$ $$v = 0 \Longrightarrow \text{сумма }
+        \mathcal{K}_{\lambda_1}+...+\mathcal{K}_{\lambda_s}
+        \text{-- прямая.}$$
+        Итак: $V = \mathcal{K}_{\lambda_1}\oplus...\oplus
+        \mathcal{K}_{\lambda_s}$, причем $\mathcal{K}_{\lambda_i}
+        = Q_i = q_i(\varphi)V = \text{Ker}(\varphi - \lambda_i
+        \varepsilon)^{k_i}\\$ (Учесть, что $Q_i \subseteq
+        \text{Ker}(\varphi - \lambda_i \varepsilon)^{k_i}
+        \subseteq \mathcal{K}_{\lambda_i}, \text{ доказано, что }
+        Q_i = \mathcal{K}_{\lambda_i}$) $\Longrightarrow\\
+        \mathcal{K}_{\lambda_i} = \text{Ker}(\varphi - \lambda_i
+        \varepsilon)^{k_i}$\\
+        Размерность. Выберем в $V$ базис, составленный из
+        базисов корневых подпространств. В этом базисе:
+        $$A_\varphi = \begin{pmatrix}
+        \underline{A_1}\vline & \null & 0\\
+        \null & \ddots & \null\\
+        0 & \null & \vline \overline{A_s}
+        \end{pmatrix}, \text{ где } A_i = \varphi|_{\mathcal{K}_
+        {\lambda_i}} \text{ порядка } d_i = \text{dim}
+        \mathcal{K}_{\lambda_i}$$
+        Матрица $A_i$ имеет собственное значение $\lambda_i$,
+        (если $\exists v \in \mathcal{K}_{\lambda_i} \cap
+        V_{\lambda_j},\ i \neq j \Longrightarrow v = 0)\\
+        \Longrightarrow d_i = k_i = \text{dim}\mathcal{K}_
+        {\lambda_i}$
+
+        % $$q_1(t)(t-\lambda_1)^{k_1}\ \vdots\ \chi_\varphi(t),
+        % \text{ но } \chi_\varphi(\varphi) = 0 \Longrightarrow 
+        % q_1(\varphi)(\varphi - \lambda_1 \varepsilon)^{k_1} = 0$$
+        % \\Короче: $q_1(t) + ... + q_s(t)  = 1 \Longrightarrow 
+        % q_1(\varphi) + ... + q_s(\varphi)  = \varepsilon \ |\times v \Longrightarrow
+        % \forall v \in V$ имеем разложение:
+        % $\varepsilon v = v = q_1(\varphi)v +...+q_s(\varphi)v = v_1 +...+ v_s$ --
+        % единственное разложение $\Longrightarrow V = Im\ q_1(\varphi)
+        % + ... + Im\ q_s(\varphi),\ v_i \in Im\ q_i(\varphi)$
+        % \\Обратим внимание, что $Im\ q_i(\varphi) \subseteq \mathcal{K}_{\lambda_i}$ 
+        % \\Для вектора $v_i \in Im\ q_i(\varphi) = Q_i$\\
+        % $(\varphi - \lambda_i \varepsilon)^{k_i}v_i = 0$ в силу
+        % теоремы Гамильтона-Кели.\\
+        % Имеем: $V = Q_1 +...+Q_s \subseteq \mathcal{K}_{\lambda_1} +...
+        % +\mathcal{K}_{\lambda_s},\ Q_i \subseteq \mathcal{K}_{\lambda_i} 
+        % \Longrightarrow V = \mathcal{K}_{\lambda_1} + ...+\mathcal{K}_{\lambda_s}$ --
+        % осталось проверить, что эта сумма прямая.
+        % $$\text{При этом } q_i(\varphi)v \in Ker(\varphi - \lambda_i
+        % \varepsilon)^{k_i} \Longrightarrow V = 
+        % \underbrace{Ker(\varphi - \lambda_1\varepsilon)^{k_1}}_{\subseteq K_{\lambda_1}}
+        % \oplus...\oplus
+        % \underbrace{  Ker(\varphi - \lambda_s\varepsilon)^{k_s}}_{\subseteq K_{\lambda_s}}$$
+        % $$((\varphi - \lambda_i \varepsilon)^{k_i}q_i(\varphi))v = 0 
+        % \Longrightarrow V = \mathcal{K}_{\lambda_1} +...+\mathcal{K}_{\lambda_s}$$
+        % Многочлены от одного оператора между собой
+        % коммутируют\\ На самом деле $\mathcal{K}_{\lambda_i} \subseteq
+        % Ker(\varphi - \lambda_i \varepsilon)^{k_i}$\\
+        % Допустим, что $\exists w \in \mathcal{K}_{\lambda_i},\ 
+        % w \not\in Ker(\varphi - \lambda_i \varepsilon)^{k_i}
+        % \Longrightarrow w = w_1 + ... + w_i +... + w_s$ --
+        % корневой высоты $m > k_i$.\\
+        % $(\varphi - \lambda_i \varepsilon)^mw = 0,\ 
+        % (\varphi - \lambda_i \varepsilon)^{m-1}w \neq 0$\\
+        % $(\varphi - \lambda_i \varepsilon)^{m}w =  
+        % \underbrace{\sum\limits_{j\neq i} (\varphi - \lambda_i
+        %  \varepsilon)^{m}w_j}_{\neq 0} 
+        % +  \underbrace{ (\varphi - \lambda_i \varepsilon)^mw_i}_{0} \neq 0$ --
+        % противоречие. $\Longrightarrow\\ m \leq k_i \Longrightarrow 
+        % \mathcal{K}_{\lambda_i} = Ker(\varphi - \lambda_i \varepsilon)^{k_i}$
+        % и $dim \mathcal{K}_{\lambda_i} = k_i$\\
+        % $\mathcal{K}_{\lambda_i}$ - инвариантные, т.к. $\mathcal{K}_{\lambda_i} = 
+        % Ker(\varphi - \lambda_i \varepsilon)^{k_i},$ то они
+        % инвариантны относительно оператора $\varphi - \lambda_i
+        % \varepsilon$, значит, и относительно $\varphi$.  
+
+    \end{proof}
+    Существование базиса, составленного из жордановых цепочек,
+    достаточно доказать для каждого оператора $\psi_i = 
+    (\varphi - \lambda_i \varepsilon)|_{\mathcal{K}_i}$ 
+    \begin{definition}
+        Оператор $\psi: V \longmapsto V,\ \psi \neq 0$ 
+        называется \textit{нильпотентным}, если $\exists
+        m \in \mathbb{N}:\ \psi^m = 0$. Если $d$ -наименьшее
+        значение, при котором\\ $\psi^d = 0\ (\psi^{d-1} \neq 0),$
+        то $d$-показатель (индекс) нильпотентного оператора $\psi$.  
+    \end{definition}
+    Будем считать, что $V = \mathcal{K}_{\lambda_i},\ \varphi$
+    имеет на нем единственное собственное значение $\lambda_i$,
+    тогда $\psi_i$ -- нильпотентный оператор: $\psi_i^{\dim V} = 0.$
+    (Далее индекс $i$ не будем писать). 
+    \underline{Обозначение:} $B = A_i - \lambda_i E$ --
+    матрица оператора $\psi_i = \psi$
+    \newpage
+    \begin{theorem}
+        Для нильпотентного оператора $\psi:\ V \longmapsto V$
+        существует базис из жордановых цепочек.
+    \end{theorem}  
+    \begin{proof}
+        Пусть $\dim V = n,$ показатель нильпотентности равен $d$.
+        \\Тогда образы $Im \psi \supset Im \psi^2 \supset...\supset
+        Im \psi^{d-1} \supset Im \psi^d = 0$ образуют строго
+        убывающую цепочку.\\
+        Обозначим: $r = dim V_0 = Ker \psi$
+        и рассмотрим подпространства: $$\underbrace{Ker \psi}_{R_0 = V_0}
+        \supseteq \underbrace{Im \psi \cap Ker \psi}_{R_1} \supseteq...\supseteq
+        \underbrace{Im \psi^{d-1} \cap Ker \psi}_{R_{d-1}}\supseteq \{0\}$$
+        $$R_0 = V_0 \supseteq R_1 \supseteq...\supseteq R_{d-1}
+        \supseteq R_d = \{0\}$$
+        Обозначим:
+        $dim R_0 = dim Ker \psi = r = p_d$\\
+        $\tab[2.7cm] dim R_{d-1} = p_1,
+        dim R_{d-2} = p_2$ и т.д. $dim R_1 = p_{d-1}.\\\\$
+        Выберем в $Ker \psi = V_0$ базис, составленный
+        подпространствами $R_i$.\\
+        $\tab[1.2cm]d$  $\tab[1.9cm]d-1$ $\tab[3.5cm]2$
+        $\tab[2.8cm]1$\\
+        \begin{tabular}{ |c|c|c|c|c| }
+            \hline
+            $e_1^{(1)}...\ e_{p_1}^{(1)}$ &
+            $e_{p_1 + 1}^{(1)}...\ e_{p_1 + p_2}^{(1)}$ &
+            $\dots$ &
+            $e_{p_{d-2} + 1}^{(1)}...\ e_{p_{d-1}}^{(1)}$ &
+            $e_{p_{d-1} + 1}^{(1)}...\ e_r^{(1)}$\\
+            \hline
+        \end{tabular}\\
+        $\tab[0.8cm]R_{d-1}\tab[1cm]R_{d-2}/R_{d-1}
+        \tab[2.5cm]R_1 / R_2\tab[2cm]V_0 / R_1$ \\$\\$
+        Векторы $e_1^{(1)},...,e_p^{(1)} \in \text{Im}\psi
+        ^{d-1} \Longrightarrow$ каждый из них имеет $(d-1)$
+        присоединенный вектор.
+        Например, $e_1^{(1)} = \psi(e_1^{(2)}),\ e_1^{(2)} =
+        \psi(e_1^{(3)})$ и т.д.\\
+        $e_1^{(p-2)} = \psi(e_1^{(p-1)}),$ т.о. векторы
+        $\{e_1^{(p-1)}, e_1^{(p-2)},...,e_1^{(1)}\}$ образует 
+        жорданову цепочку длины $p$. \\
+        Эта цепочка имеет вид: $$\{e_1^{p-1}, \psi(e_1^{p-1}),
+        \psi^2(e_1^{p-1}),...,\psi^{p-1}(e_1^{p-1}) = 
+        e_1^{(1)}\},\ \ \psi(e_1^{(1)}) = 0$$
+        Таким образом, получаем некоторое количество
+        жордановых цепочек длин $\leq d$. Векторы всех этих
+        цепочек образуют базис в $V$.  
+    \end{proof}
+
+    \begin{lemma}
+        Пусть есть $t$ жордановых цепочек $$\{a_1,\psi(a_1),...,
+        \psi^{l_1 - 1}(a_1)\},\ \psi^{l_1}(a_1) = 0$$
+        $$..............................................$$
+        $$\{b_1,\psi(b_1),...,
+        \psi^{l_t - 1}(b_1)\},\ \psi^{l_t}(b_1) = 0$$
+        Причем конечные векторы этих цепочек ЛНЗ. Тогда 
+        все векторы этих цепочек ЛНЗ. Кроме того, общее
+        количество векторов в объединении цепочек равно 
+        $dim V \Longrightarrow$ объединение всех цепочек из
+        диаграммы -- базис пространства $V$.  
+    \end{lemma}
+    \begin{proof}
+        Индукция по общему количеству векторов в цепочках.\\
+        \textbf{База:} когда все цепочки имеют длину 1, т.е.
+        $a_1,...,a_t$ -- собственные, ЛНЗ.
+        \textbf{Предположение индукции:} $\exists$ хотя бы 
+        одна цепочка длины $> 1$. \\
+        Запишем линейную комбинацию: 
+        $$\alpha_{11}a_1 + \alpha_{12}\psi(a_1) + ... +
+        \alpha_{1,l_1}\psi^{l_1 - 1}(a_1) +...+ 
+        \alpha_{t,1}a_t + \alpha_{t,2}\psi(a_t) +...+
+        \alpha_{t,l_t}\psi^{l_t-1}(a_t) = 0$$
+        Подействуем оператором $\psi$:
+        $$\alpha_{11}\psi(a_1) + ... +
+        \alpha_{1,l_1 - 1}\psi^{l_1 - 1}(a_1) +...+ 
+        \alpha_{t,1}\psi(a_t) +...+
+        \alpha_{t,l_t - 1}\psi^{l_t-1}(a_t) = 0$$ 
+        Эти векторы принадлежат цепочкам длины $l_1 - 1,...,
+        l_t - 1$ (либо какие-то\\ обратятся в 0)\\
+        По предположению индукции
+        $\alpha_{11} = ... = \alpha_{1,l_1 - 1} = ... = 
+        \alpha_{t,1} = \alpha_{t,l_1 - 1} = 0 \Longrightarrow$
+        $$\alpha_{a,l_1}\psi^{l_1 - 1}(a_1) +...+
+        \alpha_{t,l_t}\psi^{l_t - 1}(a_t) = 0 \text{ ЛНЗ}
+        \Longrightarrow$$ \text{остальные коэффициенты равны 0}
     \end{proof}
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
