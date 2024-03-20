@@ -134,30 +134,30 @@
         ("$\cong$" Чубаров обозначает изоморфность)
     \end{consequense}
     \begin{proof}
-        $\Rightarrow$ Пусть $V \cong W$
+        $\Longleftarrow $ Пусть $V \cong W$
         изоморфизм $\Rightarrow dimV=dimW$.
         По условию $\exists \varphi: V \to W$
         изоморфизм. Фиксируем базис $(e_1, e_2,..., e_n)$ в $V$ и
         покажем, что \\$\varphi (e_1), \varphi (e_2),...,
-        \varphi (e_n)$ базис в $V$.\\
+        \varphi (e_n)$ базис в $W$.\\
         1. $\varphi (e_1), \varphi (e_2),...,\varphi (e_n)$
         - ЛНЗ и $\sum \limits_{i=1}^{n} \lambda_i \varphi (e_i)
         = \vec 0_W \Rightarrow \sum \limits_{i=1}^{n} \varphi 
         (\lambda_i e_i) = \vec 0_W,$
 
-        $\varphi$ - инъективно, но $\varphi (\vec 0_V) = 0_W
-        \Rightarrow \sum \limits_{i=1}^{n} \lambda_i \varphi
-        (e_i) = \vec 0_V \Rightarrow$ все $\lambda_i = 0$\\
+        $\varphi$ - инъективно, но $\varphi (\vec 0_V) = \vec 0_W
+        \Rightarrow \sum \limits_{i=1}^{n} \lambda_i
+        e_i = \vec 0_V \Rightarrow$ все $\lambda_i = 0$\\
         2. $\varphi (e_1), \varphi (e_2),..., \varphi (e_n)$
         - полная система: $\forall w \in W\  \exists v \in V:
         \varphi (v) = w$, так как $\varphi$ - сюръективна.
-        $\Rightarrow \exists x_1, x_2,..., x_n \in F$. 
+        $\Rightarrow \exists x_1, x_2,..., x_n \in F$;
         $v = \sum \limits_{i=1}^n x_ie_i \Rightarrow 
         \varphi (v) = w = \sum\limits_{i=1}^n x_i\varphi (e_i)
         \Rightarrow \varphi(e_1), \varphi(e_2),...,
         \varphi(e_n)$ - базис в W.
 
-        $\Leftarrow$ Пусть $dimV = dimW = n.$ Построим
+        $\Longrightarrow $ Пусть $dimV = dimW = n.$ Построим
         изоморфизм. Фиксируем базис $e = (e_1, e_2,...,e_n)$
         в $V$ и $f = (f_1, f_2,...,f_n)$ в $W$. Положим:
         $\varphi (e_i) = f_i$. Достроим $\varphi$ до
@@ -219,21 +219,21 @@
 
     1. $U =\langle a_1, a_2,..., a_n\rangle$
 
-    2. $dimV, W = \{v = eX|AX = 0\}$
+    $2.\ dimV = n,\ W = \{v = eX|AX = 0\}$
 
     \begin{definition}
         \textit{Линейная оболочка векторов} $a_1, a_2,...,a_n
-        \in V$ -- это\\ $\{\lambda_1a_1 + \lambda_2a_ + ... + 
+        \in V$ -- это\\ $\tab[3.6cm]\{\lambda_1a_1 + \lambda_2a_ + ... + 
         \lambda_na_1n|\lambda_i \in F\}$
     \end{definition}
     \begin{lemma}
         1. $\langle a_1, a_2,..., a_m \rangle := U$ -- подпространство в $V$
 
-        2. $dim\ U = rk\{a_1, a_2,..., a_m\}$
+        $\tab[1.4cm]2. dim\ U = rk\{a_1, a_2,..., a_m\}$
     \end{lemma}
     \begin{proof}
-        Если $dim\ U = n$, то в фиксируем базис и составляем
-        матрицу из столбоцв координат $a_1, a_2,..., a_m:$
+        Если $dim\ U = n$, то фиксируем базис и составляем
+        матрицу из столбцов координат $a_1, a_2,..., a_m:$
         $$A = (a_1^\uparrow, a_2^\uparrow,...,a_m^\uparrow)\sim
         \begin{pmatrix}
             a_{1j_1} & \hdotsfor{7}\\
@@ -249,7 +249,7 @@
     \end{proof}
     \begin{lemma}
         Любую ЛНЗ систему векторов в $V (dimV < \infty)$ можно
-        можно дополнить до басима пространства $V$.
+        можно дополнить до базиса пространства $V$.
     \end{lemma}
     \underline{\textbf{Алгоритм}}: Пусть $a_1, a_2,..., a_m$ - ЛНЗ,
     $m < n = dimV$, известны координаты этих векторов в
@@ -293,8 +293,12 @@
         -\\
         B_2
     \end{pmatrix} \text{ - блочный столбец.}$$
-    1. Линейная оболочка.\\ 2. ОСЛУ.\\
-    $2 \Rightarrow 1:$ строим ФСР. $AX = 0$. Проводим элементарные
+    1. Линейная оболочка.\\ 2. ОСЛУ.
+    \begin{theorem}
+        Способы 1 и 2 равносильны, если $dimV<\infty$
+    \end{theorem}
+    \begin{proof}
+    $2 \Longrightarrow  1:$ строим ФСР. $AX = 0$. Проводим элементарные
     преобразования строк, перенумеровывая неизвестные, таким
     образом чтобы привести матрицу к следующему виду:
     
@@ -322,20 +326,21 @@
         \vdots\\x_n
     \end{pmatrix}
     = x_{r+1}
-    \undermat{Y_1}{\begin{pmatrix}
-        -a_{1,r+1}\\\vdots\\-a_{r,r+1}\\1\\\vdots\\
+    \overmat{Y_1}{\begin{pmatrix}
+        -a_{1,r+1}\\\vdots\\-a_{r,r+1}\\1\\\vdots\\0
     \end{pmatrix}}
     +...+ x_n
-    \undermat{Y_n}{\begin{pmatrix}
-        -a_{1,r+1}\\\vdots\\-a_{r,r+1}\\0\\\vdots\\
-    \end{pmatrix}}$$ где $Y_1,..., Y_n$ -- фундаметальная
+    \overmat{Y_n}{\begin{pmatrix}
+        -a_{1,n}\\\vdots\\-a_{r,n}\\0\\\vdots\\1
+    \end{pmatrix}}$$ где $Y_1,..., Y_n$ -- фундаментальная
     система решений, т.е. базис пространства решений $AX = 0$.
     \newpage
     Составим матрицу из столбцов ФСР.
     $$\varPhi = 
     \begin{pmatrix}
-        -a_{1,r_1} & \dots & -a_{a,n}\\
+        -a_{1,r+1} & \dots & -a_{1,n}\\
         \vdots & \null & \vdots\\
+        -a_{r,r+1} & \dots & -a_{r,n}\\
         1 & \null & 0\\
         % 0 & \ddots & \vdots\\
         \vdots & \ddots & \vdots\\
@@ -345,17 +350,16 @@
     \begin{pmatrix}
         -B\\\hline E_{n-r}
     \end{pmatrix}
-    - \text{\ фундаме нтальная матрица.}$$
+    - \text{\ фундаментальная матрица.}$$
     В общем случае фундаметальная матрица -- это матрица,
     имеющая $n = rkA$ ЛНЗ столбцов, которые являются
-    решениями системы $AX = 0$, где $A \sim (E_r|B)$
-    \begin{theorem}
-        Способы 1 и 2 равносильны, если $dinV<\infty$
-    \end{theorem}
-    \begin{proof}
-        $1 \Rightarrow 2$. Даны ЛНЗ векторы $c_1, c_2,...,c_m$
+    решениями системы $AX = 0$, где $A \sim (E_r|B)$ без
+    нулевых уравнений.
+    
+    
+        $1 \Longrightarrow  2$. Даны ЛНЗ векторы $c_1, c_2,...,c_m$
         в $V$.\\ Нужно найти такую матрицу $A_{p\times n}$,
-        чтобы $W = \{x \in F^n|AX = 0\}$, где $X$ - столбец
+        чтобы $W = \{X \in F^n|AX = 0\}$, где $X$ - столбец
         координат произвольного вектора из $U = \langle c_1,c_2,..., c_m \rangle$
         Если составить матрицу из столбцов $c_1, c_2,..., c_m$,
         то оно должна стать фундаметальной матрицей для ОСЛУ: $AX = 0$.
@@ -364,7 +368,7 @@
         $$\begin{pmatrix}
             \vec c_1\\\vdots\\\vec c_m
         \end{pmatrix}\underset{\text{строк}}{\overset{\text{Э.П.}}{\sim}}
-        (E_n|\mbox{\scriptsize{\undermat{{\mbox{\normalsize m}}}
+        (E_m|\mbox{\scriptsize{\undermat{{\mbox{\normalsize n-m}}}
         {\null}}}B)$$
         \underline{2 этап:} $$\varPhi = 
         \begin{pmatrix}
