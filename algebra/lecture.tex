@@ -11,11 +11,9 @@
 \usepackage{etoolbox}
 \usepackage{amsthm}
 % \usepackage{nicematrix}
-% \usepackage{graphicx}
+\usepackage{graphicx}
 % \usepackage{tikz}
 % \usepackage{parskip}
-
-% \graphicspath{/Images/}
 
 %Реализация aug, overbrace и underbrace без nice matrix
 \newcommand\aug{\fboxsep=-\fboxrule\!\!\!\fbox{\strut}\!\!\!}
@@ -372,9 +370,9 @@
         {\null}}}B)$$
         \underline{2 этап:} $$\varPhi = 
         \begin{pmatrix}
-            B^T\\
-            \hline E_m
-        \end{pmatrix} \rightsquigarrow A = (E_{n-m}|-B^T)
+            E_m\\
+            \hline B^T
+        \end{pmatrix} \rightsquigarrow A = (-B^T|E_{n-m})
         \text{ -- искомая матрица системы.}$$
         Значит, $p = n - m.$
     \end{proof}
@@ -815,7 +813,7 @@
     \begin{proof}
         Построим отображение $\varphi:\ V \mapsto V^{**},\
         \forall v \in V:\\ \varphi(v) := \varphi_v,\ \varphi_v
-        \in V^{**}.\ \ \varphi_v(f) := f(v),\ \forall f \in V^{**}.$
+        \in V^{**}.\ \ \varphi_v(f) := f(v),\ \forall f \in V^{*}.$
         Ясно что $\varphi$ -- линейное отображение: $\forall f
         \in V^*\ \ \varphi_{v_1 + v_2}(f) = f(v_1 + v_2) =
         \varphi_{v_1}(f) + \varphi_{v_2}(f)$, и $\forall \lambda
@@ -2175,20 +2173,8 @@
         $\tab[2.7cm] dim R_{d-1} = p_1,
         dim R_{d-2} = p_2$ и т.д. $dim R_1 = p_{d-1}.\\\\$
         Выберем в $Ker \psi = V_0$ базис, составленный
-        подпространствами $R_i$.\\
-        $\tab[1.2cm]d$  $\tab[1.9cm]d-1$ $\tab[3.5cm]2$
-        $\tab[2.8cm]1$\\
-        \begin{tabular}{ |c|c|c|c|c| }
-            \hline
-            $e_1^{(1)}...\ e_{p_1}^{(1)}$ &
-            $e_{p_1 + 1}^{(1)}...\ e_{p_1 + p_2}^{(1)}$ &
-            $\dots$ &
-            $e_{p_{d-2} + 1}^{(1)}...\ e_{p_{d-1}}^{(1)}$ &
-            $e_{p_{d-1} + 1}^{(1)}...\ e_r^{(1)}$\\
-            \hline
-        \end{tabular}\\
-        $\tab[0.8cm]R_{d-1}\tab[1cm]R_{d-2}/R_{d-1}
-        \tab[2.5cm]R_1 / R_2\tab[2cm]V_0 / R_1$ \\$\\$
+        подпространствами:\\ $R_i = \text{Im}B^i \cap \text{Ker}B$\\
+        \includegraphics[scale = 0.25]{images/table1.JPG}\\
         Векторы $e_1^{(1)},...,e_p^{(1)} \in \text{Im}\psi
         ^{d-1} \Longrightarrow$ каждый из них имеет $(d-1)$
         присоединенный вектор.
@@ -2241,25 +2227,242 @@
         $$\alpha_{a,l_1}\psi^{l_1 - 1}(a_1) +...+
         \alpha_{t,l_t}\psi^{l_t - 1}(a_t) = 0 \text{ ЛНЗ}
         \Longrightarrow$$ \text{остальные коэффициенты равны 0}
-    \end{proof}
     
+    \end{proof}
+    $B$ -- нильпотентный оператор, $B^d = 0 \neq B^{d-1}
+    \Longrightarrow $ максимальная длина (высота) жордановой
+    цепочеки равняется $d$.\\
+    $R_i = \text{Im}B^i \cap \text{Ker}B,\ i = 1,..,d$\\
+    \includegraphics[scale = 0.25]{images/table2.JPG}\\
+    Базис $\text{Ker}B = R_0$
+    \newpage 
+    Общее число векторов в цепочках равно $\text{dim}V$
+    (в котором действует $B$):
+    $$d_{p_1} + (d-1)p_2 + ... + 2p_{d-1} + p_d =$$
+    $$ =(p_1 +...+ p_d) + (p_1 + ... + p_{d-1}) +...+ (p_1 + p_2)
+    + p_1 = $$
+    $$= \text{dim}R_0 + \text{dim}R_1 +...+ \text{dim}R_{d-2}
+    + \text{dim}R_{d-1}$$
+    $$\sum\limits_{i=0}^{d-1}\text{dim}(\text{Im}B^i \cap 
+    \text{Ker}B) = \sum\limits_{i=0}^{d-1}(\text{dimKer}B^
+    {i+1} - \text{dimKer}B^i) =$$
+    $$= \text{dimKer}B^d = \text{dim}V$$
+    Нужно доказать, что $\text{dim}(\text{Im}B^i \cap \text{Ker}B) = 
+    \text{dimKer}B^{i+1} - \text{dimKer}B^i$
+    $$\text{Im}(B^i \cap \text{Ker}B) = \text{Ker}(B|_{\text{Im}B^i}) 
+    \Longrightarrow$$ $$\text{dim}(\text{Im}B^i \cap \text{Ker}B) = 
+    \text{dimIm}B^i - \text{dim}ImB^{i+1}=$$ $$= n - \text{dimKer}B^i
+    - (n - \text{dimKer}B^{i+1})=$$ $$= \text{dimKer}B^{i+1} - 
+    \text{dimKer}B^i
+    \text{dimKer}\varphi = \text{dim}V - \text{dimIm}\varphi$$
+    $$\varphi = B|_{\text{Im}B^i}$$
+    \begin{center}
+        \textbf{Единственность жордановой формы} 
+    \end{center}
+    Если $A \sim \mathcal{J} $ и $A \sim \mathcal{J}'$,
+    то $\mathcal{J} $ и $\mathcal{J} '$ могут отличаться
+    только упорядочиваниями жордановых клеток.\\
+    Нужно доказать, что $\forall$ собственного значения $
+    \lambda_j\ \forall m: 1 \leq m \leq d,\ N(n,\lambda_j)$  
+    опеределено по $A$ единственным образом.\\
+    Рассмотрим оператор $B = A - \lambda_j E$, достаточно
+    для матрицы $B$ доказать единственность $N(m, 0):$
+    $$N(m,0) = \text{dim}R_{m-1} - \text{dim}R_m = $$
+    $$=(\text{dimKer}B^m - \text{dimKer}B^{m-1}) - 
+    (\text{dimKer}B^{m+1} - \text{dimKer}B^m) = $$
+    $$ = 2\text{dimKer}B^m - \text{dimKer}B^{m-1} - \text{dimKer}B^{m+1} =$$
+    $$ =2(n - rkB^m) - (n - rkB^{m-1}) - (n - rkB^{m+1}) =$$
+    $$=rkB^{m-1} - 2rkB^{m} + rkB^{m+1}$$
+    Эти ранги не зависят от базиса.
+    \newpage
+    \textbf{Доказательство Теоремы Жордана в общем случае:}\\
+    Пусть $\varphi: V \longmapsto V,\ A_\varphi$ -- его 
+    матрица, $\chi_\varphi(t) = (\lambda_1 - t)^{k_1}\cdot...
+    \cdot (\lambda_s - t)^{k_s},\ (\lambda_i \in F)$
+    Тогда $V = \overset{s}{\underset{i=1}{\oplus}}\mathcal{K}
+    (\lambda_i),\  \mathcal{K}(\lambda_i) = \text{Ker}(    
+    \varphi - \lambda_i \varepsilon)^{k_i}$-- корневые
+    подпространства.\\
+    В базисе, согласованном с разложением,
+    $$\begin{pmatrix}
+        \underline{A_1\vline} & \null & \null & \null\\
+        \null  & |\overline{\underline{A_2}}| & \null & \null\\
+        \null & \null & \ddots & \null\\
+        \null & \null & \null & \overline{|A_s} 
+    \end{pmatrix}$$
+    $\forall i = 1,...,s,\ A_i = A_{\varphi(\mathcal{K}
+    (\lambda_i))}$ имеет единственное собственное значение 
+    $\lambda_i.$\\ Оператор $(\varphi - \lambda_i \varepsilon)$
+    -- нильпотентный оператор $\Longrightarrow $ для него,
+    по Теореме для нильпотентных операторов $\exists$ базис
+    в $\mathcal{K}(\lambda_i)$  из жордановых цепочек.
+    Тогда объединение базисов всех подпространств нужный базис.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    \begin{theorem}
+        Пусть $\chi_A(t) = (-1)^n \prod\limits_{i=1}^{s}(t - 
+        \lambda_i)^{k_i},\ d_i $--максимальный размер 
+        жордановой клетки, отвечающей корню $\lambda_i$,
+        тогда $\mu_A(t) = \prod\limits_{i=1}^{s}(t - \lambda_i)^
+        {d_i}$ -- минимальный многочлен.  
+    \end{theorem}
+    \begin{proof}
+        $\\$ Если $p(t)$ -- аннулирующий многочлен для $\varphi$
+        (для матрицы $A$), тогда $\forall i\ p(\lambda_i) = 0$,
+        если $x_i \neq 0:\ \varphi(x_i) = \lambda_i x_i$,
+        то $$p(\varphi)^{x_i} = p(\lambda_i)\underbrace{x_i}_
+        {\neq 0} = 0 \Longrightarrow p(\lambda_i = 0)$$
+        Для одной жордановой клетки $\mathcal{J}_m(\lambda_i)\
+        (1 \neq m \neq d_i)$ 
+        $$A - \lambda_i E = \begin{pmatrix}
+        0 & 1 & \null & 0\\
+        \null & \ddots & \ddots &  & \null\\
+        \null & \null& \ddots & 1\\
+        \null & \null & \null & 0
+        \end{pmatrix} \Longrightarrow (A - \lambda_iE)^2 =
+        \begin{pmatrix}
+            0 & 0 & 1 & \null & 0\\
+            \null & \ddots & \ddots & \ddots & \null\\
+            \null &\null &\ddots &\ddots & 1\\
+            \null &\null &\null &\ddots &0\\
+            \null &\null &\null &\null &0
+        \end{pmatrix}$$
+        И т.д. $\Longrightarrow (A - \lambda_i E)^m = 0$\\
+        Для $m = d_i$ наименьшая степень $q:\ (A - \lambda_i E)
+        ^q = 0$ равна $d_i \Longrightarrow\\ \mu_A(t)\ \vdots
+        \ (t - \lambda_i)^{d_i} \Longrightarrow \mu_A(t) = 
+        \prod_{i=1}^{s}(t - \lambda_i)^{d_i}$
+    \end{proof}
+    \begin{consequense}
+        $A_\varphi$ диагонализируема $\Longleftrightarrow$ 
+        все характеристические корни имеют в $\mu_\varphi$
+        кратность равную $1$.
+    \end{consequense}
+    \newpage
+    \begin{center}
+        \textbf{Некоторые применения жордановой формы} 
+    \end{center}
+    1. К решению СЛУ $AX = b,\ A_{(n\times n)}$\\
+    Пусть уже найдена матрица $C$: $C^{-1}AC = \mathcal{J} =
+    \begin{pmatrix}
+        \mathcal{J}_1(\lambda_1) & \null & 0\\
+        \null & \ddots & \null\\
+        0 & \null & \mathcal{J}_l(\lambda_l) 
+    \end{pmatrix}$\\
+    Сделаем замену переменных: $$X = CY \Longrightarrow 
+    A(CY) = b \Longrightarrow (C^{-1}AC)Y = C^{-1}b = b'$$
+    Для каждой клетки $$\underset{\lambda \neq 0}{\begin{pmatrix}
+        \lambda & 1 & \null & 0\\
+        \null & \ddots & \ddots & \null\\
+        \null & \null & \ddots & 1\\
+        \null & \null & \null & \lambda
+    \end{pmatrix}} \Longrightarrow 
+    \begin{cases}
+        \lambda y_1 + y_2 = b_1'\\
+        \dots\\
+        \lambda_n = b_n'
+    \end{cases}$$ $\text{Легко дорешать, найдя } Y \text{
+    найдем } X = CY$\\
+    2. К вычислению функций от матрицы.\\
+    $A_n^m,\ m \in \mathbb{N}$ $$
+    A = CYC^{-1} = C \begin{pmatrix}
+        \underline{\mathcal{J}_1}\vline & \null & 0\\
+        \null & \ddots & \null\\
+        0 & \null & \overline{\vline \mathcal{J}_l}
+    \end{pmatrix}C^{-1} \Longrightarrow A^m = C\begin{pmatrix}
+        \mathcal{J}_1 & \null & 0\\
+        \null & \ddots & \null\\
+        0 & \null & \mathcal{J}_l
+    \end{pmatrix}C^{-1}$$
+    Для одной клетки:
+    $$\mathcal{J}_n(\lambda) = \begin{pmatrix}
+        \lambda & 1 & \null & 0\\
+        \null & \ddots & \ddots & \null\\
+        \null & \null & \ddots & 1\\
+        \null & \null & \null & \lambda
+    \end{pmatrix} = \lambda E + 
+    \begin{pmatrix}
+        0 & 1 & \null & 0\\
+        \null & \ddots & \ddots & \null\\
+        \null & \null & \ddots & 1\\
+        \null & \null & \null & 0
+    \end{pmatrix} = \lambda E + B,\ B^n = 0 \neq B^{n-1}$$
+    $$\Longrightarrow A^m = C\begin{pmatrix}
+        \mathcal{J}_1^m & \null & 0\\
+        \null & \ddots & \null\\
+        0 & \null & \mathcal{J}_l^m
+    \end{pmatrix}C^{-1},\ \mathcal{J}_n^m(\lambda) = 
+    (\lambda E + B)^m 
+    $$
+    $\mathcal{J}_n^m(\lambda) = (\lambda E + B)^m = 
+    \sum\limits_{k=0}^{m}C_m^k \lambda^k B^{m-k}$
+    \newpage
+    Для $m = \frac{1}{2}$ -- вычислить $\sqrt{A}$ (нужно,
+    чтобы $\sqrt{\lambda_j}$ были определены)
+    $$\underset{\lambda \neq 0}{\mathcal{J}_n(\lambda)}  = (\lambda E + B)^{\frac{1}{2}} =
+    (\sqrt{\lambda}(E + \frac{1}{\lambda}B)^{\frac{1}{2}}) = 
+    \sqrt{\lambda}(E + \frac{1}{2}X + C_{\frac{1}{2}}^2X^2 +...)$$
+    $$(1 + x)^{\frac{1}{2}} = \sum\limits_{k=0}^{\infty}
+    C_{\frac{1}{2}}^kx^k$$
+    $$C_{\frac{1}{2}}^1 = \frac{1}{2},\ \ C_{\frac{1}{2}}^2 = 
+    \frac{\frac{1}{2}(\frac{1}{2}-1)}{2!},...,C_{\frac{1}{2}}^k =
+    \frac{\frac{1}{2}(\frac{1}{2}-1)...(\frac{1}{2}-k+1)}{k!}$$
+    Экспонента:
+    $e^A \overset{?!}{=} E + tA + t^2\frac{A}{2!}+...$
+    $$A = C \mathcal{J}C^{-1} \Longrightarrow e^A = C
+    \begin{pmatrix}
+        e^{\mathcal{J}_1} & \null & 0\\
+        \null & \ddots & \null\\
+        0 & \null & e^{\mathcal{J}_l}
+    \end{pmatrix}C^{-1}$$
+    Для одной клетки порядка $n$:
+    $$\mathcal{J}_n(\lambda) = \lambda E + B \Longrightarrow 
+    e^{\mathcal{J}_n(\lambda)} = e^{\lambda E + B} = 
+    e^{\lambda E}e^B = e^\lambda E e^B$$
+    $$e^B = E + B + \frac{B^2}{2!} +...+ \frac{B^{n-1}}{(n-1)!} = 
+    \begin{pmatrix}
+        1 & 1 & \frac{1}{2} & \dots & \frac{1}{(k-1)!}\\
+        \null & 1 & 1 & \ddots & \frac{1}{2!}\\
+        \hdotsfor{5}\\
+        \null & \null & \null & \null & \null\\
+        0 & \null & \null & \null & 1
+    \end{pmatrix}$$
+    $(e^{tA})' = Ae^{tA}$\\
+    \underline{Формула:} $\text{det}(e^A) = e^{\text{tr}A}$
+    \begin{theorem}
+        Для любого линейного оператора $\varphi: V \longmapsto 
+        V$ над $\mathbb{R}\ (\text{dim}V < \infty)$ существует
+        одномерное или двумерное инвариантное подпространство.
+    \end{theorem}
+    \begin{proof}
+        Пусть $\exists$ собственное значение $\lambda_0$,
+        тогда и $\exists x_0 \in V,\ x_o \neq 0$, т.ч. 
+        $\varphi(x_0) = \lambda_0 x_0 \Longrightarrow 
+        \langle x_0\rangle = U$ -- инвариантное подпространство.
+        \\Комплексному корню отвечает двумерное инвариантное
+        подпространство.\\ Допустим, что $\lambda_1 = 
+        \alpha + i \beta \in \mathbb{C}$ -- корень $\chi_\varphi
+        (\lambda) \Longrightarrow \overline{\lambda_1} = 
+        \alpha - i \beta$ -- тоже корень $\Longrightarrow 
+        \chi_\varphi(\lambda) = (\lambda - \lambda_1)
+        (\lambda - \overline{\lambda_1})f(\lambda) = 
+        (\lambda^2 - 2\alpha \lambda + (\alpha^2 + \beta^2))f(t),
+        \ f(\lambda) \in \mathbb{R}[\lambda]$\\
+        $\varphi$ с помощью (вещественной) матрицы $A_\varphi$
+        действует в $\mathbb{R}^n:\\ \forall x \in \mathbb{R},\
+        X \longmapsto A_\varphi X$\\
+        Рассмотрим оператор $\varphi$ в $\mathbb{C}^n$    
+        по формуле: $\forall Z \longmapsto A_\varphi Z$\\
+        В $\mathbb{C}^n\ \exists$ вектор $Z_1:\ 
+        A_\varphi Z_1 = \lambda_1 Z_1$\\
+        $Z_1 = X_1 + iY_1,\ X_1, Y_1 \in \mathbb{R}^n\\ 
+        A_\varphi X_i + A_\varphi Y_1 = 
+        (\alpha X_1 - \beta Y_1) + i(\beta X_1 + \alpha Y_1)
+        \Longrightarrow \begin{cases}
+            A_\varphi X_1 = \alpha X_1 - \beta Y_1\\
+            A_\varphi Y_1 = \beta X_1 + \alpha Y_1
+        \end{cases} \Longrightarrow \langle X_1, Y_1\rangle$ 
+        -- двумерное инвариантное подпространство для $\varphi$. 
+    \end{proof}
 
 
 
