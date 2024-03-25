@@ -221,8 +221,8 @@
 
     \begin{definition}
         \textit{Линейная оболочка векторов} $a_1, a_2,...,a_n
-        \in V$ -- это\\ $\tab[3.6cm]\{\lambda_1a_1 + \lambda_2a_ + ... + 
-        \lambda_na_1n|\lambda_i \in F\}$
+        \in V$ -- это\\ $\tab[3.6cm]\{\lambda_1a_1 + \lambda_2a_2 + ... + 
+        \lambda_na_n|\lambda_i \in F\}$
     \end{definition}
     \begin{lemma}
         1. $\langle a_1, a_2,..., a_m \rangle := U$ -- подпространство в $V$
@@ -368,12 +368,12 @@
         \end{pmatrix}\underset{\text{строк}}{\overset{\text{Э.П.}}{\sim}}
         (E_m|\mbox{\scriptsize{\undermat{{\mbox{\normalsize n-m}}}
         {\null}}}B)$$
-        \underline{2 этап:} $$\varPhi = 
+        \underline{2 этап:} $\varPhi = 
         \begin{pmatrix}
             E_m\\
             \hline B^T
         \end{pmatrix} \rightsquigarrow A = (-B^T|E_{n-m})
-        \text{ -- искомая матрица системы.}$$
+        \text{ -- искомая матрица системы.}$
         Значит, $p = n - m.$
     \end{proof}
     \begin{remark}
@@ -397,7 +397,7 @@
             \vdots & \ddots & \vdots & \vline & \vdots\\
             0 & \dots & 0 & \vline & \sum a_{n,j} x_j\\
         \end{pmatrix},$$ где суммы $\sum a_{i,j}x_j := 0,
-        \text{где} i = m + 1,...,n.$
+        \text{ где } i = m + 1,...,n.$
     \end{proof}
     \newpage
     \begin{center}\begin{Large}
@@ -425,8 +425,8 @@
         множество $U_1 +...+ U_m = \{u_1 +...+ u_m|u_i \in U_i\}.$
     \end{definition}
     \begin{subtheorem}
-        $U_1...+ U_m$ -- подпространствов $V, dim(U_1 +...+ U_m)
-        \leqslant \sum\limits_{i=n}^n dim\ U_i$
+        $U_1+...+ U_m$ -- подпр-во в $V, dim(U_1 +...+ U_m)
+        \leqslant \sum\limits_{i=1}^n dim\ U_i$
     \end{subtheorem}
     \begin{proof}
         Если $e_1,..., e_m$ -- базисы в этих подпространствах,
@@ -446,7 +446,7 @@
         в $U_2$ векторами $b_{r+1},...,b_{n_2}$    
     \end{proof}
     \begin{subtheorem}
-        $\{c_i, a_j, b_k\}$ -- базис $U_1 + U_2$ (их количество
+        $\{a_i, b_j, c_k\}$ -- базис $U_1 + U_2$ (их количество
         $n_1 + n_2 - r$).
     \end{subtheorem}
     \begin{proof}
@@ -1648,13 +1648,7 @@
             и для $\forall i,\ \underbrace{dimV_{\lambda_i}}_{
             \text{\textit{гкр}}\lambda_i} = \underbrace{k_i}_{
             \text{\textit{алг}}(\lambda_i)}$  
-            \item $\exists$ базис в $V$, в котором $A_\varphi$
-            диагональна.
             \item В $V\ \exists$ собственный базис для $\varphi$.
-            \item Все характеритические корни $\lambda_j \in F
-            \ (\lambda_1,...,\lambda_s - \text{все различные})$
-            \\$\forall j = 1,...,s:\ dimV_{\lambda_j} = 
-            \text{алг}(\lambda_j)$
             \item $V_{\lambda_1} \oplus...\oplus V_{\lambda_s}
             = V$ 
         \end{enumerate}
@@ -1997,8 +1991,8 @@
         \underline{обозначим: $V^{(\lambda)} = \mathcal{K}_\lambda$}.
     \end{proof}
     \begin{theorem}
-        Пусть $\chi_\varphi = (\lambda_1 - t)^k_1\cdot...
-        \cdot(\lambda_s - t)^k_s$ -- каноническое разложение.
+        Пусть $\chi_\varphi = (\lambda_1 - t)^{k_1}\cdot...
+        \cdot(\lambda_s - t)^{k_s}$ -- каноническое разложение.
         Тогда:
         \begin{enumerate}
             \item  $V = \mathcal{K}_{\lambda_1} \oplus...\oplus
@@ -2420,10 +2414,10 @@
     e^{\lambda E}e^B = e^\lambda E e^B$$
     $$e^B = E + B + \frac{B^2}{2!} +...+ \frac{B^{n-1}}{(n-1)!} = 
     \begin{pmatrix}
-        1 & 1 & \frac{1}{2} & \dots & \frac{1}{(k-1)!}\\
-        \null & 1 & 1 & \ddots & \frac{1}{2!}\\
+        1 & 1 & \frac{1}{2!} & \dots & \frac{1}{(k-1)!}\\
+        \null & 1 & 1 & \ddots & \vdots\\
+        \null & \null & \null & \ddots & \frac{1}{2!}\\
         \hdotsfor{5}\\
-        \null & \null & \null & \null & \null\\
         0 & \null & \null & \null & 1
     \end{pmatrix}$$
     $(e^{tA})' = Ae^{tA}$\\
@@ -2460,9 +2454,205 @@
         \Longrightarrow \begin{cases}
             A_\varphi X_1 = \alpha X_1 - \beta Y_1\\
             A_\varphi Y_1 = \beta X_1 + \alpha Y_1
-        \end{cases} \Longrightarrow \langle X_1, Y_1\rangle$ 
-        -- двумерное инвариантное подпространство для $\varphi$. 
+        \end{cases} \Longrightarrow U = \langle X_1, Y_1
+        \rangle \subset \mathbb{R}^n$ 
+        -- двумерное инвариантное подпространство для $\varphi$.\\
+        Допустим, что $Y_1 = \mu X_1 \Longrightarrow A_\varphi
+        X_1 = (\alpha - \beta \mu)X_1 \Longrightarrow 
+        X_1 \text{ -- собственный вектор.}\\
+        \Longrightarrow X_1,\ Y_1$ -- ЛНЗ, $\text{dim}U = 2$  
+
     \end{proof}
+    \begin{center}
+        \begin{Large}
+            \textbf{Глава III. Билинейные и квадратичные
+            функции/ Пространства с формами.}
+            \textbf{\S 1. Билинейные функции.} 
+        \end{Large}
+    \end{center}
+
+    \begin{definition}
+        Функция $f:\ V\times V \longmapsto F$ называется
+        билинейной, если:
+
+        $1.\ f(\alpha_1 x_1 + \alpha_2 x_2, y) = \alpha_1
+        f(x_1, y) + \alpha_2f(x_2, y),\ \forall x_1,x_2,y \in
+        V,\ \alpha_1, \alpha_2 \in F$
+        
+        $2.$ По $y$.  
+    \end{definition}
+
+    \textbf{Примеры:}
+
+    1. $V = R[a,b]$
+    $$(f(x), g(x)) \longmapsto \int\limits_{a}^{b} f(x)g(x)dx =
+    \int\limits_{a}^{b} g(x)f(x)dx \text{-- симметричная}$$
+
+    2. $V = M_b(F)$
+    $$f_1(X, Y) = \text{tr}(XY),\ f_2(X, Y) = \text{tr}(XY^T)$$
+    Выражение $f(x,y)$ в координатах.\\ Пусть $e$ -- базис в $V$,
+    $x = \sum\limits_{i=1}^{n} x_ie_i,\ y = \sum\limits_{j=1}
+    ^{n} y_je_j \Longrightarrow$ $$f(x, y) = f(\sum\limits_{i=1}
+    ^{n} x_ie_i ,\sum\limits_{j=1}^{n} y_je_j) = 
+    \sum\limits_{i, j} \underbrace{f(e_ie_j)}_{f_{ij}}x_iy_j
+    \text{ -- билинейная форма. (1)}$$
+
+    \underline{Обозначение:} $B_e = (f_{ij})$ -- матрица
+    билинейной формы $f(x,y)$ в базисе $e$.
+    
+    Выражение (1) можно записать в виде $f(x,y) = X^TB_eY$ (2).
+    
+    $\\$\textbf{Изменение матрицы билинейной формы при замене базиса:}\\
+    Пусть $e' = eC_{e \to e'}$, тогда $X = CX',\ Y = CY'$ 
+    подставим в (2).\\
+    $X^TB_eY = (CX')^TB_e(CY') = (X')^T(C^TB_eC)Y' 
+    \overset{?!}{=} (X')^TB_{e'}Y',\ \forall X', Y' \in F^n$
+    Если $X'  =E_i, Y' = E_j$, то $(X')^TY' = d_{ij},\ 
+    \forall i,j \Longrightarrow B_{e'} = C^TB_eC\ (3)$
+
+    \begin{consequense}
+        1. $\text{rk}B' = \text{rk}B$, т.к. $|C| \neq 0$ 
+        
+        $\tab[2.2cm]$ 2. $|B'| = |B||C|^2$\\
+        Если $F = \mathbb{R} \text{ и } |B| \neq 0$, то
+        $|B'|$ и $|B|$ имеют одинаковый знак.
+    \end{consequense}
+
+    В силу следствия 1, $\text{rk}B$ можно называть рангом
+    билинейной функции\\ $f(x,y),\ \text{rk}f$
+
+    Назовем левым ядром билинейной функции $f(x,y):$
+    $$\text{Ker}_{\text{л}} f = \{x \in V:\ f(x,y) = 0,\forall
+    y \in V\}$$
+    $$x \in \text{Ker}_{\text{л}} f \Longleftrightarrow 
+    \begin{cases}
+        f(x,e_1) = 0\\
+        ...\\
+        f(x,e_n) = 0
+    \end{cases} - \text{ОСЛУ с матрицей }B$$
+    Число ЛНЗ решений равно $n - \text{rk}B = n - \text{rk}f$. 
+    
+    \begin{definition}
+        $f(x,y)$ \textit{симметричная}, если $\forall x,y \in V:
+        \ f(x,y) = f(y,x)$  
+    \end{definition}
+    \begin{definition}
+        $g(x,y)$ \textit{кососимметричная}, если $\forall x,y
+        \in V:\ f(x,y) = -f(y,x)$  
+    \end{definition}
+    \begin{theorem}
+        Если char$F \neq 2$, то любая билинейная функция 
+        $f(x,y)$ единственным образом представляется в виде:
+        $f(x,y) = f_+(x,y) + f_-(x,y)$
+    \end{theorem}
+    \begin{proof}
+        $$\begin{cases}
+            f(x,y) = f_+(x,y) + f_-(x,y)\\
+            f(x,y) = f_+(x,y) - f_-(x,y)
+        \end{cases}$$
+        $$f_+(x,y) = \frac{f(x, \overline{y}) + f(y,x)}{2},\ 
+        \ f_- (x,y) = \frac{f(x,y) - f(y,x)}{2}$$
+    \end{proof}
+    \begin{center}
+        \begin{Large}
+            \textbf{\S 2. Квадратичные функции (формы).} 
+        \end{Large}
+    \end{center}
+    \begin{definition}
+        Пусть $f(x,y)$ -- билинейная функция на $V$. Тогда 
+        функция\\ $k_f(x):= f(x,x),\ \forall x \in V$ 
+        называется \textit{квадратичной функцией, 
+        порожденной билинейной функцией} $f$, если $k_f(x)
+        \not\equiv 0$.
+    \end{definition}
+    Обратим внимание, что если $f(x,y) = f_+(x,y)$, то 
+    $$f(x,x) = f_+(x,x) + \underset{-f_-(x,x) = 0}{f_-(x,x)}
+    ,\ \text{char}F \neq 2 \Longrightarrow$$ 
+    $f \text{ и } f_+$ порождают одну и ту же функцию.
+
+    \begin{theorem}
+        Для любой квадратичной функции $k(x)$ существует
+        единственная билинейная симметричная функция $f(x,y)$,
+        т.ч. $f(x,x) = k(x)$  
+    \end{theorem}
+    \begin{proof}
+        Пусть $f(x,y) = f(y,x)$\\
+        Рассмотрим $k(x + y) = f(x + y, x + y) = f(x,x) + 
+        f(x,y) + f(y,x) + f(y,y) = f(x,x) + 2f(x,y) + f(y,y)
+        ,\ \forall x,y \in V \Longrightarrow f(x,y) = 
+        \frac{k(x+y) - k(x) - k(y)}{2}$
+    \end{proof}
+    Координатная запись: $$k(x) = X^TB_eX = \sum\limits_{i,j}
+    b_{ij}x_ix_j = \sum\limits_{i,j} b_{ij}x_i^2 +
+    2\sum\limits_{i < j} b_{ij}x_ix_j,\ b_{ij} = b_{ji},\
+    \forall i,j$$
+    Договоримся, что матрица квадратичной формы (2)
+    совпадает с матрицей $B$.
+
+    $$k(x_1,x_2) = 3x_1^2 - 4x_1x_2 + 25x_2^2, \tab[1cm]
+    B \overset{?}{=} \begin{pmatrix}
+        3 & 2\\-2 & 25
+    \end{pmatrix}$$ 
+    
+    \begin{center}
+        \textbf{Упрощение квадратичной формы}    
+    \end{center}
+    
+    \underline{Термин:} Диагональная квадратичная форма:
+    $$k(x) = \alpha_1x_1^2 +...+ \alpha_nx_n^2 = \alpha_1x_1^2
+    +...+\alpha_rx_r^2$$
+    (При подходящей нумерации переменных).\\
+    $(x = (x_1,...,x_n))$\\
+    Если $\text{rk}f  \Longrightarrow k = r leq n$
+    $B = \begin{pmatrix}
+        \alpha_1
+    \end{pmatrix}
+    $ 
+    %Пропуск
+
+    \underline{Термин:} $(F = \mathbb{R})$
+    $k(x)$ имеет канонический вид, если
+    $$k(x) = \sum\limits_{i=1}^{D}x_i^2 - \sum\limits_
+    {i=p+1}^{p+q}x_i^2,\ (p+q = \text{rk}k = r)$$
+    Если $F = \mathbb{C}$, то канонический вид будет
+    $$\sum\limits_{i=1}^{r}  x_i^2$$
+    Над $\mathbb{R}$: замена $y_i = \sqrt{|\alpha_i|}x_i,\ 
+    1 \leq i \leq r,\ y_i = x_i,\ i = r+1,...,n$\\
+    Тогда $k(x)$ равен каноническому виду.\\
+    Над $\mathbb{C}$: $\forall i = 1,...,r\ \ y_i =
+     \sqrt{|\alpha_i|}x_i$
+
+    \begin{center}
+        \textbf{Алгоритм Лагранжа (мметод выделения квадратов.)} 
+    \end{center}
+
+    Пусть $k(x_1,...,x_n) = b_{11}x_1^2 +...+ b_{nn}x_n^2 + 
+    2b_{12}x_1x_2 +...+ 2b_{1n}x_1x_n +...$\\
+    Основной случай: $b_{11} \neq 0 \Longrightarrow$
+    $$b_{11}x_1^2 + 2x_1(\sum\limits_{i=2}^{n}b_{1i}x_i) = 
+    b_{11}(x_1^2 + 2x_1(\sum\limits_{i=2}^{n} 
+    \frac{b_{1i}}{b_{11}} x_i) + (\sum\limits_{i=2}^{n}
+    \frac{b_{1i}}{b_{11}} x_i)^2) -$$ 
+    $$\underbrace{- \frac{1}{b_{11}}
+    (\sum\limits_{i=2}^{n} b_{1i}x_i)^2  + 2 \sum\limits_
+    {i < i < j} b_{ij}x_ix_j}_{k_1(x_2,...,x_n)} = 
+    b_1(x_1 + \sum\limits_{i=2}^{n} \frac{b_{1i}x_i}{b_{11}})
+    ^2 + k_1(x_2,...,x_n)$$ 
+    Замена $y_1 = x_1 + \sum\limits_{i=2}^{n} \frac{b_{1i}}
+    {b_{11}}x_i$, остальные пока не заменяем.
+    
+    Особый случай: $b_{ii} = 0,\ \forall i = 1,...,n$\\
+    Т.к. $k(x) \not\equiv 0 \Longrightarrow \exists i,j:\ 
+    b_{ij} \neq 0$\\
+    Подготовительная замена:
+    $$\begin{cases}
+        x_1 = x_i' - x_j' \Longrightarrow 2b_{ij}x_{ij} = 
+        2(x_i'^2 - x_j'^2)\\
+        x_j = x_i' + x_j'
+    \end{cases} \Longrightarrow \text{ перейти к основному случаю}$$
+
+
+
 
 
 
