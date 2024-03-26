@@ -928,7 +928,7 @@
         \sum\limits_{j=1}^m\alpha_jf_j = 0_{V'}$
         Т.к. $f_j$ -- ЛНЗ $\Longrightarrow\alpha_j = 0, \ 
         \forall_j = 1,...,m$\\Возьмем произвольный $v' \in Im
-        \varphi:\ v' = \sum\limits_{j=1}^m\beta_jf_j = 0_{V'}$\\
+        \varphi:\ v' = \sum\limits_{j=1}^m\beta_jf_j$\\
         По определению образа $\exists v \in V:\ \varphi(v) = v'$\\
         Тогда рассмотрим $\varphi(v - \sum\limits_{j=1}^m\beta_j
         a_j) = v' - \sum\limits_{j=1}^m\beta_jf_j = 0_{V'}
@@ -981,16 +981,16 @@
         $Im\varphi$\ \ базис $f_1,...,f_m.\\\forall j,\ 1\leq j\leq m,\ \exists\ 
         e_j \in V: \varphi(e_j) = f_j.$ $$\forall v \in V: v' = 
         \varphi(v) = \sum\limits_{j=1}^m\lambda_jf_j = 
-        \varphi(\sum\limits_{j=1}^m\lambda_je_j) \Longrightarrow
-        \varphi(v - v_1), \text{ т.е. } v - v_1 \in Ker\varphi.$$
-        Выберем в $Ker\varphi$ базис: $c_1,..., c_r\ (z = dimKer\varphi)
+        \varphi\underbrace{(\sum\limits_{j=1}^m\lambda_je_j)}_{v_1 \in V} \Longrightarrow
+        \varphi(v - v_1) = 0, \text{т.е. } v - v_1 \in Ker\varphi.$$
+        Выберем в $Ker\varphi$ базис: $c_1,..., c_r\ (r = dimKer\varphi)
         \Longrightarrow v - v_1 = \sum\limits_{k=1}^r\mu_kc_k
         \Longrightarrow\\ v = \sum\limits_{j=1}^m\lambda_je_j + 
         \sum\limits_{k=1}^r\mu_kc_k \Longrightarrow V = \langle 
         e_1,...,e_m, c_1,...,c_r \rangle$\\
         $e_1,...,e_m, c_1,...,c_r$ -- ЛНЗ, если: $\exists\ \varepsilon_j,
         \gamma_k \in F: \varphi(\sum\limits_{j=1}^m\varepsilon_je_j + 
-        \sum\limits_{k=1}^k\gamma_ke_k) = 0_V \Longrightarrow
+        \sum\limits_{k=1}^r\gamma_ke_k) = 0_V \Longrightarrow
         \sum\limits_{j=1}^m\undermat{\text{ЛНЗ}}{\varepsilon_jf_j} = 0_{V'} \Longrightarrow
         \varepsilon_j = 0,\ 1\leq j\leq m \Longrightarrow 
         \sum\limits_{k=1}^r\undermat{\text{ЛНЗ}}{\gamma_ke_k} = 0 \Longrightarrow 
