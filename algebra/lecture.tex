@@ -520,7 +520,7 @@
     $U_1,..., U_k$ -- подпр-ва в $V$.
     \begin{definition}
         Сумма $U_1 +...+ U_k \ (k \geqslant 2)$ называется
-        \textit{прямой суммой пространств} $U_1,..., U_k$, если
+        \textit{прямой суммой подпространств} $U_1,..., U_k$, если
         $\forall u$ из суммы представляется в виде $u = u_1 +...+u_k$
         единственным образом. 
     \end{definition}
@@ -623,7 +623,7 @@
         1. Если $dimV < \infty,$ то $dim(V/U) = dimV - dim\ U$
 
         \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
-        2. $(U\oplus V) / U \cong W$
+        2. $(U\oplus W) / U \cong W$
     \end{subtheorem}
     \begin{proof}
         $\\2.$ I способ: Построим отображение: $\forall v \in V\
@@ -704,7 +704,7 @@
         $1.\ \forall v_1,v_2 \in V \Longrightarrow f(v_1 + v_2)
         = f(v_1) + f(v_2)$
 
-        $2.\ \forall v \in V, \lambda \in F \longrightarrow
+        $2.\ \forall v \in V, \lambda \in F \Longrightarrow
         f(\lambda v) = \lambda f(v)$
     \end{definition}
     \begin{definition}
@@ -721,7 +721,7 @@
         \Longrightarrow f(\lambda v_1 + \mu v_2) =
         \lambda f(v_1) + \mu f(v_2)  = 0$$
     \end{proof}
-    \underline{Обозначение:} $V^* = \{f: V \mapsto F\}$ --
+    \underline{Обозначим:} $V^* = \{f: V \mapsto F\}$ --
     линейная функция.
     
     Определим на $V^*$ операции сложения: $\forall f_1, f_2 \in V^*$
@@ -734,7 +734,7 @@
         Если $dimV = n$, то $dimV^* = n$ (следовательно $V^* = V$).
     \end{theorem}
     \begin{proof}
-        Введем в $V$ базис $e_1,..., e_m, \forall v \in V:
+        Введем в $V$ базис $e_1,..., e_n, \forall v \in V:
         v = \sum\limits_{i=1}^nx_ie_i.$\\ Тогда $\forall f
         \in V^*,\ f(v) = \sum\limits_{i=1}^nx_if(e_i) =
         \sum\limits_{i=1}^nf(e_i)f_i(v) = (\sum\limits_{i=1}^n
@@ -742,7 +742,7 @@
         $(f(e_1),..., f(e_n))$ -- строка коэффициентов функций $f$.
         $f = \sum\limits_{i=1}^nf(e_i)f_i(v) = \sum\limits_{i=1}^n
         a_if_i(v).$ Таким образом $V^* = \langle f_1,..., f_n \rangle$.
-        Они ЛНЗ, если $\exists \lambda_1,..., \lambda \in F:
+        Они ЛНЗ, если $\exists \lambda_1,..., \lambda_n \in F:
         \undermat{\widetilde{f}}{\sum\limits_{i=1}^n\lambda_if_i = 0}.$
         $\widetilde{f}(e_j) = \sum\limits_{i=1}^n\lambda_if_i(e_j)
          = \lambda_i = 0,\ 1 \leq j\leq n$.\ 
@@ -775,7 +775,7 @@
     вид $v = \sum\limits_{i=1}^ne^i(v)\ e_i$
     \begin{subtheorem}
         Строки коэффициентов линейных функций: $f(v) =
-        \sum\limits_{i=1}^na_ix_i$ изменяется при переходе к
+        \sum\limits_{i=1}^na_ix_i$ изменяются при переходе к
         новому базису по формулам: $\vec a = (a_1,..., a_n),\\
         \vec{a'} = \vec a C_{e\to e'}$
     \end{subtheorem}
@@ -790,7 +790,7 @@
     a_i \in \mathbb{R}\}$
 
     1. С базисом: $1, \frac{x - x_0}{1!},..., \frac{(x-x_0)^n}{k!},
-    \ x_0 \in \mathbb{R}$ s-- фиксированное число.
+    \ x_0 \in \mathbb{R}$ -- фиксированное число.
     $$p(x) = \sum\limits_{k=0}^n \frac{p^{(k)}(x_0)}{k!}(x-x_0)^k$$
     Можно рассмотреть линейные функции $\delta^{(k)}: \delta^{(k)}
     (p) := p^{(k)}(x_0),\ k = 0,...,n.\\
@@ -879,12 +879,13 @@
     \begin{definition}
         \textit{Ядро линейного отображения} $\varphi: V
         \longmapsto V'\ (V \longmapsto V).$
+        \\$Ker \varphi = \{v \in V|\ \varphi(v) = 0_{V'}\}$
+        (в частности, $0_V \in Ker\varphi$).
     \end{definition}
-    $Ker \varphi = \{v \in V|\ \varphi(v) = 0_{V'}\}$
-    (в частности, $0_V \in Ker\varphi$).
 
-    Образ линейного отображения $\varphi$ (или множество
-    значений $\varphi$) -- это\\ $Im\varphi (=\varphi(v)) = 
+
+    \textit{Образ линейного отображения} $\varphi$ (или множество
+    значений $\varphi$) -- это\\ $Im\varphi =\varphi(V) = 
     \{v' \in V'|\ \exists v \in V: \varphi(v) = v'\}.$
 
     \begin{subtheorem}
@@ -942,16 +943,16 @@
         \forall v \in V$ -- линейная комбинация векторов
         $\{a_j;b_k\}$. Эти векторы ЛНЗ в $V \Longrightarrow$
         базис в $V \Longrightarrow dimV = m+r.$\\Допустим,
-        что $$\exists \beta_j\gamma_j:\ \sum\limits_{j=1}^m
+        что $$\exists \beta_j,\ \gamma_j:\ \sum\limits_{j=1}^m
         \beta_ja_j + \sum\limits_{k=1}^r\gamma_kb_k = 0_V
         \Longrightarrow \varphi(\sum\limits_j + \sum\limits_k)
         = \sum\limits_{j=1}^m\beta_jf_j + 0 = 0_{V'}
-        \Longrightarrow$$ $$b_j = 0,\ j=1,...,m\Longrightarrow
+        \Longrightarrow$$ $$\gamma_j = 0,\ j=1,...,m\Longrightarrow
         \undermat{\text{ЛНЗ}}{\\\sum\limits_{k=1}^r\gamma_kb_k}
         = 0\Longrightarrow \gamma_k = 0,\ k=1,...,r.$$
     \end{proof}
     
-    Пусть $e = {e_1,...,e_n}$ -- базис в $V,\ \forall \in V:\ 
+    Пусть $e = {e_1,...,e_n}$ -- базис в $V,\ \forall v \in V:\ 
     v = \sum\limits_{j=1}^nx_je_j\Longrightarrow \varphi(v) =
     \sum\limits_{j=1}^nx_j\varphi(e_j)$.\\
     Если в $V'$ задан базис $f = \{f_1,...,f_m\}$ и известно
