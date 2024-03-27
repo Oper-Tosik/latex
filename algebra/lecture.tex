@@ -350,7 +350,7 @@
     \end{pmatrix}
     - \text{\ фундаментальная матрица.}$$
     В общем случае фундаметальная матрица -- это матрица,
-    имеющая $n = rkA$ ЛНЗ столбцов, которые являются
+    имеющая $n - r = rkA$ ЛНЗ столбцов, которые являются
     решениями системы $AX = 0$, где $A \sim (E_r|B)$ без
     нулевых уравнений.
     
@@ -527,7 +527,7 @@
     \underline{Обозначение:} $U_1\oplus...\oplus U_k$\\
     \textbf{Примеры:} \\1. $U_1 = \{A \in M_n(\mathbb{R})|A^T = A\}$
     -- симметричные матрицы\\
-    2. $U_1 = \{B \in M_n(\mathbb{R})|B^T = B\}$
+    2. $U_1 = \{B \in M_n(\mathbb{R})|B^T = -B\}$
     -- кососимметричные матрицы
     \newpage
     \begin{subtheorem}
@@ -604,7 +604,7 @@
     \end{subtheorem}
     \underline{Класс эквивалентности вектора $v$:}\\
     $\vec v = \{v + u\ |\ \forall u \in U\} = v + U\\
-    V = \bigsqcup\limits_{v \in V}(v) + V$\\
+    V = \bigsqcup\limits_{v \in V}(v + V)$\\
     Сравним с видом решения системы $AX = b: X = X_r + Y$ -- 
     частное решение + общее решение однородной ассоциированной
     $AY = 0$.  Классы эквивалентности множества решений $AX = b$.
@@ -1028,8 +1028,8 @@
 
     \end{proof}
     \underline{\textbf{Матрицы линейного отображения}} $\varphi: V \mapsto V'$\\
-    $\forall v = \sum\limits_{j=1}^nx_je_j.\ (e = 
-    (e_1,...,e_n))$ -- базис в $V$,\ 
+    $\forall v = \sum\limits_{j=1}^nx_je_j.\ e = 
+    (e_1,...,e_n)$ -- базис в $V$,\ 
     $f = (f_1,...,f_m)$ -- базис в $V',\\(dimV = n,\ dimV' = m)$
     $\Longrightarrow$ $$\varphi(v) = \sum\limits_{j=1}^nx_j
     \varphi(e_j) = \sum\limits_{j=1}^nx_j\sum\limits_{i=1}^ma_{ij}f_i = 
@@ -1101,8 +1101,8 @@
         E_k & \vline & 0\\
         \hline 0 & \vline & 0
     \end{pmatrix}$
-    \newpage
-    \underline{\textbf{Вычисление матрицы}} $A_{\varphi,e,f}:$\\
+    
+    $\\\\$\underline{\textbf{Вычисление матрицы}} $A_{\varphi,e,f}:$\\
     $A_\varphi e_j^\uparrow$ -- j-й столбец матрицы $A_\varphi$
     в базисе $f$, где $1 \leq j \leq n.$\\
     \textbf{Рассмотрим задачу:} даны ЛНЗ векторы $a_1,..., a_n$ в $V$ и
@@ -1119,7 +1119,7 @@
     \Longrightarrow X = A_{\varphi,e,f}$\\
     $\\(A^T|B^T) \underset{\text{строк}}{\overset{\text{Э.П.}}{\sim}} (E|X^T)$
     
-    \underline{\textbf{Изменение матрицы линейного
+    $\\$\underline{\textbf{Изменение матрицы линейного
     отображения (оператора) при}}\\
     \underline{{\textbf{замене базисов:}}}
 
@@ -2189,7 +2189,7 @@
         жордановых цепочек длин $\leq d$. Векторы всех этих
         цепочек образуют базис в $V$.  
     \end{proof}
-
+    \newpage
     \begin{lemma}
         Пусть есть $t$ жордановых цепочек $$\{a_1,\psi(a_1),...,
         \psi^{l_1 - 1}(a_1)\},\ \psi^{l_1}(a_1) = 0$$
@@ -2226,7 +2226,6 @@
         $$\alpha_{a,l_1}\psi^{l_1 - 1}(a_1) +...+
         \alpha_{t,l_t}\psi^{l_t - 1}(a_t) = 0 \text{ ЛНЗ}
         \Longrightarrow$$ \text{остальные коэффициенты равны 0}
-    
     \end{proof}
     $B$ -- нильпотентный оператор, $B^d = 0 \neq B^{d-1}
     \Longrightarrow $ максимальная длина (высота) жордановой
@@ -2234,7 +2233,7 @@
     $R_i = \text{Im}B^i \cap \text{Ker}B,\ i = 1,..,d$\\
     \includegraphics[scale = 0.25]{images/table2.JPG}\\
     Базис $\text{Ker}B = R_0$
-    \newpage 
+    
     Общее число векторов в цепочках равно $\text{dim}V$
     (в котором действует $B$):
     $$d_{p_1} + (d-1)p_2 + ... + 2p_{d-1} + p_d =$$
@@ -2471,7 +2470,7 @@
     \begin{center}
         \begin{Large}
             \textbf{Глава III. Билинейные и квадратичные
-            функции/ Пространства с формами.}
+            функции. Пространства с формами.}
             \textbf{\S 1. Билинейные функции.} 
         \end{Large}
     \end{center}
@@ -2493,7 +2492,7 @@
     $$(f(x), g(x)) \longmapsto \int\limits_{a}^{b} f(x)g(x)dx =
     \int\limits_{a}^{b} g(x)f(x)dx \text{-- симметричная}$$
 
-    2. $V = M_b(F)$
+    2. $V = M_n(F)$
     $$f_1(X, Y) = \text{tr}(XY),\ f_2(X, Y) = \text{tr}(XY^T)$$
     Выражение $f(x,y)$ в координатах.\\ Пусть $e$ -- базис в $V$,
     $x = \sum\limits_{i=1}^{n} x_ie_i,\ y = \sum\limits_{j=1}
@@ -2512,7 +2511,7 @@
     подставим в (2).\\
     $X^TB_eY = (CX')^TB_e(CY') = (X')^T(C^TB_eC)Y' 
     \overset{?!}{=} (X')^TB_{e'}Y',\ \forall X', Y' \in F^n$
-    Если $X'  =E_i, Y' = E_j$, то $(X')^TY' = d_{ij},\ 
+    Если $X'  =E_i,\ Y' = E_j$, то $(X')^TDY' = d_{ij},\ 
     \forall i,j \Longrightarrow B_{e'} = C^TB_eC\ (3)$
 
     \begin{consequense}
@@ -2555,7 +2554,7 @@
             f(x,y) = f_+(x,y) + f_-(x,y)\\
             f(x,y) = f_+(x,y) - f_-(x,y)
         \end{cases}$$
-        $$f_+(x,y) = \frac{f(x, \overline{y}) + f(y,x)}{2},\ 
+        $$f_+(x,y) = \frac{f(x, y) + f(y,x)}{2},\ 
         \ f_- (x,y) = \frac{f(x,y) - f(y,x)}{2}$$
     \end{proof}
     \begin{center}
@@ -2570,7 +2569,7 @@
         порожденной билинейной функцией} $f$, если $k_f(x)
         \not\equiv 0$.
     \end{definition}
-    Обратим внимание, что если $f(x,y) = f_+(x,y)$, то 
+    Обратим внимание, что если $f(x,y) = f_+(x,y) + f_-(x,y)$, то 
     $$f(x,x) = f_+(x,x) + \underset{-f_-(x,x) = 0}{f_-(x,x)}
     ,\ \text{char}F \neq 2 \Longrightarrow$$ 
     $f \text{ и } f_+$ порождают одну и ту же функцию.
@@ -2587,10 +2586,10 @@
         ,\ \forall x,y \in V \Longrightarrow f(x,y) = 
         \frac{k(x+y) - k(x) - k(y)}{2}$
     \end{proof}
-    Координатная запись: $$k(x) = X^TB_eX = \sum\limits_{i,j}
-    b_{ij}x_ix_j = \sum\limits_{i,j} b_{ij}x_i^2 +
+    \underline{Координатная запись:} $$k(x) = X^TB_eX = \sum\limits_{i,j}
+    b_{ij}x_ix_j = \sum\limits_{i,j} b_{ii}x_i^2 +
     2\sum\limits_{i < j} b_{ij}x_ix_j,\ b_{ij} = b_{ji},\
-    \forall i,j$$
+    \forall i,j,\ (2)$$
     Договоримся, что матрица квадратичной формы (2)
     совпадает с матрицей $B$.
 
@@ -2606,19 +2605,24 @@
     \underline{Термин:} Диагональная квадратичная форма:
     $$k(x) = \alpha_1x_1^2 +...+ \alpha_nx_n^2 = \alpha_1x_1^2
     +...+\alpha_rx_r^2$$
-    (При подходящей нумерации переменных).\\
+    (При подходящей нумерации переменных). 
     $(x = (x_1,...,x_n))$\\
-    Если $\text{rk}f  \Longrightarrow k = r leq n$
-    $B = \begin{pmatrix}
-        \alpha_1
+    Если $\text{rk}f = rk = k = r \leq n$
+    $$B = \begin{pmatrix}
+        \alpha_1  & \null & \null & \null & & \null 0\\
+        \null & \ddots & \null & \null & \null & \null\\
+        \null & \null & \alpha_r & \null & \null & \null\\
+        \null & \null & \null & 0 & \null & \null\\
+        \null & \null & \null & \null & \ddots & \null\\
+        0 & \null & \null & \null & \null & 0
     \end{pmatrix}
-    $ 
-    %Пропуск
+    $$ 
+    
 
     \underline{Термин:} $(F = \mathbb{R})$
     $k(x)$ имеет канонический вид, если
-    $$k(x) = \sum\limits_{i=1}^{D}x_i^2 - \sum\limits_
-    {i=p+1}^{p+q}x_i^2,\ (p+q = \text{rk}k = r)$$
+    $$k(x) = \sum\limits_{i=1}^{p}x_i^2 - \sum\limits_
+    {i=p+1}^{p+q}x_i^2,\ (p+q = \text{rk}\ k = r)$$
     Если $F = \mathbb{C}$, то канонический вид будет
     $$\sum\limits_{i=1}^{r}  x_i^2$$
     Над $\mathbb{R}$: замена $y_i = \sqrt{|\alpha_i|}x_i,\ 
@@ -2626,24 +2630,25 @@
     Тогда $k(x)$ равен каноническому виду.\\
     Над $\mathbb{C}$: $\forall i = 1,...,r\ \ y_i =
      \sqrt{|\alpha_i|}x_i$
-
+    \newpage
     \begin{center}
-        \textbf{Алгоритм Лагранжа (мметод выделения квадратов.)} 
+        \textbf{Алгоритм Лагранжа (метод выделения квадратов.)} 
     \end{center}
 
     Пусть $k(x_1,...,x_n) = b_{11}x_1^2 +...+ b_{nn}x_n^2 + 
-    2b_{12}x_1x_2 +...+ 2b_{1n}x_1x_n +...$\\
+    2b_{12}x_1x_2 +...+ 2b_{1n}x_1x_n \undermat{
+    x_1\text{ не входит}}{+...}$\\
     Основной случай: $b_{11} \neq 0 \Longrightarrow$
-    $$b_{11}x_1^2 + 2x_1(\sum\limits_{i=2}^{n}b_{1i}x_i) = 
+    $$b_{11}(x_1^2 + 2x_1\sum\limits_{i=2}^{n}b_{1i}x_i) = 
     b_{11}(x_1^2 + 2x_1(\sum\limits_{i=2}^{n} 
     \frac{b_{1i}}{b_{11}} x_i) + (\sum\limits_{i=2}^{n}
     \frac{b_{1i}}{b_{11}} x_i)^2) -$$ 
     $$\underbrace{- \frac{1}{b_{11}}
     (\sum\limits_{i=2}^{n} b_{1i}x_i)^2  + 2 \sum\limits_
     {i < i < j} b_{ij}x_ix_j}_{k_1(x_2,...,x_n)} = 
-    b_1(x_1 + \sum\limits_{i=2}^{n} \frac{b_{1i}x_i}{b_{11}})
+    b_{11}(x_1 + \sum\limits_{i=2}^{n} \frac{b_{1i}x_i}{b_{11}})
     ^2 + k_1(x_2,...,x_n)$$ 
-    Замена $y_1 = x_1 + \sum\limits_{i=2}^{n} \frac{b_{1i}}
+    Замена: $y_1 = x_1 + \sum\limits_{i=2}^{n} \frac{b_{1i}}
     {b_{11}}x_i$, остальные пока не заменяем.
     
     Особый случай: $b_{ii} = 0,\ \forall i = 1,...,n$\\
@@ -2652,10 +2657,15 @@
     Подготовительная замена:
     $$\begin{cases}
         x_1 = x_i' - x_j' \Longrightarrow 2b_{ij}x_{ij} = 
-        2(x_i'^2 - x_j'^2)\\
+        2((x_i')^2 - (x_j')^2)\\
         x_j = x_i' + x_j'
-    \end{cases} \Longrightarrow \text{ перейти к основному случаю}$$
-
+    \end{cases} \Longrightarrow \text{ перейти к основн. случаю}$$
+    Заммечание: можно сделать такую замену:
+    $\begin{cases}
+        x_i = \tilde{x}_i + \tilde{x}_j\\
+        x_j = \tilde{x}_j
+    \end{cases}$
+    
 
 
 
