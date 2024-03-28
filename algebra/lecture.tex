@@ -1401,7 +1401,7 @@
     \end{proof}
     \begin{definition}
         Вектор $x \in V$ называется \textit{собственным вектором}
-        оператора $\varphi$, если $x \neq v$ и $\exists
+        оператора $\varphi$, если $x \neq 0$ и $\exists
         \lambda \in F:\ \varphi(x) = \lambda x\ (1)$. 
         Это $\lambda$ называется собственным значением
         оператора $\varphi$ ($x$ -- собственный вектор
@@ -1418,19 +1418,18 @@
         значению $\lambda$.   
     \end{definition}
     \begin{subtheorem}
-        \begin{enumerate}
-            \item $V_\lambda = Ker(\varphi - \lambda \varepsilon)$,
-            ($\varepsilon$ -- тождественный оператор).
-            \item $V_\lambda$ -- $\varphi$-инвариантное
-            подпространство. 
-        \end{enumerate}
+        $1.\ V_\lambda = Ker(\varphi - \lambda \varepsilon)$,
+        ($\varepsilon$ -- тождественный оператор).
+        
+        $\tab[3.15cm] 2.\ V_\lambda$ -- $\varphi$-инвариантное
+        подпространство. 
     \end{subtheorem}
     \begin{proof}
         $1.\ v \in Ker(\varphi - \lambda \varepsilon)
         \Longleftrightarrow \varphi(v) = \lambda v
         \Longleftrightarrow v \in V_\lambda$.
 
-        $2.$ Возьмем $x \in V_\lambda \Longrightarrow 
+        $\tab[3.5cm]2.$ Возьмем $x \in V_\lambda \Longrightarrow 
         \varphi(x) = \lambda x \in V_\lambda$   
     \end{proof}
     \textbf{Замечание:} если $\varphi(x) = \lambda x\ (x \neq 0),\ 
@@ -1552,16 +1551,15 @@
     многочлен матрицы $A_\varphi$.
     
     \begin{lemma}
-        Характеристический многочлен матрицы $a_\varphi$ не
-        Характеритический многочлен матрицы $a_\varphi$ не
-        зависит от выбора\\ базиса. 
+        Характеристический многочлен матрицы $A_\varphi$ не
+        зависит от выбора базиса. 
     \end{lemma}
     \begin{proof}
         Пусть $e' = eC$ -- новый базис, тогда матрица\\
         $A_{\varphi,e'} = C^{-1}A_{\varphi,e}C \Longrightarrow 
-        |A_{\varphi,e} - \lambda E| = |C^{-1}A_\varphi C
+        |A_{\varphi,e'} - \lambda E| = |C^{-1}A_\varphi C
         - \lambda(C^{-1}C)| = |C^{-1}(A_\varphi - \lambda E)C|
-        =\\ |C^{-1}||A_\varphi - \lambda E||C| = |a_\varphi -
+        =\\ |C^{-1}||A_\varphi - \lambda E||C| = |A_\varphi -
         \lambda E|$  
 
     \end{proof}
@@ -1654,7 +1652,6 @@
             и для $\forall i,\ \underbrace{dimV_{\lambda_i}}_{
             \text{\textit{гкр}}\lambda_i} = \underbrace{k_i}_{
             \text{\textit{алг}}(\lambda_i)}$  
-            \item В $V\ \exists$ собственный базис для $\varphi$.
             \item $V_{\lambda_1} \oplus...\oplus V_{\lambda_s}
             = V$ 
         \end{enumerate}
@@ -1758,7 +1755,7 @@
     \lambda_1,...,\lambda_n) = A' \Longrightarrow 
     A = CA'C^{-1} \Longrightarrow$ $$A^m = 
     \underbrace{(CA'C^{-1})\cdot...\cdot(CA'C^{-1})}_{m} =
-    CA'^mC^{-1} = C
+    C(A')^mC^{-1} = C
     \begin{pmatrix}
         \lambda_1^m & \null & 0\\ \null & \ddots & \null\\
         0 & \null & \lambda_n^m
