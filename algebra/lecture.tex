@@ -1790,18 +1790,15 @@
     степеней всех аннулирующих многочленов.   
 
     \begin{subtheorem}
-        \begin{enumerate}
-            \item Любой аннулирующий $p(t)$ делится на 
-            минимальный $\mu(t)$ 
-            \item $\mu(t)$ единственен, если потребовать, чтобы
-            старший коэффициент $\mu(t)$ был равен 1. 
-        \end{enumerate}
+        1. Любой аннулирующий $p(t)$ делится на 
+        минимальный $\mu(t)$ 
+        $\tab[3.8cm]2.\ \mu(t)$ единственен, если потребовать, чтобы старший\\ \tab[4.35cm]коэффициент $\mu(t)$ был равен 1. 
     \end{subtheorem}
     \begin{proof}
-        $\\1. p(t) = \mu(t)q(t + r(t)) \Longrightarrow 
+        $\\1. p(t) = \mu(t)q(t) + r(t) \Longrightarrow 
         \overbrace{p(\varphi)}^{0} = \overbrace{\mu(\varphi)}^{0}
         q(\varphi) + r(\varphi)
-        \Longrightarrow r(\varphi) = 0$, но $deg\ r < deg\ \mu
+        \Longrightarrow r(\varphi) = 0$, но\\ $deg\ r < deg\ \mu
         \Longrightarrow r = 0$\\
         2. Если $\mu'(t)$ -- еще один минимальный многочлен,
         то $\mu(t)|\mu'(t)$ и $\mu'(t)|\mu(t)$\\ (по пункту 1)
@@ -1818,9 +1815,9 @@
     \end{pmatrix}$$ Ее можно представить в виде матричного
     многочлена.\\ $(a_{ij}(\lambda))$ -- многочлены от $\lambda$.
     \newpage
-    \textbf{Теорема Гамильтона-Кели.} 
+    \textbf{Теорема Гамильтона-Кэли.} 
          Для любого линейного оператора
-        $\chi_\varphi(\varphi) = 0$.\\ Равносильно: если 
+        $\chi_\varphi(\varphi) = 0$.\\ Если 
         $\chi_\varphi(\lambda) = det(A_\varphi - \lambda E)$,
         то $\chi_\varphi(A_\varphi) = 0.$  
     
@@ -1832,7 +1829,7 @@
         \equiv E)$ 
 
         Составим присоединенную матрицу для $(A - \lambda E):\\
-        D(\lambda) = (d_{ji}(\lambda))\cdot d_{ji} = A_{ij}
+        D(\lambda) = (d_{ji}(\lambda)) \text{ такой что } d_{ji} = A_{ij}
         (A - \lambda E)\\(A - \lambda E)D(\lambda) = 
         \begin{pmatrix}
         |A - \lambda E| & \null & 0\\
