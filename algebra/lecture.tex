@@ -1829,30 +1829,30 @@
         \equiv E)$ 
 
         Составим присоединенную матрицу для $(A - \lambda E):\\
-        D(\lambda) = (d_{ji}(\lambda)) \text{ такой что } d_{ji} = A_{ij}
-        (A - \lambda E)\\(A - \lambda E)D(\lambda) = 
+        D(\lambda) = (d_{ji}(\lambda)) \text{ такой что } d_{ji} = A_{ij}$
+        $$(A - \lambda E)\\(A - \lambda E)D(\lambda) = 
         \begin{pmatrix}
         |A - \lambda E| & \null & 0\\
         \null & \ddots & \null\\
         0 & \null & |A - \lambda E|
-        \end{pmatrix} = \chi_\varphi(A)E$ элементы матрицы.
+        \end{pmatrix} = \chi_\varphi(A)E$$
         $D(\lambda)$ -- многочлены степени $\leq (n-1)$\\
         \underline{Обозначим:} $D(\lambda) = \sum\limits_{i=0}^{n-1}
         D_i \lambda^i,\ D_i$ -- числовые матрицы.\\
         Имеем $\chi_A(\lambda)E = (A - \lambda E)
         \sum\limits_{i=0}^{n-1} D_i \lambda^i = 
         \sum\limits_{i=0}^{n-1} AD_i \lambda^i -
-        \sum\limits_{i=0}^{n-1} D_i \lambda^(i + 1) =  \\
+        \sum\limits_{i=0}^{n-1} D_i \lambda^{i + 1} =  \\
         = AD_0 + \sum\limits_{i=1}^{n-1} (AD_i - D_{i-1})
         \lambda^i - D_{n-1} \lambda^n$\\
         $\begin{cases}
-            \lambda^0:\ p_0E = AD_0 & \vline\times E\\
-            \lambda^1:\ p_0E = AD_1 - D_0 & \vline\times A\\
+            \lambda^0:\ P_0E = AD_0 & \vline\times E\\
+            \lambda^1:\ P_0E = AD_1 - D_0 & \vline\times A\\
             \vdots & \vline\\
-            \lambda^i:\ p_0E = AD_0 & \vline\times A^i\\
+            \lambda^i:\ P_0E = AD_0 & \vline\times A^i\\
             \vdots & \vline\\
-            \lambda^{n-1}: P_{n-1}E = AD_{n-1} - D_{n-k} & \vline \times A^{n-1}\\
-            \lambda^{n}: P_{n}E = AD_{n} - D_{n-1} & \vline \times A^n\\
+            \lambda^{n-1}: P_{n-1}E = AD_{n-1} - D_{n-2} & \vline \times A^{n-1}\\
+            \lambda^{n}: P_{n}E = - D_{n-1} & \vline \times A^n\\
         \end{cases}\ \ +\ \longrightarrow\ \chi_A(A) = 0$
     
     \end{proof}
